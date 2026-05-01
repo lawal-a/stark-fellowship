@@ -18,5 +18,5 @@ compatibility_date     = "2024-09-23"
 
 [[kv_namespaces]]
 binding    = "STARK_DATA"
-id         = "REPLACE_WITH_KV_NAMESPACE_ID"
-preview_id = "REPLACE_WITH_PREVIEW_KV_NAMESPACE_ID"
+id         = "635e030e8b764a549fc53ce7649593d5"
+preview_id = "e377b42b393e479a92a4b3216d85588e"
