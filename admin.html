@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STARK Admin — Data Dashboard</title>
+  <style>
+    :root {
+      --blue:#1818E8; --blue-dark:#1010BA; --blue-soft:#EEEEFF;
+      --gold:#C8A84B; --gold-pale:#FDF8EC;
+      --charcoal:#191928; --gray:#718096; --gray-light:#E2E8F0;
+      --white:#fff; --cream:#FAFAF7;
+      --green:#059669; --red:#DC2626;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;background:var(--cream);color:var(--charcoal);min-height:100vh;}
+
+    /* ── Header ── */
+    .hdr{
+      background:var(--charcoal);
+      padding:18px 5%;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .hdr-brand{display:flex;align-items:center;gap:14px;}
+    .hdr-logo{
+      font-family:'Arial Black',sans-serif;font-weight:900;font-size:1.3rem;
+      color:white;letter-spacing:.12em;
+    }
+    .hdr-tag{font-size:.72rem;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;}
+    .hdr-badge{
+      font-size:.72rem;background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.5);padding:5px 12px;border-radius:50px;
+    }
+
+    /* ── Login ── */
+    .login-wrap{
+      min-height:calc(100vh - 64px);
+      display:flex;align-items:center;justify-content:center;
+      padding:40px 5%;
+    }
+    .login-card{
+      background:var(--white);border-radius:20px;
+      padding:48px 44px;max-width:420px;width:100%;
+      box-shadow:0 20px 60px rgba(25,25,40,.12);
+      border:1px solid var(--gray-light);
+      text-align:center;
+    }
+    .login-icon{font-size:2.4rem;margin-bottom:16px;}
+    .login-card h2{font-size:1.4rem;font-weight:700;margin-bottom:8px;}
+    .login-card p{font-size:.875rem;color:var(--gray);margin-bottom:28px;line-height:1.6;}
+    .login-input{
+      width:100%;padding:13px 16px;
+      border:1.5px solid var(--gray-light);border-radius:10px;
+      font-size:.9rem;outline:none;margin-bottom:12px;
+      transition:border-color .2s;
+    }
+    .login-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(24,24,232,.09);}
+    .login-btn{
+      width:100%;padding:13px;background:var(--blue);color:white;
+      border:none;border-radius:50px;font-size:.95rem;font-weight:600;
+      cursor:pointer;transition:background .2s,transform .2s;
+    }
+    .login-btn:hover{background:var(--blue-dark);transform:translateY(-1px);}
+    .login-err{font-size:.82rem;color:var(--red);margin-top:10px;display:none;}
+    .login-err.show{display:block;}
+
+    /* ── Dashboard ── */
+    .dash{display:none;padding:36px 5%;}
+    .dash.show{display:block;}
+
+    /* Stats row */
+    .stats-row{display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap;}
+    .stat-card{
+      background:var(--white);border-radius:14px;
+      padding:22px 28px;flex:1;min-width:160px;
+      box-shadow:0 2px 12px rgba(25,25,40,.07);
+      border:1px solid var(--gray-light);
+    }
+    .stat-card .num{font-size:2.2rem;font-weight:700;line-height:1;}
+    .stat-card .lbl{font-size:.78rem;color:var(--gray);margin-top:4px;font-weight:500;}
+    .stat-card.blue .num{color:var(--blue);}
+    .stat-card.gold  .num{color:var(--gold);}
+    .stat-card.green .num{color:var(--green);}
+
+    /* Toolbar */
+    .toolbar{
+      display:flex;gap:12px;align-items:center;
+      margin-bottom:20px;flex-wrap:wrap;justify-content:space-between;
+    }
+    .tabs{display:flex;gap:4px;background:var(--gray-light);padding:4px;border-radius:10px;}
+    .tab{
+      padding:8px 20px;border-radius:7px;font-size:.85rem;font-weight:600;
+      cursor:pointer;border:none;background:transparent;color:var(--gray);
+      transition:all .2s;
+    }
+    .tab.active{background:var(--white);color:var(--charcoal);box-shadow:0 1px 4px rgba(0,0,0,.1);}
+    .toolbar-right{display:flex;gap:10px;align-items:center;}
+    .search-input{
+      padding:8px 14px;border:1.5px solid var(--gray-light);
+      border-radius:8px;font-size:.85rem;outline:none;width:220px;
+      transition:border-color .2s;
+    }
+    .search-input:focus{border-color:var(--blue);}
+    .export-btn{
+      padding:9px 18px;background:var(--charcoal);color:white;
+      border:none;border-radius:8px;font-size:.82rem;font-weight:600;
+      cursor:pointer;transition:background .2s;white-space:nowrap;
+    }
+    .export-btn:hover{background:#2D2D42;}
+
+    /* Table */
+    .table-wrap{
+      background:var(--white);border-radius:14px;
+      box-shadow:0 2px 12px rgba(25,25,40,.07);
+      border:1px solid var(--gray-light);
+      overflow:hidden;
+    }
+    .data-table{width:100%;border-collapse:collapse;font-size:.84rem;}
+    .data-table th{
+      background:#F8F9FC;
+      padding:12px 16px;text-align:left;
+      font-size:.72rem;font-weight:700;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--gray);
+      border-bottom:1px solid var(--gray-light);
+      white-space:nowrap;cursor:pointer;user-select:none;
+    }
+    .data-table th:hover{color:var(--charcoal);}
+    .data-table td{
+      padding:14px 16px;border-bottom:1px solid #F3F4F8;
+      color:var(--charcoal);vertical-align:top;
+    }
+    .data-table tr:last-child td{border-bottom:none;}
+    .data-table tr:hover td{background:#FAFBFF;}
+
+    .prog-pill{
+      display:inline-block;
+      background:var(--blue-soft);color:var(--blue);
+      font-size:.68rem;font-weight:600;padding:2px 8px;
+      border-radius:50px;margin:1px;white-space:nowrap;
+    }
+    .state-pill{
+      display:inline-block;
+      background:var(--gold-pale);color:var(--gold);
+      font-size:.72rem;font-weight:600;padding:2px 8px;
+      border-radius:50px;
+    }
+    .date-cell{font-size:.78rem;color:var(--gray);}
+    .empty-state{
+      text-align:center;padding:64px 24px;
+    }
+    .empty-state p{color:var(--gray);font-size:.9rem;}
+
+    .refresh-note{font-size:.72rem;color:var(--gray);margin-top:12px;text-align:right;}
+
+    /* Loading */
+    .loading{text-align:center;padding:80px 24px;color:var(--gray);}
+    .spinner{
+      width:36px;height:36px;border:3px solid var(--gray-light);
+      border-top-color:var(--blue);border-radius:50%;
+      animation:spin .8s linear infinite;margin:0 auto 16px;
+    }
+    @keyframes spin{to{transform:rotate(360deg);}}
+
+    /* Toast */
+    .toast{
+      position:fixed;bottom:24px;right:24px;
+      background:var(--charcoal);color:white;
+      padding:12px 20px;border-radius:10px;
+      font-size:.85rem;opacity:0;pointer-events:none;
+      transition:opacity .3s;
+    }
+    .toast.show{opacity:1;}
+
+    @media(max-width:640px){
+      .stats-row{flex-direction:column;}
+      .toolbar{flex-direction:column;align-items:flex-start;}
+      .search-input{width:100%;}
+      .data-table th:nth-child(n+4),.data-table td:nth-child(n+4){display:none;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="hdr">
+    <div class="hdr-brand">
+      <div class="hdr-logo">STARK</div>
+      <div class="hdr-tag">Admin Dashboard</div>
+    </div>
+    <div class="hdr-badge" id="hdrInfo">—</div>
+  </div>
+
+  <!-- Login -->
+  <div class="login-wrap" id="loginWrap">
+    <div class="login-card">
+      <div class="login-icon">🔐</div>
+      <h2>Admin Access</h2>
+      <p>Enter your admin key to view waitlist and volunteer data.</p>
+      <input type="password" class="login-input" id="keyInput" placeholder="Enter admin key…" onkeydown="if(event.key==='Enter')loadData()">
+      <button class="login-btn" onclick="loadData()">Load Dashboard</button>
+      <div class="login-err" id="loginErr"></div>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dash" id="dash">
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card blue">
+        <div class="num" id="statWaitlist">—</div>
+        <div class="lbl">Waitlist Registrations</div>
+      </div>
+      <div class="stat-card gold">
+        <div class="num" id="statVolunteer">—</div>
+        <div class="lbl">Volunteer Submissions</div>
+      </div>
+      <div class="stat-card green">
+        <div class="num" id="statTotal">—</div>
+        <div class="lbl">Total Submissions</div>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="tabs">
+        <button class="tab active" id="tabWaitlist" onclick="switchTab('waitlist')">Waitlist</button>
+        <button class="tab"        id="tabVolunteer" onclick="switchTab('volunteer')">Volunteers</button>
+      </div>
+      <div class="toolbar-right">
+        <input class="search-input" id="searchInput" placeholder="Search by name or email…" oninput="renderTable()">
+        <button class="export-btn" onclick="exportCSV()">Export CSV</button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <div class="loading" id="loadingState">
+        <div class="spinner"></div>
+        <p>Loading data…</p>
+      </div>
+      <div id="tableContent" style="display:none;overflow-x:auto;"></div>
+    </div>
+
+    <p class="refresh-note" id="refreshNote"></p>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let adminKey = '';
+    let data = { waitlist: [], volunteers: [] };
+    let activeTab = 'waitlist';
+
+    async function loadData() {
+      const key = document.getElementById('keyInput').value.trim();
+      if (!key) { showLoginErr('Please enter your admin key.'); return; }
+
+      adminKey = key;
+      document.getElementById('loginErr').classList.remove('show');
+
+      try {
+        const res  = await fetch(`/api/admin-data?key=${encodeURIComponent(key)}`);
+        const json = await res.json();
+
+        if (res.status === 401) { showLoginErr('Invalid admin key. Please try again.'); return; }
+        if (!json.success)      { showLoginErr(json.error || 'Failed to load data.'); return; }
+
+        data = json;
+        document.getElementById('loginWrap').style.display = 'none';
+        document.getElementById('dash').classList.add('show');
+        document.getElementById('statWaitlist').textContent = json.totals.waitlist;
+        document.getElementById('statVolunteer').textContent = json.totals.volunteers;
+        document.getElementById('statTotal').textContent = json.totals.waitlist + json.totals.volunteers;
+        document.getElementById('hdrInfo').textContent = `Last refreshed: ${new Date(json.generatedAt).toLocaleTimeString()}`;
+        document.getElementById('refreshNote').textContent = `Data as of ${new Date(json.generatedAt).toLocaleString()}`;
+
+        renderTable();
+      } catch (err) {
+        showLoginErr('Unable to connect. Check your network or try again.');
+      }
+    }
+
+    function showLoginErr(msg) {
+      const el = document.getElementById('loginErr');
+      el.textContent = msg; el.classList.add('show');
+    }
+
+    function switchTab(tab) {
+      activeTab = tab;
+      document.getElementById('tabWaitlist').classList.toggle('active', tab === 'waitlist');
+      document.getElementById('tabVolunteer').classList.toggle('active', tab === 'volunteer');
+      document.getElementById('searchInput').value = '';
+      renderTable();
+    }
+
+    function renderTable() {
+      const loading = document.getElementById('loadingState');
+      const content = document.getElementById('tableContent');
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      loading.style.display = 'none';
+      content.style.display = 'block';
+
+      const rows = activeTab === 'waitlist' ? data.waitlist : data.volunteers;
+      const filtered = rows.filter(r =>
+        r.name?.toLowerCase().includes(q) || r.email?.toLowerCase().includes(q) ||
+        (activeTab === 'waitlist' ? r.programs?.join(' ').toLowerCase().includes(q) : r.state?.toLowerCase().includes(q))
+      );
+
+      if (!filtered.length) {
+        content.innerHTML = `<div class="empty-state"><p>${rows.length ? 'No results match your search.' : 'No submissions yet.'}</p></div>`;
+        return;
+      }
+
+      if (activeTab === 'waitlist') {
+        content.innerHTML = `
+        <table class="data-table">
+          <thead><tr>
+            <th onclick="sortRows('name')">Name ↕</th>
+            <th onclick="sortRows('email')">Email ↕</th>
+            <th>Programs</th>
+            <th onclick="sortRows('stage')">Stage ↕</th>
+            <th onclick="sortRows('city')">City</th>
+            <th onclick="sortRows('submittedAt')">Date ↕</th>
+          </tr></thead>
+          <tbody>${filtered.map(r=>`<tr>
+            <td><strong>${esc(r.name)}</strong><br><span style="font-size:.75rem;color:var(--gray);">${esc(r.phone||'')}</span></td>
+            <td><a href="mailto:${esc(r.email)}" style="color:var(--blue);">${esc(r.email)}</a></td>
+            <td>${(r.programs||[]).map(p=>`<span class="prog-pill">${esc(p)}</span>`).join('')}</td>
+            <td style="font-size:.8rem;">${esc(r.stage||'—')}</td>
+            <td style="font-size:.8rem;">${esc(r.city||'—')}</td>
+            <td class="date-cell">${fmtDate(r.submittedAt)}</td>
+          </tr>`).join('')}</tbody>
+        </table>`;
+      } else {
+        content.innerHTML = `
+        <table class="data-table">
+          <thead><tr>
+            <th onclick="sortRows('name')">Name ↕</th>
+            <th onclick="sortRows('email')">Email ↕</th>
+            <th onclick="sortRows('locationLabel')">State / Region ↕</th>
+            <th onclick="sortRows('role')">Role</th>
+            <th>Network Notes</th>
+            <th onclick="sortRows('submittedAt')">Date ↕</th>
+          </tr></thead>
+          <tbody>${filtered.map(r=>`<tr>
+            <td><strong>${esc(r.name)}</strong><br><span style="font-size:.75rem;color:var(--gray);">${esc(r.phone||'')}</span></td>
+            <td><a href="mailto:${esc(r.email)}" style="color:var(--blue);">${esc(r.email)}</a></td>
+            <td><span class="state-pill">${esc(r.locationLabel||r.state||'—')}</span></td>
+            <td style="font-size:.8rem;">${esc(r.role||'—')}</td>
+            <td style="font-size:.8rem;max-width:200px;white-space:pre-wrap;">${esc((r.network||'').substring(0,120))}${(r.network||'').length>120?'…':''}</td>
+            <td class="date-cell">${fmtDate(r.submittedAt)}</td>
+          </tr>`).join('')}</tbody>
+        </table>`;
+      }
+    }
+
+    let sortKey = 'submittedAt', sortAsc = false;
+    function sortRows(key) {
+      if (sortKey === key) sortAsc = !sortAsc; else { sortKey = key; sortAsc = true; }
+      const rows = activeTab === 'waitlist' ? data.waitlist : data.volunteers;
+      rows.sort((a,b)=>{
+        const av = a[key]||'', bv = b[key]||'';
+        return sortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
+      });
+      renderTable();
+    }
+
+    function exportCSV() {
+      const rows = activeTab === 'waitlist' ? data.waitlist : data.volunteers;
+      if (!rows.length) { showToast('No data to export.'); return; }
+
+      let csv;
+      if (activeTab === 'waitlist') {
+        csv = 'Name,Email,Phone,Programs,Stage,City,Heard About,Message,Date\n' +
+          rows.map(r=>[r.name,r.email,r.phone,(r.programs||[]).join('; '),r.stage,r.city,r.hearAbout,r.message,r.submittedAt]
+            .map(v=>`"${(v||'').replace(/"/g,'""')}"`)
+            .join(',')).join('\n');
+      } else {
+        csv = 'Name,Email,Phone,State,Country,Role,Network,Message,Date\n' +
+          rows.map(r=>[r.name,r.email,r.phone,r.state,r.diasporaCountry,r.role,r.network,r.message,r.submittedAt]
+            .map(v=>`"${(v||'').replace(/"/g,'""')}"`)
+            .join(',')).join('\n');
+      }
+
+      const blob = new Blob([csv], { type:'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `stark-${activeTab}-${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+      showToast(`Exported ${rows.length} rows as CSV`);
+    }
+
+    function fmtDate(iso) {
+      if (!iso) return '—';
+      const d = new Date(iso);
+      return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) +
+             '<br><span style="font-size:.7rem;">' + d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) + '</span>';
+    }
+
+    function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'), 2800);
+    }
+
+    // Auto-focus key input
+    document.getElementById('keyInput').focus();
+  </script>
+</body>
+</html>
