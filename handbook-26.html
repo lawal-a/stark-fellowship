@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="STARK Y'26 Participant Handbook — Life Business Incubator (LBI) & School of Timothy (SOT). Heave Ventures." />
+  <title>STARK Y'26 — Participant Handbook</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --surface: #141414;
+      --card: #1c1c1c;
+      --card-hover: #222;
+      --border: #2a2a2a;
+      --border-light: #383838;
+      --gold: #C8A84B;
+      --gold-dim: rgba(200,168,75,.12);
+      --gold-glow: rgba(200,168,75,.25);
+      --green: #27ae60;
+      --text: #f0f0f0;
+      --text-2: #a8a8a8;
+      --text-3: #606060;
+      --r: 10px;
+      --r-lg: 18px;
+      --r-xl: 24px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.6; overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      height: 62px; padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(12,12,12,.9); backdrop-filter: blur(20px);
+      border-bottom: 1px solid transparent; transition: border-color .3s;
+    }
+    #nav.scrolled { border-bottom-color: var(--border); }
+    .nav-logo { height: 20px; filter: brightness(0) invert(1); opacity: .9; }
+    .nav-center {
+      display: flex; gap: 3px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 50px; padding: 3px;
+    }
+    .track-btn {
+      padding: 6px 20px; border-radius: 50px; border: none; cursor: pointer;
+      font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--text-3); background: transparent; transition: all .22s; font-family: inherit;
+    }
+    .track-btn.active { background: var(--gold); color: #000; }
+    .nav-links { display: flex; gap: 22px; list-style: none; }
+    .nav-links a {
+      font-size: .78rem; font-weight: 500; color: var(--text-3); transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-burger {
+      display: none; flex-direction: column; gap: 5px; padding: 4px;
+      background: none; border: none; cursor: pointer;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--text); border-radius: 2px; transition: all .3s;
+    }
+    .nav-burger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+    /* ── MOBILE DRAWER ── */
+    .mobile-drawer {
+      display: none; position: fixed; inset: 0; z-index: 800;
+      background: rgba(10,10,10,.98); backdrop-filter: blur(24px);
+      flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+    }
+    .mobile-drawer.open { display: flex; }
+    .mobile-drawer .drawer-track-row { display: flex; gap: 10px; }
+    .mobile-drawer .track-btn { font-size: .85rem; padding: 10px 26px; }
+    .mobile-drawer nav-link { font-size: 1.2rem; font-weight: 600; color: var(--text-2); }
+    .mobile-drawer a {
+      font-size: 1.2rem; font-weight: 600; color: var(--text-2); transition: color .2s;
+    }
+    .mobile-drawer a:hover { color: var(--gold); }
+    .drawer-divider { width: 40px; height: 1px; background: var(--border); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 120px 6% 80px;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 10%, rgba(200,168,75,.07) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(200,168,75,.04) 0%, transparent 60%),
+        var(--bg);
+    }
+    .hero-eyebrow {
+      font-size: .65rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold); display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; display: inline-block; width: 28px; height: 1px;
+      background: var(--gold); opacity: .4;
+    }
+    .hero-logo { height: 34px; filter: brightness(0) invert(1); margin: 0 auto 22px; }
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.6rem, 8vw, 5.5rem); font-weight: 900; letter-spacing: .05em;
+      line-height: 1; color: var(--text); margin-bottom: 10px;
+    }
+    .hero-sub {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: clamp(.95rem, 2vw, 1.25rem); color: var(--text-2); margin-bottom: 52px;
+    }
+    .hero-tracks { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hero-track-card {
+      width: 250px; padding: 26px 22px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--r-xl); cursor: pointer; text-align: left;
+      transition: all .28s;
+    }
+    .hero-track-card:hover { border-color: var(--border-light); transform: translateY(-3px); }
+    .hero-track-card.active {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px var(--gold-glow), 0 20px 60px rgba(200,168,75,.08);
+      background: rgba(200,168,75,.04);
+    }
+    .tc-label {
+      font-size: .62rem; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+    }
+    .tc-name {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.45rem;
+      font-weight: 800; letter-spacing: .02em; color: var(--text); margin-bottom: 6px;
+    }
+    .tc-desc { font-size: .8rem; color: var(--text-2); line-height: 1.55; }
+    .tc-meta {
+      margin-top: 14px; font-size: .7rem; color: var(--text-3);
+      display: flex; align-items: center; gap: 7px;
+    }
+    .tc-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+    /* ── SECTION ── */
+    .hb-section { padding: 72px 6%; border-top: 1px solid var(--border); }
+    .hb-inner { max-width: 980px; margin: 0 auto; }
+    .hb-eyebrow {
+      font-size: .62rem; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+    }
+    .hb-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; color: var(--text);
+      margin-bottom: 36px;
+    }
+
+    /* ── ROADMAP TABLE ── */
+    .rm-table { width: 100%; border-collapse: collapse; }
+    .rm-table th {
+      text-align: left; padding: 9px 14px;
+      font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--text-3); border-bottom: 1px solid var(--border);
+    }
+    .rm-table td {
+      padding: 13px 14px; font-size: .83rem; color: var(--text-2);
+      border-bottom: 1px solid var(--border); vertical-align: middle;
+    }
+    .rm-table tr:last-child td { border-bottom: none; }
+    .rm-table tr:hover td { background: rgba(255,255,255,.02); }
+    .rm-wk { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: .98rem; color: var(--gold); }
+    .rm-theme { font-weight: 600; color: var(--text); }
+    .rm-mile { font-size: .76rem; }
+    .rm-status {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 9px; border-radius: 50px;
+      font-size: .64rem; font-weight: 700; letter-spacing: .06em; white-space: nowrap;
+    }
+    .s-live  { background: rgba(39,174,96,.12); color: #27ae60; }
+    .s-done  { background: rgba(255,255,255,.04); color: var(--text-3); }
+    .s-lock  { background: rgba(255,255,255,.05); color: var(--text-3); }
+    .s-next  { background: rgba(200,168,75,.1); color: var(--gold); }
+
+    /* ── CURRICULUM ── */
+    #curriculum { padding: 60px 6%; }
+    .curr-inner { max-width: 820px; margin: 0 auto; }
+    .curr-hdr { margin-bottom: 28px; }
+    .curr-title { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; }
+    .curr-sub { font-size: .83rem; color: var(--text-2); margin-top: 4px; }
+
+    /* ── WEEK CARD ── */
+    .wk-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--r-lg); margin-bottom: 10px; overflow: hidden;
+      transition: border-color .25s;
+    }
+    .wk-card:hover:not(.is-locked) { border-color: var(--border-light); }
+    .wk-card.is-current { border-color: var(--gold); }
+    .wk-card.is-current:hover { border-color: var(--gold); }
+
+    .wk-header {
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px 22px; user-select: none;
+    }
+    .wk-card:not(.is-locked) .wk-header { cursor: pointer; }
+
+    .wk-badge-num {
+      flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%;
+      background: var(--surface); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.05rem;
+      color: var(--gold); transition: all .25s;
+    }
+    .is-current .wk-badge-num { background: var(--gold); color: #000; border-color: var(--gold); }
+    .is-locked .wk-badge-num { color: var(--text-3); }
+
+    .wk-info { flex: 1; min-width: 0; }
+    .wk-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 3px; }
+    .wk-label { font-size: .67rem; font-weight: 500; color: var(--text-3); }
+    .wk-tag {
+      font-size: .6rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 2px 7px; border-radius: 4px;
+    }
+    .tag-live { background: rgba(39,174,96,.14); color: #27ae60; }
+    .tag-lock { background: rgba(255,255,255,.05); color: var(--text-3); }
+    .tag-done { background: rgba(255,255,255,.04); color: var(--text-3); }
+    .tag-demo { background: rgba(200,168,75,.12); color: var(--gold); }
+    .wk-theme { font-weight: 600; font-size: .93rem; color: var(--text); }
+    .is-locked .wk-theme { color: var(--text-3); }
+    .wk-tagline { font-size: .76rem; color: var(--text-3); font-style: italic; margin-top: 2px; }
+
+    .wk-chevron {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--surface); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-2); transition: transform .3s, background .2s, color .2s;
+    }
+    .is-locked .wk-chevron { display: none; }
+    .wk-card.open .wk-chevron { transform: rotate(180deg); background: var(--gold-dim); color: var(--gold); }
+
+    /* ── COUNTDOWN ── */
+    .wk-countdown { padding: 0 22px 18px 78px; }
+    .cd-label {
+      font-size: .62rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text-3); margin-bottom: 8px;
+    }
+    .cd-row { display: flex; gap: 7px; align-items: center; }
+    .cd-unit {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 7px 11px; text-align: center; min-width: 48px;
+    }
+    .cd-num {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.35rem;
+      font-weight: 800; color: var(--text); line-height: 1;
+    }
+    .cd-unit-lbl { font-size: .55rem; color: var(--text-3); letter-spacing: .08em; text-transform: uppercase; margin-top: 2px; }
+    .cd-sep { color: var(--text-3); font-weight: 700; font-size: .9rem; }
+
+    /* ── WEEK BODY ── */
+    .wk-content { max-height: 0; overflow: hidden; transition: max-height .55s cubic-bezier(.4,0,.2,1); }
+    .wk-card.open .wk-content { max-height: 5000px; }
+    .wk-body { padding: 4px 22px 26px; }
+
+    .scripture-blk {
+      padding: 14px 18px; margin-bottom: 22px;
+      border-left: 2px solid var(--border-light);
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: .86rem; color: var(--text-3); line-height: 1.65;
+    }
+
+    .cs { margin-bottom: 24px; }
+    .cs-title {
+      font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .cs-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .live-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 14px 18px;
+    }
+    .live-box-title { font-weight: 600; font-size: .88rem; color: var(--text); margin-bottom: 7px; }
+    .live-meta { font-size: .76rem; color: var(--text-2); display: flex; flex-direction: column; gap: 3px; }
+    .live-meta span { display: flex; align-items: flex-start; gap: 8px; }
+
+    .outcome-blk {
+      font-size: .88rem; color: var(--text-2); line-height: 1.72;
+      padding: 12px 16px; background: var(--surface);
+      border-left: 2px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+    }
+
+    .sprint-blk { font-size: .86rem; color: var(--text-2); line-height: 1.7; font-style: italic; }
+
+    .act-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .act-list li {
+      display: flex; gap: 11px; font-size: .84rem; color: var(--text-2); align-items: flex-start;
+    }
+    .act-list li::before {
+      content: ''; flex-shrink: 0; width: 5px; height: 5px;
+      border-radius: 50%; background: var(--gold); margin-top: 8px;
+    }
+
+    .res-list { display: flex; flex-direction: column; gap: 5px; }
+    .res-link {
+      display: flex; align-items: center; gap: 10px; padding: 9px 13px;
+      border-radius: var(--r); background: var(--surface); border: 1px solid var(--border);
+      font-size: .8rem; color: var(--text-2); transition: all .18s;
+    }
+    .res-link:hover { border-color: var(--gold); color: var(--text); }
+    .res-link svg { flex-shrink: 0; color: var(--gold); }
+    .res-link .rl-text { flex: 1; }
+
+    /* ── DELIVERABLES TABLE ── */
+    .del-table { width: 100%; border-collapse: collapse; }
+    .del-table th {
+      text-align: left; padding: 8px 12px;
+      font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--text-3); border-bottom: 1px solid var(--border);
+    }
+    .del-table td {
+      padding: 10px 12px; font-size: .8rem; color: var(--text-2);
+      border-bottom: 1px solid var(--border); vertical-align: top;
+    }
+    .del-table td:first-child { color: var(--text); font-weight: 500; }
+    .del-table tr:last-child td { border-bottom: none; }
+
+    /* ── ACTION BUTTONS ── */
+    .wk-actions {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border);
+    }
+    .act-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 17px; border-radius: 50px; font-size: .76rem; font-weight: 600;
+      transition: all .2s; border: 1px solid transparent; cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-gold { border-color: var(--gold); color: var(--gold); background: transparent; }
+    .btn-gold:hover { background: var(--gold); color: #000; }
+    .btn-ghost { background: var(--surface); border-color: var(--border); color: var(--text-2); }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── PLACEHOLDER SECTIONS ── */
+    .ph-section {
+      padding: 80px 6%; border-top: 1px solid var(--border); text-align: center;
+    }
+    .ph-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .ph-title {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 1.5rem; letter-spacing: .05em; color: var(--text); margin-bottom: 8px;
+    }
+    .ph-desc { font-size: .86rem; color: var(--text-3); max-width: 380px; margin: 0 auto; line-height: 1.6; }
+    .ph-pill {
+      display: inline-block; margin-top: 14px; padding: 4px 14px;
+      border-radius: 50px; border: 1px solid var(--border);
+      font-size: .68rem; letter-spacing: .08em; color: var(--text-3);
+    }
+
+    /* ── PRINCIPLES ── */
+    .principles-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px;
+      margin-top: 8px;
+    }
+    .principle-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 20px;
+    }
+    .principle-num {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 2rem;
+      font-weight: 900; color: var(--border-light); line-height: 1; margin-bottom: 10px;
+    }
+    .principle-title { font-weight: 600; font-size: .88rem; color: var(--text); margin-bottom: 5px; }
+    .principle-text { font-size: .78rem; color: var(--text-3); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 6%; border-top: 1px solid var(--border); text-align: center;
+    }
+    .footer-logo { height: 16px; filter: brightness(0) invert(1); opacity: .3; margin: 0 auto 14px; }
+    .footer-text { font-size: .76rem; color: var(--text-3); line-height: 1.8; }
+    .footer-text a { color: var(--gold); }
+    .footer-links {
+      display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-top: 14px;
+    }
+    .footer-links a { font-size: .72rem; color: var(--text-3); transition: color .2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 780px) {
+      .nav-links, .nav-center { display: none; }
+      .nav-burger { display: flex; }
+      .rm-table th:nth-child(4), .rm-table td:nth-child(4) { display: none; }
+      .hero-tracks { flex-direction: column; align-items: center; }
+      .hero-track-card { width: 100%; max-width: 320px; }
+      .wk-countdown { padding-left: 22px; }
+    }
+    @media (max-width: 480px) {
+      .wk-header { padding: 14px 16px; gap: 10px; }
+      .wk-body { padding: 4px 16px 20px; }
+      .rm-table th:nth-child(3), .rm-table td:nth-child(3) { display: none; }
+      .cd-unit { min-width: 40px; padding: 6px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ═══════════════════════════════════════════════════════════════ -->
+<nav id="nav">
+  <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK" class="nav-logo" />
+
+  <div class="nav-center" id="navTrackSwitch">
+    <button class="track-btn active" data-track="lbi" onclick="setTrack('lbi')">LBI</button>
+    <button class="track-btn" data-track="sot" onclick="setTrack('sot')">SOT</button>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#curriculum">Curriculum</a></li>
+    <li><a href="#principles">Principles</a></li>
+    <li><a href="#bye-laws">Bye-Laws</a></li>
+    <li><a href="#prayer">Prayer</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+
+  <button class="nav-burger" id="burgerBtn" onclick="toggleDrawer()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ MOBILE DRAWER ═══════════════════════════════════════════════════════ -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-track-row">
+    <button class="track-btn active" data-track="lbi" onclick="setTrack('lbi');closeDrawer()">LBI</button>
+    <button class="track-btn" data-track="sot" onclick="setTrack('sot');closeDrawer()">SOT</button>
+  </div>
+  <div class="drawer-divider"></div>
+  <a href="#overview"   onclick="closeDrawer()">Overview</a>
+  <a href="#curriculum" onclick="closeDrawer()">Curriculum</a>
+  <a href="#principles" onclick="closeDrawer()">Principles</a>
+  <a href="#bye-laws"   onclick="closeDrawer()">Bye-Laws</a>
+  <a href="#prayer"     onclick="closeDrawer()">Prayer</a>
+  <a href="#faq"        onclick="closeDrawer()">FAQ</a>
+</div>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-eyebrow">STARK Y'26 · Heave Ventures</div>
+  <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK" class="hero-logo" />
+  <h1 class="hero-title">PARTICIPANT HANDBOOK</h1>
+  <p class="hero-sub" id="heroSub">Life Business Incubator · 8-Week Founder Programme</p>
+
+  <div class="hero-tracks">
+    <div class="hero-track-card active" id="heroLBI" onclick="setTrack('lbi')">
+      <div class="tc-label">Track A</div>
+      <div class="tc-name">Life Business Incubator</div>
+      <div class="tc-desc">8-week founder curriculum culminating in Demo Day before investors and community.</div>
+      <div class="tc-meta"><span class="tc-dot"></span> Mondays · May 18 – Jul 13</div>
+    </div>
+    <div class="hero-track-card" id="heroSOT" onclick="setTrack('sot')">
+      <div class="tc-label">Track B</div>
+      <div class="tc-name">School of Timothy</div>
+      <div class="tc-desc">5-week co-founder curriculum culminating in the Co-Founder Merging Ceremony.</div>
+      <div class="tc-meta"><span class="tc-dot"></span> Fridays · May 16 – Jun 8</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OVERVIEW ═══════════════════════════════════════════════════════════ -->
+<section class="hb-section" id="overview">
+  <div class="hb-inner">
+    <div class="hb-eyebrow" id="ovEyebrow">LBI Programme</div>
+    <h2 class="hb-title">Programme Roadmap</h2>
+    <div id="ovContent"></div>
+  </div>
+</section>
+
+<!-- ══ CURRICULUM ═════════════════════════════════════════════════════════ -->
+<section id="curriculum" style="padding:60px 6%;">
+  <div class="curr-inner">
+    <div class="curr-hdr">
+      <div class="curr-title" id="currTitle">Weekly Curriculum</div>
+      <div class="curr-sub" id="currSub">Life Business Incubator — 9 Weeks</div>
+    </div>
+    <div id="weeksWrap"></div>
+  </div>
+</section>
+
+<!-- ══ PRINCIPLES ══════════════════════════════════════════════════════════ -->
+<section class="hb-section" id="principles">
+  <div class="hb-inner">
+    <div class="hb-eyebrow" id="prEyebrow">Programme-Wide</div>
+    <h2 class="hb-title" id="prTitle">Core Principles</h2>
+    <div class="principles-grid" id="principlesGrid"></div>
+  </div>
+</section>
+
+<!-- ══ BYE-LAWS ═══════════════════════════════════════════════════════════ -->
+<section class="ph-section" id="bye-laws">
+  <div class="ph-icon">⚖️</div>
+  <div class="ph-title">BYE-LAWS</div>
+  <div class="ph-desc">Programme rules, code of conduct, and community standards for STARK Y'26 participants.</div>
+  <div class="ph-pill">Content coming soon</div>
+</section>
+
+<!-- ══ PRAYER SCHEDULE ════════════════════════════════════════════════════ -->
+<section class="ph-section" id="prayer">
+  <div class="ph-icon">🙏</div>
+  <div class="ph-title">PRAYER SCHEDULE</div>
+  <div class="ph-desc">Weekly prayer sessions for the LBI & SOT cohort — Tuesdays & Thursdays, 7:00AM WAT.</div>
+  <div class="ph-pill">Content coming soon</div>
+</section>
+
+<!-- ══ FAQ ════════════════════════════════════════════════════════════════ -->
+<section class="ph-section" id="faq">
+  <div class="ph-icon">❓</div>
+  <div class="ph-title">FAQ</div>
+  <div class="ph-desc">Frequently asked questions about the programme, submissions, office hours, and Demo Day.</div>
+  <div class="ph-pill">Content coming soon</div>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════════════════════ -->
+<footer>
+  <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK" class="footer-logo" />
+  <div class="footer-text">
+    STARK Y'26 · Life Business Incubator &amp; School of Timothy<br/>
+    Heave Ventures · <a href="mailto:theteam@heaveventures.com">theteam@heaveventures.com</a>
+  </div>
+  <div class="footer-links">
+    <a href="#overview">Overview</a>
+    <a href="#curriculum">Curriculum</a>
+    <a href="#principles">Principles</a>
+    <a href="#bye-laws">Bye-Laws</a>
+    <a href="#prayer">Prayer Schedule</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://calendar.app.google/GnsdPBRKd3SAZkqn6" target="_blank">Book Office Hours</a>
+  </div>
+</footer>
+
+<!-- ══ SCRIPT ══════════════════════════════════════════════════════════════ -->
+<script>
+// ─── Constants ────────────────────────────────────────────────────────────
+const LBI_SUB  = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSeiPxf-m1mx6FBHxySbfGQpijwnMjkAZpwyc5qedI12yJaT0Q/viewform?usp=sharing';
+const SOT_SUB  = 'https://forms.gle/r891yJnGRXBBG4w96';
+const SOT_QUIZ = 'https://forms.gle/iMRwaUfo8XRLD1uF6';
+const OH_LINK  = 'https://calendar.app.google/GnsdPBRKd3SAZkqn6';
+
+// ─── LBI Data ─────────────────────────────────────────────────────────────
+const LBI_WEEKS = [
+  {
+    n:1, unlock:'2026-05-18', demo:false,
+    theme:'From Burden to Startup Idea',
+    tagline:'The Problem Is the Point',
+    milestone:'Problem locked + Digital footprint live',
+    scripture:'Before I formed you in the womb I knew you, before you were born I set you apart. — Jeremiah 1:5',
+    event:{ title:'From Burden to Business — Why Your Pain Is Someone Else\'s Prayer', when:'Monday May 18th, 6:00–8:30PM WAT', guest:'Abiodun Lawal, Startup Coach & CEO, Heave Ventures' },
+    outcome:'Identify a real, painful, recurring problem — rooted in your own lived experience — and begin to frame it as a startup opportunity with a specific customer in mind. Secure your digital territory before anyone else does.',
+    sprint:'Identify 1–2 problems you are uniquely positioned to solve — grounded in your lived experience, connected to a real customer — with your digital footprint live by Friday.',
+    acts:['Choose Your Industry (Education, Agriculture, Finance, Health, Mobility, Faith Tech, Fashion, Logistics, Housing)','Life Mapping: Burden → Story → Pattern — Use the Life Map Canvas to trace your personal journey','Problem Discovery: The Purpose-to-Problem Worksheet — who is suffering, why is this bigger than it looks, what currently exists, why are YOU the right person','Idea Emergence Journal — brainstorm 3–5 solutions using the Idea Card Template (Problem, Target user, Your unique insight, Potential solution)','Claim Your Digital Footprint — domain (Namecheap), landing page (Carrd/Notion), business email (Zoho Mail)','Loom Video Journal — "Why this problem? Why now? Why me?" (Max 1 minute, unscripted)','Agile Board Setup on Trello using the Lean Customer Discovery template','First Customer Discovery Conversations — 5–10 real people using The Mom Test framework'],
+    reading:[{t:'Start with Why — Sinek (Ch. 1–3)',l:'https://drive.google.com/file/d/1_sq46BttgHkEeQW29IAR4m5DHR56nN_H/view?usp=sharing'},{t:'Lean Customer Development — Alvarez (Ch. 1–3)',l:'https://drive.google.com/file/d/1h17sUua_M_pShclOvovn46FuV9Yp6ytk/view?usp=sharing'},{t:'The Mom Test — Fitzpatrick (Ch. 1–3)',l:'https://drive.google.com/file/d/1K-wTRQtFTpco62He_F5OwDKMNUxNdXE5/view?usp=drive_link'}],
+    watch:[{t:'Life Map Canvas — Video Guide',l:'https://youtu.be/zf95T9ttia0'},{t:'How to Write a Problem Statement',l:'https://youtu.be/ccUhWzWOD04'},{t:'Trello Agile Board Setup',l:'https://youtu.be/0Nyz7OLD3Wo'},{t:'Get Started on Startup Ideas — YCombinator',l:'https://youtu.be/Th8JoIan4dg'}],
+    dels:[['Completed Life Map Canvas','Image or PDF upload'],['1–2 Problem Statement Worksheets','PDF or Notion page'],['1-minute Loom Video Journal','Loom link'],['Trello Agile Board (set up + first cards added)','Trello board link'],['Customer Profile for your target user','Google Slides link'],['Evidence of 5–10 Customer Discovery conversations','Screenshots, notes, or audio'],['Live Landing Page','URL (your domain live)']],
+    due:'Friday May 22nd, 5:59PM'
+  },
+  {
+    n:2, unlock:'2026-05-25', demo:false,
+    theme:'Rapid Validation Sprint',
+    tagline:'Don\'t Build the Bridge Before You Test the River',
+    milestone:'20 signals + 5 real conversations',
+    scripture:'Plans fail for lack of counsel, but with many advisers they succeed. — Proverbs 15:22',
+    event:{ title:'Show Me the Signal — The Art of Validating Without Building', when:'Monday May 25th, 6:00–8:30PM WAT', guest:'Abiodun Lawal, Startup Coach' },
+    outcome:'Test your problem hypothesis with real people using zero-code experiments. Gather 20 real signals of interest. Avoid the build trap at all costs.',
+    sprint:'Gather at least 20 documented signals of real market interest and have at least 5 in-depth conversations without writing a single line of code.',
+    acts:['Design 2–3 no-code validation experiments: landing page with email capture, WhatsApp Broadcast, Instagram poll, pre-order page (Paystack), or prototype video','Run the Experiments — track every signal using the Validation Scorecard (DM, signup, pre-order, call, referral)','The 5 Deep-Dive Conversations — 15–20 minutes each using The Mom Test (ask about their life, not your idea)','AI-Powered Research Sprint — use ChatGPT/Claude/Gemini to research market size, generate interview questions, summarise notes','Pivot Readiness Check — does the evidence support your hypothesis or suggest a different customer/problem/solution?','Update Trello board & landing page with language your customers actually used'],
+    reading:[{t:'The Mom Test — Fitzpatrick (Ch. 4–6)',l:'https://drive.google.com/file/d/1K-wTRQtFTpco62He_F5OwDKMNUxNdXE5/view?usp=drive_link'},{t:'The Lean Startup — Ries (Ch. 5: Build-Measure-Learn loop)',l:'#'}],
+    watch:[{t:'How to Validate a Startup Idea Without Building — YC',l:'https://youtu.be/1hTI4z2ijc4'},{t:'The Build Trap Explained — Melissa Perri',l:'https://youtu.be/4h_EFomQmKw'},{t:'How to Do Customer Discovery — YC',l:'https://youtu.be/rnltXeicsxw'},{t:'How to Use ChatGPT for Market Research',l:'https://youtu.be/K6aEJ1UFNRE'}],
+    dels:[['Validation Scorecard (20+ signals)','Notion table or uploaded PDF'],['5 Customer Interview Notes','Uploaded notes, screenshots, or audio links'],['Experiment Results Summary (what worked, what didn\'t)','Written Notion page'],['Pivot/Persist Decision + Reasoning','1-paragraph written answer'],['Updated Landing Page (refined from customer language)','Live URL'],['AI Tools Used + Outputs','Screenshot or Notion log']],
+    due:'Friday May 29th, 5:59PM'
+  },
+  {
+    n:3, unlock:'2026-06-01', demo:false,
+    theme:'Business Modelling & The Lean Machine',
+    tagline:'Design the Machine Before You Build the Factory',
+    milestone:'BMC complete + First pricing conversation',
+    scripture:'Suppose one of you wants to build a tower. Won\'t you first sit down and estimate the cost to see if you have enough money to complete it? — Luke 14:28',
+    event:{ title:'How Does Your Business Actually Make Money?', when:'Monday June 1st, 6:00–8:30PM WAT', guest:'Abiodun Lawal, Startup Coach' },
+    outcome:'Design a lean, testable business model — how you create value, deliver it, and get paid for it. Price your offer. Know your customer\'s journey from stranger to paying client.',
+    sprint:'Complete your Business Model Canvas, run a pricing experiment with at least 3 real people, and document the results.',
+    acts:['Build Your Business Model Canvas (all 9 blocks: Segments, Value Proposition, Channels, Relationships, Revenue, Resources, Activities, Partners, Cost Structure)','Choose Your Revenue Model: one-time payment, subscription/retainer, commission/marketplace, or freemium','The Pricing Experiment — 3 explicit money conversations with a real price (document reactions, hesitations, and what would remove them)','Customer Journey Map — stranger → aware → interested → trying → paying → returning → referring','Lean Offer Design — "I help [WHO] achieve [OUTCOME] in [TIMEFRAME] using [METHOD] for [PRICE]"','AI-Powered Business Modelling — use Claude/ChatGPT to critique your BMC and build a 3-month P&L projection'],
+    reading:[{t:'Business Model Generation — Osterwalder (Canvas section)',l:'#'},{t:'Traction — Weinberg (Ch. 1: Traction Thinking)',l:'#'},{t:'The Lean Startup — Ries (Ch. 6–7)',l:'#'}],
+    watch:[{t:'Business Model Canvas Explained — Strategyzer',l:'https://youtu.be/QoAOzMTLP5s'},{t:'How to Price Your Product — YC',l:'https://youtu.be/jTP-WdFSCGM'},{t:'Minimum Viable Product Explained Simply',l:'https://youtu.be/1IEWcFMYRBg'},{t:'Unit Economics for Startups',l:'https://youtu.be/IRX2FZVO3sA'}],
+    dels:[['Completed Business Model Canvas','Miro/Notion link or PDF'],['Pricing Experiment Notes (3 conversations)','Notion table or uploaded notes'],['Customer Journey Map','Image or Notion page'],['Lean Offer Statement','Written (1 sentence)'],['AI-generated Revenue Projection (3 scenarios)','Spreadsheet or Notion table'],['Updated Landing Page (with pricing or offer visible)','Live URL']],
+    due:'Friday June 5th, 5:59PM'
+  },
+  {
+    n:4, unlock:'2026-06-08', demo:false,
+    theme:'Agentic AI & Iteration Sprint ⚡',
+    tagline:'God Gave You a Mind. AI Multiplies It. Use Both.',
+    milestone:'AI workflow live + First transaction',
+    scripture:'Do you see someone skilled in their work? They will serve before kings; they will not serve before officials of low rank. — Proverbs 22:29',
+    event:{ title:'AI is Your Intern. Your Agent. Your Unfair Advantage.', when:'Monday June 8th, 6:00–8:30PM WAT', guest:'Abiodun Lawal + AI/Tech Practitioner (TBC)' },
+    outcome:'Build and deploy at least one AI-powered workflow that does real work in your business. Iterate your product based on customer feedback. Close your first real transaction.',
+    sprint:'Build one live AI-powered workflow that saves 3+ hours/week. Make your first sale to any real non-family customer.',
+    acts:['Build Your AI Stack — activate 3+ tools across: Writing (ChatGPT/Claude/Gemini), Design (Canva AI), Video (Descript/Kling), Research (Perplexity), Automation (Make.com/Zapier), Customer Service (ManyChat)','Build One Agentic Workflow end-to-end using Make.com or Zapier (e.g. new lead → personalised WhatsApp → CRM → follow-up reminder)','The Iteration Sprint — identify top 3 things to change, make changes within 48 hours, test with 5 people','First Transaction Challenge — one person pays you any real amount (Paystack or Flutterwave payment link). Follow up 3 times before giving up.','AI-Powered Content Sprint — 3 pieces of content + 1 email/WhatsApp broadcast + 1 AI-drafted follow-up sequence (3 messages)','SOT Co-Founder Assessment (if applicable) — complete Compatibility Worksheet before June 8 Merging Ceremony'],
+    reading:[{t:'Zero to One — Thiel (Ch. 3–4)',l:'#'},{t:'The Lean Startup — Ries (Ch. 8–9: Pivot or Persevere)',l:'#'}],
+    watch:[{t:'How to Use AI Agents to Build Your Startup — YC',l:'https://youtu.be/ASABxNenD_U'},{t:'How to Build Automated Workflows with Make.com',l:'https://youtu.be/7fV7wFT6B_o'},{t:'How to Close Your First 10 Customers — Startup School',l:'https://youtu.be/xZi4kTvhDo4'},{t:'What is Agentic AI and Why It Matters',l:'https://youtu.be/sal78ACtGTc'}],
+    dels:[['AI Tool Stack (3 tools activated)','Notion table: Tool, Use Case, Time Saved'],['Agentic Workflow Screenshot + Description','Screenshot + written explanation'],['Iteration Log (3 changes + results)','Notion page'],['First Transaction Proof','Payment screenshot + 2-sentence reflection'],['3 Content Pieces (links)','Live post URLs'],['Co-Founder Agreement OR Solo Founder Strategy','Signed PDF or Notion page']],
+    due:'Friday June 12th, 5:59PM'
+  },
+  {
+    n:5, unlock:'2026-06-15', demo:false,
+    theme:'Operations, Legal & The Lean Team',
+    tagline:'Run It Right Before You Run It Fast',
+    milestone:'Business registered + 3 paying customers',
+    scripture:'If the ax is dull and its edge unsharpened, more strength is needed, but skill will bring success. — Ecclesiastes 10:10',
+    event:{ title:'The Business Behind the Business — Operations, Legal & Lean Team Design', when:'Monday June 15th, 6:00–8:30PM WAT', guest:'Abiodun Lawal + Legal / Business Registration Expert (TBC)' },
+    outcome:'Register your business. Build your first operating systems. Get the legal protection you need. Define the smallest team structure that can deliver your product consistently.',
+    sprint:'Business registration initiated. 3 SOPs written. 3 paying customers documented.',
+    acts:['Business Registration — choose Business Name (sole prop) or LLC via CAC at cac.gov.ng. Estimated: ₦10,000–₦50,000','Legal Documents — AI-generate Client Service Agreement, NDA, and Privacy Policy (NDPR compliance). AI drafts; lawyer reviews.','Build Your First 3 SOPs — (Process Name | Trigger | Steps | Owner | Time | Success Criteria) for your 3 most repeated processes','Lean Team Design — draw current structure, identify next 2 roles (Employee/Contractor/AI/Volunteer) and why','Push to 3 Paying Customers — follow-up campaign to every lead from Weeks 2–4 who showed interest but hasn\'t paid'],
+    reading:[{t:'The E-Myth Revisited — Gerber (Ch. 1–3)',l:'#'},{t:'CAC CAMA 2020 Guide — LBI Resource Bank',l:'#'},{t:'Nigeria Data Protection Regulation (NDPR) Overview',l:'#'}],
+    watch:[{t:'How to Register a Business in Nigeria — CAC Walkthrough',l:'https://youtu.be/g65tQZ-LPPI'},{t:'How to Build SOPs for Your Startup',l:'https://youtu.be/6lY9CYIY4pQ'},{t:'How to Draft a Client Contract Using AI',l:'https://youtu.be/kpZEWb5D3LY'},{t:'Lean Team Design — When to Hire Your First Person (YC)',l:'https://youtu.be/eqFqg_GXe-g'}],
+    dels:[['Business Registration Proof or Application Screenshot','Screenshot or PDF'],['3 SOPs','Notion pages (linked)'],['AI-generated Legal Document (any 1 of 3)','Notion page or PDF'],['Lean Team Design (current + next 2 roles)','Org chart or Notion page'],['3 Paying Customer Evidence','Payment screenshots + brief notes']],
+    due:'Friday June 19th, 5:59PM'
+  },
+  {
+    n:6, unlock:'2026-06-22', demo:false,
+    theme:'Sales, Marketing & The Revenue Engine',
+    tagline:'The Story You Tell Determines the Customers You Keep',
+    milestone:'Repeatable sales process + 5 paying customers',
+    scripture:'A good name is more desirable than great riches; to be esteemed is better than silver or gold. — Proverbs 22:1',
+    event:{ title:'The Revenue Engine — Sales, Content & Financial Foundations', when:'Monday June 22nd, 6:00–8:30PM WAT', guest:'Abiodun Lawal + Sales / Marketing Practitioner (TBC)' },
+    outcome:'Build a repeatable, documented sales process. Launch your content marketing engine using AI. Know your numbers. Define and begin building your MVP.',
+    sprint:'Sales script written and used. 3 content pieces live. P&L drafted. MVP defined. Push to 5 total paying customers.',
+    acts:['Build Your 3-Step Sales Framework — Open (lead with the customer\'s pain), Qualify (confirm they have the problem + budget), Close (make a specific ask with a price)','Map your Sales Pipeline in Trello/Notion: Lead → Contacted → Conversation → Proposal → Paid → Retained','AI-Powered Content Engine — Pain + Story + Solution + CTA formula, publish 3 pieces this week','Build Your Financial Model — know Monthly Revenue, Fixed Costs, Variable Costs, Gross Margin, Break-Even Point','Define Your MVP — "My MVP is [simplest version] that delivers [core value] to [specific customer] without [features to add later]"','Push to 5 Paying Customers — use your script, follow up on all Week 5 open conversations, try one new acquisition channel'],
+    reading:[{t:'The Mom Test — Fitzpatrick (Ch. 3–5)',l:'#'},{t:'Profit First — Michalowicz (Ch. 1)',l:'#'}],
+    watch:[{t:'How to Build a Sales Process — YC',l:'https://youtu.be/xZi4kTvhDo4'},{t:'Content Marketing With No Budget — Starter Story',l:'https://youtu.be/Ew6tYi6PzNo'},{t:'How to Build a P&L for Startups',l:'https://youtu.be/pnFPuCNepbM'},{t:'MVP: What It Is and How to Build One',l:'https://youtu.be/1IEWcFMYRBg'}],
+    dels:[['Sales Script (written + recorded)','Written + audio/video link'],['Sales Pipeline (set up in Notion/Trello)','Screenshot or link'],['3 Published Content Pieces','Live post URLs'],['P&L Projection (3 months)','Spreadsheet or Notion table'],['MVP Definition (statement + In/Out list)','Written Notion page'],['5th Paying Customer Evidence','Screenshot + note']],
+    due:'Friday June 26th, 5:59PM'
+  },
+  {
+    n:7, unlock:'2026-06-29', demo:false,
+    theme:'Product Development & Launch',
+    tagline:'Ship the Thing. Then Make It Better.',
+    milestone:'MVP live + 10 active users',
+    scripture:'Whatever your hand finds to do, do it with all your might. — Ecclesiastes 9:10',
+    event:{ title:'Ship It — The Art of Launching Fast, Learning Faster', when:'Monday June 29th, 6:00–8:30PM WAT', guest:'Abiodun Lawal + Product Builder / Founder (TBC)' },
+    outcome:'Build and publicly launch your MVP. Get your first 10 active users interacting with a real product. Make your first post-launch iteration within 48 hours.',
+    sprint:'MVP is publicly live. 10 active users have used or experienced it. 5 pieces of structured post-launch feedback collected.',
+    acts:['Final MVP Preparation — pre-launch checklist: core promise works, payment flow end-to-end, landing page accurate, onboarding ready, feedback mechanism in place','Public Launch — announce across Instagram, LinkedIn, WhatsApp Broadcast, and email list. Send personal messages to your top 20 qualified leads.','Onboard Your First 10 Active Users — personal touch for each (WhatsApp message, Loom video, or quick call)','Structured Feedback Collection from 5+ users: "What was the first thing you did?", "What confused you?", "What would make you tell a friend?"','48-Hour Post-Launch Iteration — identify the single most important fix, make it, communicate the update to users','Pivot Check-In — does the evidence from real users confirm your business model or challenge it?'],
+    reading:[{t:'The Lean Startup — Ries (Ch. 10–11: Pivot or Persevere)',l:'#'},{t:'Hooked — Eyal (Ch. 1–2: The Hook Model)',l:'#'}],
+    watch:[{t:'How to Launch a Startup — YC',l:'https://youtu.be/u36A-YTxiOw'},{t:'How to Get Your First 100 Users',l:'https://youtu.be/6I8b6AzEyh4'},{t:'Product-Market Fit Explained — a16z',l:'https://youtu.be/0LNQxT9LvM0'},{t:'When to Pivot vs. Persist — YC',l:'https://youtu.be/DFB5T1ZKANE'}],
+    dels:[['Live MVP (accessible to public)','URL or download link'],['Launch Announcement (posted)','Screenshots of live posts'],['10 Active Users (documented)','Notion tracker or table'],['5 Structured Feedback Responses','Typeform export or uploaded notes'],['Post-Launch Iteration (what changed + why)','Written Notion update'],['Pivot Check-In Response','Written (Notion or form)']],
+    due:'Friday July 3rd, 5:59PM'
+  },
+  {
+    n:8, unlock:'2026-07-06', demo:false,
+    theme:'Scale Readiness & Pitch Preparation',
+    tagline:'Polish the Work. Tell the Story. Stand and Deliver.',
+    milestone:'Pitch deck complete + 25 active users',
+    scripture:'The preparations of the heart belong to man, but the answer of the tongue is from the Lord. — Proverbs 16:1',
+    event:{ title:'The Final Push — Pitch Prep, Traction Sprint & Demo Day Briefing', when:'Monday July 6th, 6:00–8:30PM WAT', guest:'Abiodun Lawal + Investor / Pitch Coach (TBC)' },
+    outcome:'Push to 25 active users. Prepare and rehearse your Demo Day pitch. Build the deck, practise the demo, write the reflection.',
+    sprint:'25 active users. Pitch deck submitted. Full rehearsal completed. Founder reflection written.',
+    acts:['Final Traction Sprint — referral campaign (ask 10 users to refer one person), founding member offer (limited discount), reactivate every qualified lead from Weeks 2–7','Build Your Demo Day Pitch Deck (8 slides): Hook · Burden · Solution · Traction · Business Model · Market · Team · Ask','Prepare Your 2-Minute Product Demo — customer pain → product solving it live → result the customer experiences. Test on multiple devices.','Full Pitch Rehearsal — 7 minutes total (5-min pitch + 2-min demo). Record it. Get peer feedback on Clarity, Confidence, Traction Story, and The Ask.','Founder Reflection Journal — 1 page: what problem did you identify, what changed, hardest moment, what your faith taught you, what would you tell a Week 1 founder','Final Validation Conversation with someone you haven\'t spoken to before: "Would you pay? Would you refer? What would make you a lifelong customer?"'],
+    reading:[{t:'The Art of the Start — Kawasaki (Ch. 5: The Art of Pitching)',l:'#'},{t:'YCombinator: How to Present to Investors',l:'https://www.ycombinator.com/library/6q-how-to-present-to-investors'}],
+    watch:[{t:'How to Pitch Your Startup — YC Demo Day Tips',l:'https://youtu.be/17XZGUX_9iM'},{t:'The Best Demo Day Pitches — YC',l:'https://youtu.be/R-IkCYNssDQ'},{t:'How to Tell Your Startup\'s Story — Startup School',l:'https://youtu.be/llAXoFi-3cE'},{t:'The Pitch Deck That Raised $500k — Slidebean',l:'https://youtu.be/0MHGOjRmQAU'}],
+    dels:[['Demo Day Pitch Deck','Google Slides or Canva link'],['Product Demo (recorded backup)','Loom or YouTube (unlisted) link'],['Evidence of 25 Active Users','Notion tracker or screenshot'],['Rehearsal Completion Evidence','Peer sign-off (form provided)'],['Founder Reflection (1 page)','Written in Notion'],['Final Validation Conversation Notes','Uploaded notes or audio']],
+    due:'Thursday July 10th, 5:59PM'
+  },
+  {
+    n:9, unlock:'2026-07-13', demo:true,
+    theme:'Demo Day ⭐',
+    tagline:'Show the World What God Built Through You.',
+    milestone:'Live product presented to investors & community',
+    scripture:'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters. — Colossians 3:23',
+    event:{ title:'STARK Y\'26 Demo Day — Show the World What You Built', when:'Sunday July 13th, Time TBC', guest:'Heave Ventures Team · Invited Investors & Angels · Mentors · STARK Y\'26 Community' },
+    outcome:'Present your live product, real traction, and 8-week journey to an audience of investors, mentors, and community. Receive feedback. Graduate as a STARK Y\'26 founder.',
+    sprint:'Show up prepared. Pitch your product in 7 minutes. Receive feedback. Graduate.',
+    acts:['Format: 5-min pitch (8 slides) + 2-min live product demo + 5-min Q&A with panel','Arrive / log in 30 minutes early','Demo Day Readiness: deck submitted, product live at public URL, backup demo ready on phone + laptop, 25 users documented','Know your 5 numbers cold: Revenue, Costs, Margin, Break-Even Point, Active Users','STARK Y\'26 Graduate Benefits: Certificate of Completion, LBI Graduate Profile in Alumni Directory, STARK Alumni Network access, ongoing LBI Resource Bank & AI tool library access'],
+    reading:[], watch:[],
+    dels:[['Pitch deck submitted (feedback incorporated)','Submitted to LBI team by Jul 10'],['Live product accessible from public URL','URL ready'],['Backup demo (recorded video)','On phone and laptop'],['25 active users documented','Notion tracker'],['Founder reflection written and submitted','Notion page']],
+    due:'Demo Day — Sunday July 13th'
+  }
+];
+
+// ─── SOT Data ─────────────────────────────────────────────────────────────
+const SOT_WEEKS = [
+  {
+    n:1, unlock:'2026-05-16', demo:false,
+    theme:'The Spirit of the Second Man',
+    tagline:'What Does It Mean to Be a Timothy?',
+    milestone:'Calling assessment submitted + Reflection journal live',
+    scripture:'As iron sharpens iron, so one person sharpens another. — Proverbs 27:17',
+    event:{ title:'How to Be a Co-Founder in a Godly Business', when:'Friday May 16th, 6:00–8:30PM WAT', guest:'Ayomide Awe, Co-Founder, Termii' },
+    outcome:'Understand the second-man archetype — biblically, historically, and in the startup world. Examine whether co-founding is truly your calling.',
+    sprint:'Complete the SOT Calling Assessment, write your first reflection journal entry, and submit your Week 1 quiz.',
+    acts:['The Second Man Bible Study — study 5 co-founder pairs: Moses & Aaron, Moses & Joshua, Elijah & Elisha, Paul & Barnabas, Paul & Timothy (answer: What did the second man contribute? What was the cost? The reward?)','Historical & Startup Second Men — research Sheryl Sandberg (Facebook COO), Charlie Munger (Berkshire), Jonathan Ive (Apple), or Susan Wojcicki (Google). Write 3 sentences on what made them irreplaceable.','SOT Calling Assessment — complete the structured self-assessment and the Founder vs. Co-Founder Spectrum Tool','Review the LBI Startup Directory (read-only access) — which problems stir something in you? Do NOT reach out to founders yet.','Reflection Journal Entry 1 (200+ words) — "What would it look like for me to be a strong Number 2? What kind of founder would I need alongside me?"'],
+    reading:[{t:'The Timothy Spirit — Biblical leadership analysis',l:'https://www.enlivenpublishing.com/2012/02/27/why-timothy-is-one-of-my-leadership-role-models/'},{t:'The Most Successful Deputies in History',l:'https://www.managers.org.uk/knowledge-and-insights/blog/most-successful-deputies-history/'}],
+    watch:[{t:'Valuing Relationships',l:'https://youtu.be/ne_lmNx7xVw'},{t:'Co-Founder Mistakes That Kill Companies — YC',l:'https://youtu.be/dlfjs_eEEzs'},{t:'2nd Level Leadership',l:'https://youtu.be/oA92W6dc-Ps'},{t:'How to Find a Co-Founder — YC',l:'https://youtu.be/Fk9BCr5pLTU'}],
+    dels:[['SOT Calling Assessment (completed)','Uploaded via submission link'],['Reflection Journal — Entry 1 (200+ words)','Notion/Google Docs link submitted'],['Week 1 Quiz','Completed via quiz link'],['Status Report','Submitted via link']],
+    due:'Thursday May 22nd, 5:59PM', quiz:SOT_QUIZ, sub:SOT_SUB
+  },
+  {
+    n:2, unlock:'2026-05-23', demo:false,
+    theme:'The Skill of Support',
+    tagline:'Operating in the Shadows with Excellence',
+    milestone:'Skills inventory complete + Top 3 startup matches identified',
+    scripture:'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters. — Colossians 3:23',
+    event:{ title:'The Indispensable Second — Skills, Execution & Excellence Without Ego', when:'Friday May 23rd, 6:00–8:30PM WAT', guest:'Heave Ventures Team / COO Practitioner (TBC)' },
+    outcome:'Conduct an honest skills inventory. Learn the disciplines that separate great co-founders from glorified assistants. Begin identifying which LBI startups your skills are best positioned to accelerate.',
+    sprint:'Complete the 6-Domain Skills Inventory, write your Personal Support Philosophy, and produce your Top 3 Startup Match List with clear strategic reasoning.',
+    acts:['The 6-Domain Co-Founder Skills Inventory — rate yourself 1–5 on: Technology, Sales & Biz Dev, Operations, Finance, Marketing & Brand, People & Culture. Write your one-line positioning statement.','Audit Your Evidence — for your top 2 domains, one concrete SAR example each (Situation, Action, Result). Evidence, not assertion.','Ego Audit — read Nehemiah 1–2. Answer: Have I felt resentment while supporting someone else\'s vision? Can I submit to a founder\'s final decision even when I believe I\'m right?','Write Your Personal Support Philosophy (3 sentences): what you believe about the second-chair role, how you commit to support through difficulty, what you need from a founder','Startup-Skill Matching — mark each LBI startup Strong Fit / Possible Fit / Not a Fit based purely on whether your skills move their most important needle. Identify Top 3.','AI as a Co-Founder Tool — use ChatGPT/Claude to research your Top 3 match industries and generate 5 questions for your first founder conversation'],
+    reading:[{t:'Execution — Bossidy & Charan (Ch. 1: The Discipline of Getting Things Done)',l:'#'},{t:'Nehemiah, Chapters 1–6 (read in full)',l:'#'}],
+    watch:[{t:'What Does a COO Actually Do? — a16z',l:'https://youtu.be/8oFDQ4eXzYE'},{t:'The Role of a Co-Founder vs. Early Employee — First Round',l:'https://youtu.be/YPo2P2BZYTM'},{t:'How to Use AI Tools for Startup Research',l:'https://youtu.be/K6aEJ1UFNRE'}],
+    dels:[['6-Domain Skills Inventory (completed + scored)','Uploaded table or PDF'],['Evidence Audit (2 examples for top 2 domains)','Written in Notion or Google Docs'],['Personal Support Philosophy (3 sentences)','Submitted in Notion journal'],['Top 3 Startup Matches (with reasoning)','Written in submission form'],['Reflection Journal — Entry 2','Notion/Google Docs link submitted']],
+    due:'Thursday May 29th, 5:59PM', quiz:SOT_QUIZ, sub:SOT_SUB
+  },
+  {
+    n:3, unlock:'2026-05-30', demo:false,
+    theme:'The Power of Profile',
+    tagline:'Crafting Your Founder\'s Manifesto',
+    milestone:'Co-Founder Profile live + Manifesto written',
+    scripture:'Let your light shine before others, that they may see your good deeds and glorify your Father in heaven. — Matthew 5:16',
+    event:{ title:'The Profile That Opens Doors — Co-Founder Manifesto Workshop', when:'Friday May 30th, 6:00–8:30PM WAT', guest:'Lawal Abiodun (CEO, Heave Ventures) + SOT Programme Lead' },
+    outcome:'Build your Co-Founder Profile. Write your personal manifesto. Begin intentional, direct conversations with your top LBI founder matches.',
+    sprint:'Co-Founder Profile published. Manifesto written. First direct conversations with top 2 LBI matches documented.',
+    acts:['Build Your Co-Founder Profile (1 page) — Who I Am, What I Bring (3 skills + evidence), Availability (hours/week, location, start date), What I\'m Looking For (stage, industry, founder personality, 2 non-negotiables), References','Write Your Co-Founder Manifesto — 5 "I believe..." statements that tell the right founder who you really are before they meet you','Digital Presence Setup — update LinkedIn headline and bio (AI-draft, then personalise), update Instagram/X bio, create personal Notion page with public profile link','First Intentional Founder Conversations — personal message to Top 2 LBI founders (not broadcast). Reference something specific. Ask 2 genuine questions. Listen more than you speak.','Founder Assessment Journal — what did you observe about their communication style, vision clarity, and compatibility gut-check?'],
+    reading:[{t:'The Advantage — Lencioni (Ch. 1: Organisational Health)',l:'#'},{t:'Philippians 2:1–30 (Paul\'s theology of the second chair)',l:'#'},{t:'The Art of Being an Effective Deputy — HBR',l:'https://hbr.org/2015/05/the-art-of-being-an-effective-deputy'}],
+    watch:[{t:'How much equity should you give a co-founder?',l:'https://youtu.be/9NhEBVPlJs4'},{t:'What Investors Look for in a Co-Founder Team — Sequoia',l:'https://youtu.be/CVfnkM559lY'},{t:'How to Evaluate a Startup Before Joining as Co-Founder — YC',l:'https://youtu.be/oFAqe3GWGE4'}],
+    dels:[['Co-Founder Profile (complete — 1 page)','PDF or Notion public link submitted'],['Co-Founder Manifesto (5 statements, appended to profile)','Included in profile submission'],['Updated LinkedIn / Digital Presence','LinkedIn URL submitted'],['Founder Conversation Notes (top 2 founders)','Written in Notion journal'],['Reflection Journal — Entry 3','Notion/Google Docs link submitted']],
+    due:'Thursday June 5th, 5:59PM', quiz:SOT_QUIZ, sub:SOT_SUB
+  },
+  {
+    n:4, unlock:'2026-06-06', demo:false,
+    theme:'Becoming the Co-Founder',
+    tagline:'Making the Decision',
+    milestone:'Due diligence complete + SOT Closing Declaration made',
+    scripture:'Suppose one of you wants to build a tower. Won\'t you first sit down and estimate the cost to see if you have enough money to complete it? — Luke 14:28',
+    event:{ title:'Count the Cost — Decision Framework + SOT Closing Ceremony', when:'Friday June 6th, 6:00–8:30PM WAT', guest:'Lawal Abiodun (CEO, Heave Ventures) + SOT Programme Lead' },
+    outcome:'Apply a rigorous decision framework. Ask the hard questions. Count the real cost. Prepare your co-founder pitch. Make a public declaration.',
+    sprint:'Co-Founder Due Diligence completed. Cost-counting reflection written. 2-min pitch recorded. Public declaration made at the SOT Closing Ceremony.',
+    acts:['Co-Founder Due Diligence — assess top 1–2 founders on 6 dimensions: Character (1–5), Vision Clarity, Resilience, Coachability, Commitment, Compatibility. Write a 1-paragraph honest summary per candidate.','Counting the Cost — answer 6 questions in writing: What am I giving up? Do I believe in the founder or just the idea? Am I at peace with the equity? What are my deal-breakers? Have I prayed about this specific decision?','The 2-Minute Co-Founder Pitch — Who you are (15s), What you bring for this specific vision (45s), Why you chose this founder specifically (30s), What you\'re committing to and need in return (30s). Practise, record, review.','The SOT Closing Ceremony — public declaration: "I am ready to merge" (with named founder) OR "I am pursuing the solo path" (with clear reason and next step). Both are honourable.'],
+    reading:[{t:'The Partnership Charter — Gage (Ch. 1–3)',l:'#'},{t:'Luke 14:25–33 (The Parable of the Tower)',l:'#'},{t:'Ruth 1:1–22 (The co-founder covenant)',l:'#'}],
+    watch:[{t:'How to Evaluate a Co-Founder Before Committing — First Round',l:'https://youtu.be/I4oMqiasGAs'},{t:'Co-Founder Equity and Agreement Essentials — YC',l:'https://youtu.be/kSmSmKH0-_Q'},{t:'What Makes Great Co-Founder Relationships Work — YC',l:'https://youtu.be/T3TnCgMwIgc'}],
+    dels:[['Due Diligence Assessment (top 1–2 founders)','Completed table + 1-paragraph summary — uploaded'],['Cost-Counting Reflection (6 questions answered)','Written in Notion journal'],['Co-Founder Pitch (recorded)','Loom or voice note link'],['SOT Declaration','Verbal (at ceremony) + written submission via form'],['Reflection Journal — Entry 4','Notion/Google Docs link submitted']],
+    due:'Thursday June 12th, 5:59PM', quiz:SOT_QUIZ, sub:SOT_SUB
+  },
+  {
+    n:5, unlock:'2026-06-08', demo:true,
+    theme:'Co-Founder Merging Week ⭐',
+    tagline:'Introductions, Agreements & Ceremony',
+    milestone:'Agreement signed OR Solo Path declared',
+    scripture:'Two are better than one, because they have a good return for their labour: if either of them falls down, one can help the other up. — Ecclesiastes 4:9–10',
+    event:{ title:'The Merging Ceremony — STARK Y\'26 Co-Founder Matching Day', when:'June 8th (Time TBC) — Joint LBI + SOT session', guest:'Lawal Abiodun · SOT Programme Lead · LBI Founders · Invited mentors & community witnesses' },
+    outcome:'Formally introduce yourself to the LBI cohort. Complete and sign your Co-Founder Agreement. Participate in the Merging Ceremony.',
+    sprint:'Matched and signed — or Solo Path declared with a clear plan. No ambiguity. No deferral.',
+    acts:['Final Profile Review — verify all skill claims backed by evidence, confirm availability section is accurate, ensure manifesto still reflects who you are','Co-Founder Speed Introductions (2 min max) — 30s bio, 45s top 2 skills + example, 30s what you\'re looking for, 15s non-negotiable','Structured 1-on-1 Conversations (20 min each) with top 2 LBI founders using the Co-Founder Interview Guide: equity, roles, time commitment, working style, values','Co-Founder Agreement Review — equity split, vesting schedule (4yr/1yr cliff), role titles, working norms, IP ownership, exit conditions. Do not sign anything you don\'t fully understand.','The Merging Ceremony — founder states "I receive [Name] as my co-founder because..." · co-founder responds "I commit to this founder\'s mission because..." · community prays and witnesses','Solo Path Declaration (if applicable) — what did you learn, what is your next step?','Final Reflection Journal Entry 5 (300+ words)'],
+    reading:[{t:'The Partnership Charter — Gage (Ch. 5: Making It Official)',l:'#'},{t:'Ecclesiastes 4:9–12 (Two are better than one)',l:'#'},{t:'2 Timothy 2:1–7 (Paul\'s final charge to Timothy)',l:'#'}],
+    watch:[{t:'How much equity should you give a co-founder?',l:'https://youtu.be/9NhEBVPlJs4'},{t:'What Makes the Best Co-Founder Relationships — First Round',l:'https://youtu.be/I4oMqiasGAs'},{t:'Splitting Equity the Right Way — Startup School',l:'https://youtu.be/kSmSmKH0-_Q'},{t:'Co-Founder Mistakes That Kill Companies — YC',l:'https://youtu.be/dlfjs_eEEzs'}],
+    dels:[['Co-Founder Profile (final version)','Presented live + PDF submitted to team'],['Compatibility Worksheet (completed per conversation)','Uploaded'],['Co-Founder Agreement (signed)','PDF submitted to programme team'],['Merging Declaration','Verbal (at ceremony) + written log in Notion'],['Final Reflection Journal — Entry 5','Notion/Google Docs link submitted'],['OR: Solo Path Declaration + Plan','Written Notion page submitted']],
+    due:'June 12th, 5:59PM', quiz:SOT_QUIZ, sub:SOT_SUB
+  }
+];
+
+// ─── Principles ────────────────────────────────────────────────────────────
+const LBI_PRINCIPLES = [
+  { title:'Validate before you build.', text:'Every assumption is a hypothesis. Test it with real people before spending money or time building it.' },
+  { title:'Pivoting is sacred agility.', text:'When the evidence tells you to change direction, changing direction is faithfulness — not failure. Follow the evidence.' },
+  { title:'The build trap is the enemy.', text:'Founders who fall in love with their product before confirming the market always suffer. Build the minimum. Ship it. Learn. Iterate.' },
+  { title:'AI is your multiplier, not your replacement.', text:'Use AI to do in hours what would take weeks. But your judgment, relationships, and calling cannot be automated.' },
+  { title:'Your WHY is your fuel.', text:'When the product breaks, the customer complains, and the money runs out — your WHY keeps you at the table. Revisit it every week.' },
+  { title:'Lean teams win.', text:'The right 2 people outperform the wrong 10 every time. Build small, build capable, build aligned.' },
+  { title:'Biblical integrity is non-negotiable.', text:'Your product must truly serve the person using it. Your agreements must be honourable. Your word must be your contract.' },
+  { title:'Validate at every step.', text:'Not just Week 2. Not just before launch. At every step — especially the steps where you feel most certain.' }
+];
+const SOT_PRINCIPLES = [
+  { title:'The second chair is not the lesser chair.', text:'Aaron held Moses\' hands. Without Aaron, the battle was lost. There is no hierarchy of calling — only difference of function.' },
+  { title:'Skills without character are a liability.', text:'A co-founder who is technically excellent but relationally destructive is not an asset. Develop your character at the same rate as your competence.' },
+  { title:'Ego is the hidden enemy.', text:'The question is not "Will my ego show up?" It will. The question is: have you built the self-awareness to recognise it — and choose differently?' },
+  { title:'Discern before you decide. Decide before you commit.', text:'These are four different steps. Do not collapse them. The Merging Ceremony confirms a decision already made in private.' },
+  { title:'Validate your match the way LBI validates their market.', text:'Test the fit before you commit. Have the hard conversations in Weeks 3 and 4 — not after the agreement is signed.' },
+  { title:'Pivoting applies to partnerships too.', text:'If the evidence tells you a specific founder is not the right fit — changing direction is faithfulness, not failure.' },
+  { title:'Biblical integrity is the foundation of every agreement.', text:'Your word is your contract before the document is your contract. If you would not fulfil it under God\'s watch, do not sign it under anyone else\'s.' },
+  { title:'You are not a co-founder for the title.', text:'You are a co-founder for the mission. The day you forget that — re-read Philippians 2.' }
+];
+
+// ─── State ─────────────────────────────────────────────────────────────────
+let track = 'lbi';
+let timers = {};
+
+// ─── Utils ─────────────────────────────────────────────────────────────────
+function unlockAt(dateStr) {
+  return new Date(dateStr + 'T06:00:00+01:00'); // 6 AM WAT
+}
+function isUnlocked(dateStr) { return new Date() >= unlockAt(dateStr); }
+function isCurrent(w, weeks) {
+  const idx = weeks.indexOf(w);
+  return isUnlocked(w.unlock) && (idx === weeks.length - 1 || !isUnlocked(weeks[idx + 1].unlock));
+}
+function timeUntil(dateStr) {
+  const diff = unlockAt(dateStr) - new Date();
+  if (diff <= 0) return null;
+  return {
+    d: Math.floor(diff / 86400000),
+    h: Math.floor((diff % 86400000) / 3600000),
+    m: Math.floor((diff % 3600000) / 60000),
+    s: Math.floor((diff % 60000) / 1000)
+  };
+}
+function pad(n) { return String(n).padStart(2, '0'); }
+function dateLabel(str) {
+  return new Date(str).toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
+}
+
+// SVG icons
+const SVG_DOC = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2" y="1" width="9" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 5h4M4.5 7h4M4.5 9h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`;
+const SVG_PLAY = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.3"/><path d="M5.2 4.5l4 2-4 2V4.5z" fill="currentColor"/></svg>`;
+const SVG_EXT  = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 8L8 2M8 2H4M8 2v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const SVG_DL   = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v7M4 6l2.5 2.5L9 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 10.5h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+const SVG_CHV  = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M3 5l3.5 3.5L10 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const SVG_CAL  = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="2" width="10" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 5h10M4 1v2M8 1v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`;
+
+// ─── Set Track ─────────────────────────────────────────────────────────────
+function setTrack(t) {
+  track = t;
+  // Update all track buttons
+  document.querySelectorAll('.track-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.track === t);
+  });
+  // Hero cards
+  document.getElementById('heroLBI').classList.toggle('active', t === 'lbi');
+  document.getElementById('heroSOT').classList.toggle('active', t === 'sot');
+  // Hero sub
+  document.getElementById('heroSub').textContent = t === 'lbi'
+    ? 'Life Business Incubator · 8-Week Founder Programme'
+    : 'School of Timothy · 5-Week Co-Founder Programme';
+  renderAll();
+}
+
+// ─── Render All ────────────────────────────────────────────────────────────
+function renderAll() {
+  renderOverview();
+  renderWeeks();
+  renderPrinciples();
+}
+
+// ─── Render Overview ───────────────────────────────────────────────────────
+function renderOverview() {
+  const weeks = track === 'lbi' ? LBI_WEEKS : SOT_WEEKS;
+  document.getElementById('ovEyebrow').textContent = track === 'lbi' ? 'LBI Programme' : 'SOT Programme';
+
+  const rows = weeks.map(w => {
+    const unlocked = isUnlocked(w.unlock);
+    const cur = isCurrent(w, weeks);
+    let badge;
+    if (cur)       badge = `<span class="rm-status s-live">● Live</span>`;
+    else if (unlocked) badge = `<span class="rm-status s-done">Done</span>`;
+    else           badge = `<span class="rm-status s-lock">Locked</span>`;
+    return `<tr>
+      <td class="rm-wk">W${w.n}</td>
+      <td>${dateLabel(w.unlock)}</td>
+      <td class="rm-theme">${w.theme}</td>
+      <td class="rm-mile">${w.milestone}</td>
+      <td>${badge}</td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('ovContent').innerHTML = `
+    <table class="rm-table">
+      <thead><tr><th>Week</th><th>Date</th><th>Theme</th><th>Milestone</th><th>Status</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+// ─── Render Weeks ──────────────────────────────────────────────────────────
+function renderWeeks() {
+  Object.values(timers).forEach(clearInterval);
+  timers = {};
+
+  const weeks = track === 'lbi' ? LBI_WEEKS : SOT_WEEKS;
+  const sub   = track === 'lbi' ? LBI_SUB   : SOT_SUB;
+
+  document.getElementById('currSub').textContent = track === 'lbi'
+    ? 'Life Business Incubator — 9 Weeks' : 'School of Timothy — 5 Weeks';
+
+  document.getElementById('weeksWrap').innerHTML = weeks.map(w => buildCard(w, weeks, sub)).join('');
+
+  // Start timers for locked weeks
+  weeks.filter(w => !isUnlocked(w.unlock)).forEach(w => {
+    const id = setInterval(() => tickCountdown(w, weeks), 1000);
+    timers[w.n] = id;
+    tickCountdown(w, weeks);
+  });
+
+  // Auto-open current week
+  const cur = weeks.find(w => isCurrent(w, weeks));
+  if (cur) openCard(cur.n);
+}
+
+function buildCard(w, weeks, sub) {
+  const locked  = !isUnlocked(w.unlock);
+  const cur     = isCurrent(w, weeks);
+  const classes = ['wk-card', locked ? 'is-locked' : cur ? 'is-current' : ''].filter(Boolean).join(' ');
+
+  let tag;
+  if (cur)    tag = `<span class="wk-tag tag-live">Live Now</span>`;
+  else if (w.demo && !locked) tag = `<span class="wk-tag tag-demo">Ceremony</span>`;
+  else if (locked) tag = `<span class="wk-tag tag-lock">Unlocks ${dateLabel(w.unlock)}</span>`;
+  else        tag = `<span class="wk-tag tag-done">Completed</span>`;
+
+  const chevron = locked ? '' : `<div class="wk-chevron">${SVG_CHV}</div>`;
+
+  const countdown = locked ? `
+    <div class="wk-countdown">
+      <div class="cd-label">Unlocks in</div>
+      <div class="cd-row">
+        <div class="cd-unit"><div class="cd-num" id="cd-d-${w.n}">--</div><div class="cd-unit-lbl">Days</div></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><div class="cd-num" id="cd-h-${w.n}">--</div><div class="cd-unit-lbl">Hrs</div></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><div class="cd-num" id="cd-m-${w.n}">--</div><div class="cd-unit-lbl">Min</div></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><div class="cd-num" id="cd-s-${w.n}">--</div><div class="cd-unit-lbl">Sec</div></div>
+      </div>
+    </div>` : '';
+
+  const body = locked ? '' : buildBody(w, sub);
+
+  const clickAttr = locked ? '' : `onclick="toggleCard(${w.n})"`;
+
+  return `
+  <div class="${classes}" id="wk-${w.n}">
+    <div class="wk-header" ${clickAttr}>
+      <div class="wk-badge-num">${w.n === 9 || (w.n === 5 && w.demo) ? '⭐' : w.n}</div>
+      <div class="wk-info">
+        <div class="wk-top">
+          <span class="wk-label">Week ${w.n}</span>
+          ${tag}
+        </div>
+        <div class="wk-theme">${w.theme}</div>
+        <div class="wk-tagline">${w.tagline}</div>
+      </div>
+      ${chevron}
+    </div>
+    ${countdown}
+    <div class="wk-content"><div class="wk-body">${body}</div></div>
+  </div>`;
+}
+
+function buildBody(w, sub) {
+  const acts = w.acts.map(a => `<li>${a}</li>`).join('');
+
+  const reading = w.reading.length
+    ? w.reading.map(r => `<a class="res-link" href="${r.l}" target="_blank" rel="noopener">${SVG_DOC}<span class="rl-text">${r.t}</span>${SVG_EXT}</a>`).join('')
+    : `<p style="font-size:.78rem;color:var(--text-3)">No required reading this week.</p>`;
+
+  const videos = w.watch.length
+    ? w.watch.map(v => `<a class="res-link" href="${v.l}" target="_blank" rel="noopener">${SVG_PLAY}<span class="rl-text">${v.t}</span>${SVG_EXT}</a>`).join('')
+    : '';
+
+  const dRows = w.dels.map((d, i) => `
+    <tr><td>${i + 1}. ${d[0]}</td><td>${d[1]}</td></tr>`).join('');
+
+  const quizBtn = w.quiz
+    ? `<a class="act-btn btn-ghost" href="${w.quiz}" target="_blank" rel="noopener">✅ Weekly Quiz</a>`
+    : '';
+
+  const subLink = w.sub || sub;
+
+  return `
+    <div class="scripture-blk">${w.scripture}</div>
+
+    <div class="cs">
+      <div class="cs-title">Live Event</div>
+      <div class="live-box">
+        <div class="live-box-title">${w.event.title}</div>
+        <div class="live-meta">
+          <span>📅&nbsp; ${w.event.when}</span>
+          <span>🎤&nbsp; ${w.event.guest}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-title">Core Outcome</div>
+      <div class="outcome-blk">${w.outcome}</div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-title">Sprint Goal</div>
+      <div class="sprint-blk">${w.sprint}</div>
+    </div>
+
+    <div class="cs">
+      <div class="cs-title">Activities</div>
+      <ul class="act-list">${acts}</ul>
+    </div>
+
+    ${w.reading.length ? `<div class="cs"><div class="cs-title">Reading</div><div class="res-list">${reading}</div></div>` : ''}
+    ${w.watch.length   ? `<div class="cs"><div class="cs-title">Watch List</div><div class="res-list">${videos}</div></div>` : ''}
+
+    <div class="cs">
+      <div class="cs-title">Deliverables — Due ${w.due}</div>
+      <table class="del-table">
+        <thead><tr><th>Deliverable</th><th>Format</th></tr></thead>
+        <tbody>${dRows}</tbody>
+      </table>
+    </div>
+
+    <div class="wk-actions">
+      <a class="act-btn btn-gold" href="${subLink}" target="_blank" rel="noopener">
+        ${SVG_DL} Submit Deliverables
+      </a>
+      <a class="act-btn btn-ghost" href="${OH_LINK}" target="_blank" rel="noopener">
+        ${SVG_CAL} Book Office Hours
+      </a>
+      ${quizBtn}
+    </div>`;
+}
+
+// ─── Countdown ─────────────────────────────────────────────────────────────
+function tickCountdown(w, weeks) {
+  const t = timeUntil(w.unlock);
+  if (!t) {
+    clearInterval(timers[w.n]);
+    renderWeeks(); // week just unlocked
+    return;
+  }
+  const g = (id) => document.getElementById(`cd-${id}-${w.n}`);
+  if (g('d')) { g('d').textContent = pad(t.d); g('h').textContent = pad(t.h); g('m').textContent = pad(t.m); g('s').textContent = pad(t.s); }
+}
+
+// ─── Accordion ─────────────────────────────────────────────────────────────
+function toggleCard(n) {
+  const card = document.getElementById(`wk-${n}`);
+  if (!card || card.classList.contains('is-locked')) return;
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.wk-card.open').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+function openCard(n) {
+  const card = document.getElementById(`wk-${n}`);
+  if (card && !card.classList.contains('is-locked')) card.classList.add('open');
+}
+
+// ─── Principles ─────────────────────────────────────────────────────────────
+function renderPrinciples() {
+  const list = track === 'lbi' ? LBI_PRINCIPLES : SOT_PRINCIPLES;
+  document.getElementById('prEyebrow').textContent = track === 'lbi' ? 'LBI Programme' : 'SOT Programme';
+  document.getElementById('principlesGrid').innerHTML = list.map((p, i) => `
+    <div class="principle-card">
+      <div class="principle-num">0${i + 1}</div>
+      <div class="principle-title">${p.title}</div>
+      <div class="principle-text">${p.text}</div>
+    </div>`).join('');
+}
+
+// ─── Nav / Drawer ──────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+function toggleDrawer() {
+  document.getElementById('mobileDrawer').classList.toggle('open');
+  document.getElementById('burgerBtn').classList.toggle('open');
+}
+function closeDrawer() {
+  document.getElementById('mobileDrawer').classList.remove('open');
+  document.getElementById('burgerBtn').classList.remove('open');
+}
+
+// ─── Init ──────────────────────────────────────────────────────────────────
+renderAll();
+</script>
+</body>
+</html>
