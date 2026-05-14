@@ -3,560 +3,792 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="STARK Y'26 Participant Handbook — Life Business Incubator (LBI) & School of Timothy (SOT). Heave Ventures." />
+  <meta name="description" content="STARK Y'26 Participant Handbook — Life Business Incubator & School of Timothy. Heave Ventures." />
   <title>STARK Y'26 — Participant Handbook</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300&display=swap" rel="stylesheet" />
   <style>
+    /* ── TOKENS ─────────────────────────────────────────────────────────────── */
     :root {
-      --bg: #0c0c0c;
-      --surface: #141414;
-      --card: #1c1c1c;
-      --card-hover: #222;
-      --border: #2a2a2a;
-      --border-light: #383838;
-      --gold: #C8A84B;
-      --gold-dim: rgba(200,168,75,.12);
-      --gold-glow: rgba(200,168,75,.25);
-      --green: #27ae60;
-      --text: #f0f0f0;
-      --text-2: #a8a8a8;
-      --text-3: #606060;
-      --r: 10px;
-      --r-lg: 18px;
-      --r-xl: 24px;
+      --bg:          #0A0A0A;
+      --surf:        rgba(255,255,255,0.03);
+      --surf-hover:  rgba(255,255,255,0.055);
+      --border:      rgba(255,255,255,0.07);
+      --border-hi:   rgba(255,255,255,0.14);
+      --orange:      #E85D22;
+      --orange-dim:  rgba(232,93,34,0.10);
+      --orange-glow: rgba(232,93,34,0.22);
+      --yellow:      #F0F024;
+      --text:        #FFFFFF;
+      --text-2:      #99968F;
+      --text-3:      rgba(153,150,143,0.45);
+      --sidebar-w:   252px;
+      --r:           2px;
+      --blur:        blur(14px);
     }
-
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; font-size:16px; }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg); color: var(--text);
-      line-height: 1.6; overflow-x: hidden;
+      font-family:'Inter',system-ui,sans-serif;
+      background:var(--bg); color:var(--text);
+      line-height:1.6; overflow-x:hidden;
+      font-weight:300;
     }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+    a { color:inherit; text-decoration:none; }
+    img { max-width:100%; display:block; }
+    ::-webkit-scrollbar { width:2px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.12); border-radius:2px; }
 
-    /* ── NAV ── */
-    #nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
-      height: 62px; padding: 0 5%;
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(12,12,12,.9); backdrop-filter: blur(20px);
-      border-bottom: 1px solid transparent; transition: border-color .3s;
+    /* ── WEBGL CANVAS ───────────────────────────────────────────────────────── */
+    #webgl-canvas {
+      position:fixed; inset:0; width:100%; height:100%;
+      z-index:0; pointer-events:none;
+      mix-blend-mode:screen; opacity:0.35;
     }
-    #nav.scrolled { border-bottom-color: var(--border); }
-    .nav-logo { height: 20px; filter: brightness(0) invert(1); opacity: .9; }
-    .nav-center {
-      display: flex; gap: 3px;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 50px; padding: 3px;
-    }
-    .track-btn {
-      padding: 6px 20px; border-radius: 50px; border: none; cursor: pointer;
-      font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-      color: var(--text-3); background: transparent; transition: all .22s; font-family: inherit;
-    }
-    .track-btn.active { background: var(--gold); color: #000; }
-    .nav-links { display: flex; gap: 22px; list-style: none; }
-    .nav-links a {
-      font-size: .78rem; font-weight: 500; color: var(--text-3); transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-burger {
-      display: none; flex-direction: column; gap: 5px; padding: 4px;
-      background: none; border: none; cursor: pointer;
-    }
-    .nav-burger span {
-      display: block; width: 22px; height: 1.5px;
-      background: var(--text); border-radius: 2px; transition: all .3s;
-    }
-    .nav-burger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
-    .nav-burger.open span:nth-child(2) { opacity: 0; }
-    .nav-burger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
 
-    /* ── MOBILE DRAWER ── */
-    .mobile-drawer {
-      display: none; position: fixed; inset: 0; z-index: 800;
-      background: rgba(10,10,10,.98); backdrop-filter: blur(24px);
-      flex-direction: column; align-items: center; justify-content: center; gap: 28px;
-    }
-    .mobile-drawer.open { display: flex; }
-    .mobile-drawer .drawer-track-row { display: flex; gap: 10px; }
-    .mobile-drawer .track-btn { font-size: .85rem; padding: 10px 26px; }
-    .mobile-drawer nav-link { font-size: 1.2rem; font-weight: 600; color: var(--text-2); }
-    .mobile-drawer a {
-      font-size: 1.2rem; font-weight: 600; color: var(--text-2); transition: color .2s;
-    }
-    .mobile-drawer a:hover { color: var(--gold); }
-    .drawer-divider { width: 40px; height: 1px; background: var(--border); }
+    /* ── LAYOUT ─────────────────────────────────────────────────────────────── */
+    #layout { display:flex; min-height:100vh; position:relative; z-index:1; }
 
-    /* ── HERO ── */
+    /* ── SIDEBAR ────────────────────────────────────────────────────────────── */
+    #sidebar {
+      position:fixed; top:0; left:0; bottom:0;
+      width:var(--sidebar-w);
+      background:rgba(10,10,10,0.88);
+      backdrop-filter:var(--blur);
+      -webkit-backdrop-filter:var(--blur);
+      border-right:1px solid var(--border);
+      z-index:200;
+      display:flex; flex-direction:column;
+      overflow:hidden;
+      transition:transform .3s cubic-bezier(.4,0,.2,1);
+    }
+    #sidebar.collapsed { transform:translateX(-100%); }
+
+    .sb-top {
+      padding:24px 20px 20px;
+      border-bottom:1px solid var(--border);
+      flex-shrink:0;
+    }
+    .sb-logo { height:18px; filter:brightness(0) invert(1); opacity:.85; margin-bottom:18px; }
+    .sb-track-switch {
+      display:flex; gap:4px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      padding:3px;
+    }
+    .sb-track-btn {
+      flex:1; padding:6px 10px;
+      font-family:inherit; font-size:.68rem; font-weight:500;
+      letter-spacing:.08em; text-transform:uppercase;
+      background:transparent; border:none; border-radius:var(--r);
+      color:var(--text-2); cursor:pointer;
+      transition:all .2s;
+    }
+    .sb-track-btn.active {
+      background:var(--orange); color:#fff;
+    }
+
+    .sb-scroll { flex:1; overflow-y:auto; padding:16px 0; }
+    .sb-scroll::-webkit-scrollbar { width:0; }
+
+    .sb-section-label {
+      padding:12px 20px 6px;
+      font-size:.58rem; font-weight:500; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--text-3);
+    }
+
+    /* TOC week list */
+    .toc-item {
+      display:flex; align-items:center; gap:10px;
+      padding:8px 20px; cursor:pointer;
+      transition:all .18s; position:relative;
+      font-size:.78rem; font-weight:300; color:var(--text-2);
+      border-left:2px solid transparent;
+    }
+    .toc-item:hover { color:var(--text); background:var(--surf); }
+    .toc-item.active {
+      color:var(--orange); border-left-color:var(--orange);
+      background:var(--orange-dim);
+    }
+    .toc-item.locked { opacity:.4; cursor:default; }
+    .toc-num {
+      font-size:.62rem; font-weight:500; letter-spacing:.06em;
+      color:var(--text-3); flex-shrink:0; min-width:24px;
+    }
+    .toc-item.active .toc-num { color:var(--orange); }
+    .toc-theme { flex:1; line-height:1.3; }
+    .toc-lock { opacity:.4; font-size:.65rem; }
+
+    .sb-divider { height:1px; background:var(--border); margin:10px 0; }
+
+    .sb-link {
+      display:flex; align-items:center; gap:9px;
+      padding:8px 20px; font-size:.78rem; font-weight:300;
+      color:var(--text-2); cursor:pointer; transition:all .18s;
+    }
+    .sb-link:hover { color:var(--text); background:var(--surf); }
+    .sb-link-dot { width:5px; height:5px; border-radius:50%; background:var(--border-hi); flex-shrink:0; }
+
+    .sb-foot {
+      padding:16px 20px;
+      border-top:1px solid var(--border);
+      flex-shrink:0;
+    }
+    .sb-foot-email { font-size:.68rem; color:var(--text-3); margin-bottom:8px; }
+    .sb-oh-btn {
+      display:flex; align-items:center; justify-content:center;
+      gap:6px; width:100%; padding:9px;
+      border:1px solid var(--border-hi); border-radius:var(--r);
+      font-family:inherit; font-size:.72rem; font-weight:400;
+      color:var(--text-2); background:transparent; cursor:pointer;
+      transition:all .2s; letter-spacing:.04em;
+    }
+    .sb-oh-btn:hover { border-color:var(--orange); color:var(--orange); background:var(--orange-dim); }
+
+    /* ── MOBILE TOGGLE ──────────────────────────────────────────────────────── */
+    #mob-toggle {
+      display:none; position:fixed; top:16px; left:16px; z-index:300;
+      width:40px; height:40px; border-radius:var(--r);
+      background:rgba(10,10,10,0.9); backdrop-filter:var(--blur);
+      border:1px solid var(--border); cursor:pointer;
+      flex-direction:column; align-items:center; justify-content:center; gap:5px;
+    }
+    #mob-toggle span {
+      display:block; width:18px; height:1.5px;
+      background:var(--text-2); border-radius:2px; transition:all .3s;
+    }
+    #mob-toggle.open span:nth-child(1) { transform:rotate(45deg) translate(4.5px,4.5px); }
+    #mob-toggle.open span:nth-child(2) { opacity:0; }
+    #mob-toggle.open span:nth-child(3) { transform:rotate(-45deg) translate(4.5px,-4.5px); }
+
+    #sidebar-overlay {
+      display:none; position:fixed; inset:0; z-index:190;
+      background:rgba(0,0,0,0.6); backdrop-filter:blur(2px);
+    }
+    #sidebar-overlay.visible { display:block; }
+
+    /* ── MAIN ───────────────────────────────────────────────────────────────── */
+    #main {
+      margin-left:var(--sidebar-w);
+      flex:1; min-width:0;
+    }
+
+    /* ── HERO ───────────────────────────────────────────────────────────────── */
     #hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center;
-      padding: 120px 6% 80px;
-      background:
-        radial-gradient(ellipse 70% 50% at 50% 10%, rgba(200,168,75,.07) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(200,168,75,.04) 0%, transparent 60%),
-        var(--bg);
+      padding:100px 9% 80px;
+      border-bottom:1px solid var(--border);
+      position:relative; overflow:hidden;
+    }
+    .hero-bg-num {
+      position:absolute; right:-2%; bottom:-10%;
+      font-size:clamp(180px,28vw,340px); font-weight:200;
+      color:rgba(255,255,255,0.022); line-height:1;
+      letter-spacing:-0.05em; pointer-events:none; user-select:none;
+      font-variant-numeric:tabular-nums;
     }
     .hero-eyebrow {
-      font-size: .65rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--gold); display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+      font-size:.62rem; font-weight:500; letter-spacing:.22em;
+      text-transform:uppercase; color:var(--orange);
+      margin-bottom:20px; display:flex; align-items:center; gap:10px;
     }
-    .hero-eyebrow::before, .hero-eyebrow::after {
-      content: ''; display: inline-block; width: 28px; height: 1px;
-      background: var(--gold); opacity: .4;
+    .hero-eyebrow::after {
+      content:''; display:inline-block; width:32px; height:1px;
+      background:var(--orange); opacity:.5;
     }
-    .hero-logo { height: 34px; filter: brightness(0) invert(1); margin: 0 auto 22px; }
     .hero-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(2.6rem, 8vw, 5.5rem); font-weight: 900; letter-spacing: .05em;
-      line-height: 1; color: var(--text); margin-bottom: 10px;
+      font-size:clamp(2.4rem,6vw,5rem); font-weight:200;
+      letter-spacing:-0.03em; line-height:1.08;
+      color:var(--text); margin-bottom:10px;
     }
     .hero-sub {
-      font-family: 'Playfair Display', serif; font-style: italic;
-      font-size: clamp(.95rem, 2vw, 1.25rem); color: var(--text-2); margin-bottom: 52px;
+      font-size:clamp(.9rem,1.5vw,1.1rem); font-weight:300;
+      color:var(--text-2); margin-bottom:36px;
     }
-    .hero-tracks { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .hero-track-card {
-      width: 250px; padding: 26px 22px;
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--r-xl); cursor: pointer; text-align: left;
-      transition: all .28s;
+    .hero-meta {
+      display:flex; flex-wrap:wrap; gap:6px; margin-bottom:40px;
     }
-    .hero-track-card:hover { border-color: var(--border-light); transform: translateY(-3px); }
-    .hero-track-card.active {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 1px var(--gold-glow), 0 20px 60px rgba(200,168,75,.08);
-      background: rgba(200,168,75,.04);
+    .hero-meta-chip {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:5px 12px; border-radius:var(--r);
+      border:1px solid var(--border); background:var(--surf);
+      font-size:.7rem; font-weight:300; color:var(--text-2);
     }
-    .tc-label {
-      font-size: .62rem; font-weight: 700; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
-    }
-    .tc-name {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 1.45rem;
-      font-weight: 800; letter-spacing: .02em; color: var(--text); margin-bottom: 6px;
-    }
-    .tc-desc { font-size: .8rem; color: var(--text-2); line-height: 1.55; }
-    .tc-meta {
-      margin-top: 14px; font-size: .7rem; color: var(--text-3);
-      display: flex; align-items: center; gap: 7px;
-    }
-    .tc-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-
-    /* ── SECTION ── */
-    .hb-section { padding: 72px 6%; border-top: 1px solid var(--border); }
-    .hb-inner { max-width: 980px; margin: 0 auto; }
-    .hb-eyebrow {
-      font-size: .62rem; font-weight: 700; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
-    }
-    .hb-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; color: var(--text);
-      margin-bottom: 36px;
+    .hero-scripture {
+      max-width:560px; border-left:2px solid var(--orange);
+      padding:14px 20px; border-radius:0 var(--r) var(--r) 0;
+      background:var(--orange-dim);
+      font-size:.85rem; font-weight:300; font-style:italic;
+      color:var(--text-2); line-height:1.75;
     }
 
-    /* ── ROADMAP TABLE ── */
-    .rm-table { width: 100%; border-collapse: collapse; }
+    /* ── ROADMAP SECTION ────────────────────────────────────────────────────── */
+    .hb-section {
+      padding:64px 9%; border-bottom:1px solid var(--border);
+    }
+    .sec-eyebrow {
+      font-size:.6rem; font-weight:500; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--orange); margin-bottom:10px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .sec-eyebrow::after { content:''; width:24px; height:1px; background:var(--orange); opacity:.5; }
+    .sec-title {
+      font-size:clamp(1.4rem,3vw,2rem); font-weight:200;
+      letter-spacing:-0.02em; color:var(--text); margin-bottom:28px;
+    }
+
+    /* Roadmap table */
+    .rm-table {
+      width:100%; border-collapse:collapse;
+      border:1px solid var(--border); border-radius:var(--r); overflow:hidden;
+    }
     .rm-table th {
-      text-align: left; padding: 9px 14px;
-      font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--text-3); border-bottom: 1px solid var(--border);
+      text-align:left; padding:10px 16px;
+      font-size:.6rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--text-3); border-bottom:1px solid var(--border);
+      background:rgba(255,255,255,0.02);
     }
     .rm-table td {
-      padding: 13px 14px; font-size: .83rem; color: var(--text-2);
-      border-bottom: 1px solid var(--border); vertical-align: middle;
+      padding:11px 16px; font-size:.78rem; font-weight:300;
+      color:var(--text-2); border-bottom:1px solid var(--border); vertical-align:top;
     }
-    .rm-table tr:last-child td { border-bottom: none; }
-    .rm-table tr:hover td { background: rgba(255,255,255,.02); }
-    .rm-wk { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: .98rem; color: var(--gold); }
-    .rm-theme { font-weight: 600; color: var(--text); }
-    .rm-mile { font-size: .76rem; }
-    .rm-status {
-      display: inline-flex; align-items: center; gap: 5px;
-      padding: 3px 9px; border-radius: 50px;
-      font-size: .64rem; font-weight: 700; letter-spacing: .06em; white-space: nowrap;
-    }
-    .s-live  { background: rgba(39,174,96,.12); color: #27ae60; }
-    .s-done  { background: rgba(255,255,255,.04); color: var(--text-3); }
-    .s-lock  { background: rgba(255,255,255,.05); color: var(--text-3); }
-    .s-next  { background: rgba(200,168,75,.1); color: var(--gold); }
+    .rm-table tr:last-child td { border-bottom:none; }
+    .rm-table td:first-child { color:var(--orange); font-weight:500; font-size:.72rem; white-space:nowrap; }
+    .rm-table td:nth-child(2) { color:var(--text-2); white-space:nowrap; font-size:.72rem; }
+    .rm-table td:nth-child(3) { color:var(--text); font-weight:400; }
+    .rm-table td:last-child { color:var(--text-3); font-size:.72rem; }
+    .rm-demo td { background:var(--orange-dim); }
+    .rm-demo td:first-child { color:var(--yellow); }
 
-    /* ── CURRICULUM ── */
-    #curriculum { padding: 60px 6%; }
-    .curr-inner { max-width: 820px; margin: 0 auto; }
-    .curr-hdr { margin-bottom: 28px; }
-    .curr-title { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; }
-    .curr-sub { font-size: .83rem; color: var(--text-2); margin-top: 4px; }
+    /* ── CURRICULUM ─────────────────────────────────────────────────────────── */
+    #curriculum { padding:0; }
 
-    /* ── WEEK CARD ── */
-    .wk-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--r-lg); margin-bottom: 10px; overflow: hidden;
-      transition: border-color .25s;
+    .curr-hdr {
+      padding:48px 9% 32px;
+      border-bottom:1px solid var(--border);
     }
-    .wk-card:hover:not(.is-locked) { border-color: var(--border-light); }
-    .wk-card.is-current { border-color: var(--gold); }
-    .wk-card.is-current:hover { border-color: var(--gold); }
+    .curr-hdr-label {
+      font-size:.6rem; font-weight:500; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--orange); margin-bottom:8px;
+    }
+    .curr-hdr-title {
+      font-size:clamp(1.4rem,3vw,2rem); font-weight:200;
+      letter-spacing:-0.02em; color:var(--text);
+    }
 
-    .wk-header {
-      display: flex; align-items: center; gap: 14px;
-      padding: 18px 22px; user-select: none;
+    /* ── CHAPTER ────────────────────────────────────────────────────────────── */
+    .chapter {
+      border-bottom:1px solid var(--border);
+      position:relative; overflow:hidden;
+      transition:background .2s;
     }
-    .wk-card:not(.is-locked) .wk-header { cursor: pointer; }
+    .chapter.open { background:rgba(255,255,255,0.012); }
 
-    .wk-badge-num {
-      flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%;
-      background: var(--surface); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.05rem;
-      color: var(--gold); transition: all .25s;
+    .chapter-bg-num {
+      position:absolute; right:5%; top:50%;
+      transform:translateY(-50%);
+      font-size:clamp(80px,14vw,160px); font-weight:200;
+      color:rgba(255,255,255,0.025); line-height:1;
+      letter-spacing:-0.05em; pointer-events:none; user-select:none;
+      font-variant-numeric:tabular-nums; transition:opacity .3s;
     }
-    .is-current .wk-badge-num { background: var(--gold); color: #000; border-color: var(--gold); }
-    .is-locked .wk-badge-num { color: var(--text-3); }
+    .chapter.open .chapter-bg-num { opacity:.5; }
 
-    .wk-info { flex: 1; min-width: 0; }
-    .wk-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 3px; }
-    .wk-label { font-size: .67rem; font-weight: 500; color: var(--text-3); }
-    .wk-tag {
-      font-size: .6rem; font-weight: 700; letter-spacing: .08em;
-      text-transform: uppercase; padding: 2px 7px; border-radius: 4px;
+    .chapter-header {
+      padding:44px 9% 36px;
+      cursor:pointer; position:relative; z-index:1;
+      display:grid; grid-template-columns:1fr auto;
+      gap:20px; align-items:start;
     }
-    .tag-live { background: rgba(39,174,96,.14); color: #27ae60; }
-    .tag-lock { background: rgba(255,255,255,.05); color: var(--text-3); }
-    .tag-done { background: rgba(255,255,255,.04); color: var(--text-3); }
-    .tag-demo { background: rgba(200,168,75,.12); color: var(--gold); }
-    .wk-theme { font-weight: 600; font-size: .93rem; color: var(--text); }
-    .is-locked .wk-theme { color: var(--text-3); }
-    .wk-tagline { font-size: .76rem; color: var(--text-3); font-style: italic; margin-top: 2px; }
+    .chapter-header:hover .chapter-title { color:var(--text); }
 
-    .wk-chevron {
-      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
-      background: var(--surface); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-2); transition: transform .3s, background .2s, color .2s;
+    .chapter-label {
+      font-size:.6rem; font-weight:500; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--orange); margin-bottom:12px;
+      display:flex; align-items:center; gap:8px;
     }
-    .is-locked .wk-chevron { display: none; }
-    .wk-card.open .wk-chevron { transform: rotate(180deg); background: var(--gold-dim); color: var(--gold); }
+    .chapter-milestone {
+      font-size:.58rem; font-weight:400; letter-spacing:.06em;
+      color:var(--text-3); font-style:normal; text-transform:none;
+      border:1px solid var(--border); border-radius:var(--r);
+      padding:2px 8px; white-space:nowrap;
+    }
+    .chapter-title {
+      font-size:clamp(1.3rem,3.5vw,1.9rem); font-weight:200;
+      letter-spacing:-0.02em; line-height:1.2; color:rgba(255,255,255,.88);
+      margin-bottom:6px; transition:color .2s;
+    }
+    .chapter-tagline {
+      font-size:.85rem; font-weight:300; color:var(--text-2);
+      margin-bottom:20px; font-style:italic;
+    }
+    .chapter-scripture {
+      max-width:500px; border-left:1.5px solid var(--orange);
+      padding:10px 16px; border-radius:0 var(--r) var(--r) 0;
+      background:var(--orange-dim);
+      font-size:.78rem; font-weight:300; font-style:italic;
+      color:var(--text-2); line-height:1.75; margin-bottom:20px;
+    }
+    .chapter-event-row {
+      display:flex; flex-wrap:wrap; gap:5px; margin-bottom:4px;
+    }
+    .chapter-event-chip {
+      display:inline-flex; align-items:center; gap:5px;
+      font-size:.68rem; font-weight:300; color:var(--text-3);
+    }
+    .chapter-event-chip::before {
+      content:''; width:3px; height:3px;
+      border-radius:50%; background:var(--text-3); flex-shrink:0;
+    }
 
-    /* ── COUNTDOWN ── */
-    .wk-countdown { padding: 0 22px 18px 78px; }
-    .cd-label {
-      font-size: .62rem; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--text-3); margin-bottom: 8px;
+    /* Expand button */
+    .chapter-cta {
+      display:flex; flex-direction:column; align-items:flex-end; gap:10px;
+      padding-top:4px;
     }
-    .cd-row { display: flex; gap: 7px; align-items: center; }
+    .chapter-expand-btn {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:8px 16px; border-radius:var(--r);
+      border:1px solid var(--border-hi); background:transparent;
+      font-family:inherit; font-size:.72rem; font-weight:400;
+      color:var(--text-2); cursor:pointer; transition:all .2s;
+      white-space:nowrap;
+    }
+    .chapter-expand-btn:hover { border-color:var(--orange); color:var(--orange); background:var(--orange-dim); }
+    .chapter.open .chapter-expand-btn {
+      border-color:var(--orange); color:var(--orange); background:var(--orange-dim);
+    }
+    .expand-chevron { transition:transform .3s; }
+    .chapter.open .expand-chevron { transform:rotate(180deg); }
+
+    /* Countdown */
+    .chapter-countdown {
+      display:flex; flex-direction:column; align-items:flex-end; gap:6px;
+    }
+    .countdown-label {
+      font-size:.58rem; font-weight:400; letter-spacing:.1em;
+      text-transform:uppercase; color:var(--text-3);
+    }
+    .countdown-units { display:flex; gap:4px; }
     .cd-unit {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; padding: 7px 11px; text-align: center; min-width: 48px;
+      display:flex; flex-direction:column; align-items:center; gap:2px;
+      background:rgba(255,255,255,0.04); border:1px solid var(--border);
+      border-radius:var(--r); padding:6px 10px; min-width:44px;
     }
-    .cd-num {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 1.35rem;
-      font-weight: 800; color: var(--text); line-height: 1;
+    .cd-val {
+      font-size:.95rem; font-weight:300; font-variant-numeric:tabular-nums;
+      letter-spacing:.02em; line-height:1; color:var(--text);
     }
-    .cd-unit-lbl { font-size: .55rem; color: var(--text-3); letter-spacing: .08em; text-transform: uppercase; margin-top: 2px; }
-    .cd-sep { color: var(--text-3); font-weight: 700; font-size: .9rem; }
+    .cd-lbl { font-size:.48rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--text-3); }
 
-    /* ── WEEK BODY ── */
-    .wk-content { max-height: 0; overflow: hidden; transition: max-height .55s cubic-bezier(.4,0,.2,1); }
-    .wk-card.open .wk-content { max-height: 5000px; }
-    .wk-body { padding: 4px 22px 26px; }
-
-    .scripture-blk {
-      padding: 14px 18px; margin-bottom: 22px;
-      border-left: 2px solid var(--border-light);
-      font-family: 'Playfair Display', serif; font-style: italic;
-      font-size: .86rem; color: var(--text-3); line-height: 1.65;
+    /* ── CHAPTER CONTENT ────────────────────────────────────────────────────── */
+    .chapter-content {
+      display:none; padding:0 9% 48px;
+      position:relative; z-index:1;
     }
+    .chapter.open .chapter-content { display:block; }
 
-    .cs { margin-bottom: 24px; }
+    .chapter-content-inner {
+      border-top:1px solid var(--border); padding-top:36px;
+      display:grid; grid-template-columns:1fr 1fr; gap:0 48px;
+    }
+    .cc-full { grid-column:1 / -1; }
+    .cc-col { }
+
+    /* Content sections */
+    .cs { margin-bottom:28px; }
     .cs-title {
-      font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 10px;
-      display: flex; align-items: center; gap: 9px;
+      font-size:.6rem; font-weight:500; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--text-3);
+      margin-bottom:12px; padding-bottom:8px;
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; gap:8px;
     }
-    .cs-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .cs-title::before { content:''; width:3px; height:3px; border-radius:50%; background:var(--orange); flex-shrink:0; }
 
+    /* Live event */
     .live-box {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 14px 18px;
+      background:var(--surf); border:1px solid var(--border);
+      border-radius:var(--r); padding:16px 20px;
+      border-left:2px solid var(--orange);
     }
-    .live-box-title { font-weight: 600; font-size: .88rem; color: var(--text); margin-bottom: 7px; }
-    .live-meta { font-size: .76rem; color: var(--text-2); display: flex; flex-direction: column; gap: 3px; }
-    .live-meta span { display: flex; align-items: flex-start; gap: 8px; }
+    .live-box-title { font-size:.88rem; font-weight:400; color:var(--text); margin-bottom:8px; line-height:1.4; }
+    .live-meta { display:flex; flex-wrap:wrap; gap:12px; }
+    .live-meta span { font-size:.72rem; font-weight:300; color:var(--text-2); }
 
+    /* Outcome / Sprint */
     .outcome-blk {
-      font-size: .88rem; color: var(--text-2); line-height: 1.72;
-      padding: 12px 16px; background: var(--surface);
-      border-left: 2px solid var(--gold); border-radius: 0 var(--r) var(--r) 0;
+      font-size:.84rem; font-weight:300; color:var(--text-2);
+      line-height:1.75; border-left:2px solid var(--border-hi);
+      padding-left:14px;
+    }
+    .sprint-blk {
+      font-size:.84rem; font-weight:300; color:var(--text-2);
+      line-height:1.75; font-style:italic;
+      background:rgba(255,255,255,0.025); border-radius:var(--r);
+      padding:12px 16px;
     }
 
-    .sprint-blk { font-size: .86rem; color: var(--text-2); line-height: 1.7; font-style: italic; }
-
-    .act-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    /* Activities */
+    .act-list { list-style:none; display:flex; flex-direction:column; gap:6px; }
     .act-list li {
-      display: flex; gap: 11px; font-size: .84rem; color: var(--text-2); align-items: flex-start;
+      display:grid; grid-template-columns:20px 1fr;
+      gap:8px; font-size:.82rem; font-weight:300;
+      color:var(--text-2); line-height:1.6;
     }
     .act-list li::before {
-      content: ''; flex-shrink: 0; width: 5px; height: 5px;
-      border-radius: 50%; background: var(--gold); margin-top: 8px;
+      content:counter(li); counter-increment:li;
+      font-size:.58rem; font-weight:500;
+      color:var(--orange); padding-top:4px;
     }
+    .act-list { counter-reset:li; }
 
-    .res-list { display: flex; flex-direction: column; gap: 5px; }
+    /* Resources */
+    .res-list { display:flex; flex-direction:column; gap:4px; }
     .res-link {
-      display: flex; align-items: center; gap: 10px; padding: 9px 13px;
-      border-radius: var(--r); background: var(--surface); border: 1px solid var(--border);
-      font-size: .8rem; color: var(--text-2); transition: all .18s;
+      display:flex; align-items:center; gap:9px;
+      padding:9px 12px; border-radius:var(--r);
+      border:1px solid var(--border); background:var(--surf);
+      font-size:.76rem; font-weight:300; color:var(--text-2);
+      transition:all .18s;
     }
-    .res-link:hover { border-color: var(--gold); color: var(--text); }
-    .res-link svg { flex-shrink: 0; color: var(--gold); }
-    .res-link .rl-text { flex: 1; }
+    .res-link:hover { border-color:var(--orange); color:var(--text); background:var(--orange-dim); }
+    .res-link svg { flex-shrink:0; color:var(--orange); }
+    .rl-text { flex:1; }
+    .res-link .ext-icon { opacity:.35; flex-shrink:0; }
 
-    /* ── DELIVERABLES TABLE ── */
-    .del-table { width: 100%; border-collapse: collapse; }
+    /* Deliverables */
+    .del-table { width:100%; border-collapse:collapse; border:1px solid var(--border); border-radius:var(--r); overflow:hidden; }
     .del-table th {
-      text-align: left; padding: 8px 12px;
-      font-size: .6rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--text-3); border-bottom: 1px solid var(--border);
+      text-align:left; padding:8px 14px;
+      font-size:.58rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+      color:var(--text-3); border-bottom:1px solid var(--border);
+      background:rgba(255,255,255,0.02);
     }
-    .del-table td {
-      padding: 10px 12px; font-size: .8rem; color: var(--text-2);
-      border-bottom: 1px solid var(--border); vertical-align: top;
-    }
-    .del-table td:first-child { color: var(--text); font-weight: 500; }
-    .del-table tr:last-child td { border-bottom: none; }
+    .del-table td { padding:10px 14px; font-size:.76rem; font-weight:300; color:var(--text-2); border-bottom:1px solid var(--border); }
+    .del-table td:first-child { color:var(--text); font-weight:400; }
+    .del-table tr:last-child td { border-bottom:none; }
 
-    /* ── ACTION BUTTONS ── */
+    /* Actions */
     .wk-actions {
-      display: flex; gap: 8px; flex-wrap: wrap;
-      margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border);
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-top:20px; padding-top:20px; border-top:1px solid var(--border);
     }
     .act-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 9px 17px; border-radius: 50px; font-size: .76rem; font-weight: 600;
-      transition: all .2s; border: 1px solid transparent; cursor: pointer;
-      font-family: inherit;
+      display:inline-flex; align-items:center; gap:6px;
+      padding:9px 18px; border-radius:var(--r);
+      font-family:inherit; font-size:.72rem; font-weight:400;
+      transition:all .2s; cursor:pointer; border:1px solid transparent;
     }
-    .btn-gold { border-color: var(--gold); color: var(--gold); background: transparent; }
-    .btn-gold:hover { background: var(--gold); color: #000; }
-    .btn-ghost { background: var(--surface); border-color: var(--border); color: var(--text-2); }
-    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-orange { background:var(--orange); color:#fff; border-color:var(--orange); }
+    .btn-orange:hover { background:#d14f1a; }
+    .btn-outline { background:transparent; border-color:var(--border-hi); color:var(--text-2); }
+    .btn-outline:hover { border-color:var(--orange); color:var(--orange); background:var(--orange-dim); }
 
-    /* ── PLACEHOLDER SECTIONS ── */
-    .ph-section {
-      padding: 80px 6%; border-top: 1px solid var(--border); text-align: center;
-    }
-    .ph-icon { font-size: 2.2rem; margin-bottom: 14px; }
-    .ph-title {
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
-      font-size: 1.5rem; letter-spacing: .05em; color: var(--text); margin-bottom: 8px;
-    }
-    .ph-desc { font-size: .86rem; color: var(--text-3); max-width: 380px; margin: 0 auto; line-height: 1.6; }
-    .ph-pill {
-      display: inline-block; margin-top: 14px; padding: 4px 14px;
-      border-radius: 50px; border: 1px solid var(--border);
-      font-size: .68rem; letter-spacing: .08em; color: var(--text-3);
-    }
-
-    /* ── PRINCIPLES ── */
+    /* ── PRINCIPLES ─────────────────────────────────────────────────────────── */
     .principles-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px;
-      margin-top: 8px;
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:8px;
     }
     .principle-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--r-lg); padding: 20px;
+      background:var(--surf); border:1px solid var(--border);
+      border-radius:var(--r); padding:20px;
+      transition:border-color .2s, background .2s;
     }
+    .principle-card:hover { border-color:var(--border-hi); background:var(--surf-hover); }
     .principle-num {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 2rem;
-      font-weight: 900; color: var(--border-light); line-height: 1; margin-bottom: 10px;
+      font-size:.6rem; font-weight:500; letter-spacing:.12em;
+      color:var(--orange); margin-bottom:8px;
     }
-    .principle-title { font-weight: 600; font-size: .88rem; color: var(--text); margin-bottom: 5px; }
-    .principle-text { font-size: .78rem; color: var(--text-3); line-height: 1.6; }
+    .principle-title {
+      font-size:.82rem; font-weight:500; color:var(--text);
+      margin-bottom:6px; line-height:1.4;
+    }
+    .principle-text { font-size:.76rem; font-weight:300; color:var(--text-2); line-height:1.65; }
 
-    /* ── FOOTER ── */
+    /* ── PLACEHOLDER SECTIONS ───────────────────────────────────────────────── */
+    .ph-section {
+      padding:72px 9%; border-bottom:1px solid var(--border);
+    }
+    .ph-inner {
+      max-width:480px;
+      border:1px solid var(--border); border-radius:var(--r);
+      padding:40px; background:var(--surf);
+    }
+    .ph-icon { font-size:1.8rem; margin-bottom:16px; }
+    .ph-label {
+      font-size:.58rem; font-weight:500; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--orange); margin-bottom:8px;
+    }
+    .ph-title {
+      font-size:1.3rem; font-weight:200; letter-spacing:-0.02em;
+      color:var(--text); margin-bottom:10px;
+    }
+    .ph-desc { font-size:.82rem; font-weight:300; color:var(--text-2); line-height:1.65; margin-bottom:16px; }
+    .ph-pill {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:4px 12px; border:1px solid var(--border);
+      border-radius:var(--r); font-size:.64rem; font-weight:400;
+      letter-spacing:.06em; color:var(--text-3);
+    }
+    .ph-pill::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--text-3); animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:.4;} 50%{opacity:1;} }
+
+    /* ── FOOTER ─────────────────────────────────────────────────────────────── */
     footer {
-      padding: 48px 6%; border-top: 1px solid var(--border); text-align: center;
+      padding:40px 9%; border-top:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:20px;
     }
-    .footer-logo { height: 16px; filter: brightness(0) invert(1); opacity: .3; margin: 0 auto 14px; }
-    .footer-text { font-size: .76rem; color: var(--text-3); line-height: 1.8; }
-    .footer-text a { color: var(--gold); }
-    .footer-links {
-      display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-top: 14px;
-    }
-    .footer-links a { font-size: .72rem; color: var(--text-3); transition: color .2s; }
-    .footer-links a:hover { color: var(--gold); }
+    .footer-logo { height:14px; filter:brightness(0) invert(1); opacity:.25; }
+    .footer-info { font-size:.7rem; font-weight:300; color:var(--text-3); }
+    .footer-info a { color:var(--text-2); transition:color .2s; }
+    .footer-info a:hover { color:var(--orange); }
+    .footer-links { display:flex; flex-wrap:wrap; gap:16px; }
+    .footer-links a { font-size:.68rem; font-weight:300; color:var(--text-3); transition:color .2s; }
+    .footer-links a:hover { color:var(--text-2); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 780px) {
-      .nav-links, .nav-center { display: none; }
-      .nav-burger { display: flex; }
-      .rm-table th:nth-child(4), .rm-table td:nth-child(4) { display: none; }
-      .hero-tracks { flex-direction: column; align-items: center; }
-      .hero-track-card { width: 100%; max-width: 320px; }
-      .wk-countdown { padding-left: 22px; }
+    /* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
+    @media (max-width:900px) {
+      #sidebar { transform:translateX(-100%); }
+      #sidebar.open { transform:translateX(0); }
+      #mob-toggle { display:flex; }
+      #main { margin-left:0; }
+      .chapter-content-inner { grid-template-columns:1fr; }
+      .cc-col { }
+      .hero-bg-num { display:none; }
     }
-    @media (max-width: 480px) {
-      .wk-header { padding: 14px 16px; gap: 10px; }
-      .wk-body { padding: 4px 16px 20px; }
-      .rm-table th:nth-child(3), .rm-table td:nth-child(3) { display: none; }
-      .cd-unit { min-width: 40px; padding: 6px 8px; }
+    @media (max-width:600px) {
+      #hero { padding:80px 6% 60px; }
+      .hb-section, .ph-section { padding:48px 6%; }
+      .curr-hdr { padding:36px 6% 24px; }
+      .chapter-header { padding:32px 6% 28px; grid-template-columns:1fr; }
+      .chapter-cta { align-items:flex-start; }
+      .chapter-content { padding:0 6% 36px; }
+      .rm-table th:nth-child(4), .rm-table td:nth-child(4) { display:none; }
+      footer { flex-direction:column; align-items:flex-start; gap:14px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══ NAV ═══════════════════════════════════════════════════════════════ -->
-<nav id="nav">
-  <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK" class="nav-logo" />
+<!-- WebGL Canvas -->
+<canvas id="webgl-canvas"></canvas>
 
-  <div class="nav-center" id="navTrackSwitch">
-    <button class="track-btn active" data-track="lbi" onclick="setTrack('lbi')">LBI</button>
-    <button class="track-btn" data-track="sot" onclick="setTrack('sot')">SOT</button>
-  </div>
+<div id="layout">
 
-  <ul class="nav-links">
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#curriculum">Curriculum</a></li>
-    <li><a href="#principles">Principles</a></li>
-    <li><a href="#bye-laws">Bye-Laws</a></li>
-    <li><a href="#prayer">Prayer</a></li>
-    <li><a href="#faq">FAQ</a></li>
-  </ul>
-
-  <button class="nav-burger" id="burgerBtn" onclick="toggleDrawer()">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- ══ MOBILE DRAWER ═══════════════════════════════════════════════════════ -->
-<div class="mobile-drawer" id="mobileDrawer">
-  <div class="drawer-track-row">
-    <button class="track-btn active" data-track="lbi" onclick="setTrack('lbi');closeDrawer()">LBI</button>
-    <button class="track-btn" data-track="sot" onclick="setTrack('sot');closeDrawer()">SOT</button>
-  </div>
-  <div class="drawer-divider"></div>
-  <a href="#overview"   onclick="closeDrawer()">Overview</a>
-  <a href="#curriculum" onclick="closeDrawer()">Curriculum</a>
-  <a href="#principles" onclick="closeDrawer()">Principles</a>
-  <a href="#bye-laws"   onclick="closeDrawer()">Bye-Laws</a>
-  <a href="#prayer"     onclick="closeDrawer()">Prayer</a>
-  <a href="#faq"        onclick="closeDrawer()">FAQ</a>
-</div>
-
-<!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
-<section id="hero">
-  <div class="hero-eyebrow">STARK Y'26 · Heave Ventures</div>
-  <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK" class="hero-logo" />
-  <h1 class="hero-title">PARTICIPANT HANDBOOK</h1>
-  <p class="hero-sub" id="heroSub">Life Business Incubator · 8-Week Founder Programme</p>
-
-  <div class="hero-tracks">
-    <div class="hero-track-card active" id="heroLBI" onclick="setTrack('lbi')">
-      <div class="tc-label">Track A</div>
-      <div class="tc-name">Life Business Incubator</div>
-      <div class="tc-desc">8-week founder curriculum culminating in Demo Day before investors and community.</div>
-      <div class="tc-meta"><span class="tc-dot"></span> Mondays · May 18 – Jul 13</div>
-    </div>
-    <div class="hero-track-card" id="heroSOT" onclick="setTrack('sot')">
-      <div class="tc-label">Track B</div>
-      <div class="tc-name">School of Timothy</div>
-      <div class="tc-desc">5-week co-founder curriculum culminating in the Co-Founder Merging Ceremony.</div>
-      <div class="tc-meta"><span class="tc-dot"></span> Fridays · May 16 – Jun 8</div>
+<!-- ══ SIDEBAR ═══════════════════════════════════════════════════════════════ -->
+<aside id="sidebar">
+  <div class="sb-top">
+    <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png"
+         alt="STARK" class="sb-logo" />
+    <div class="sb-track-switch">
+      <button class="sb-track-btn active" data-track="lbi" onclick="setTrack('lbi')">LBI</button>
+      <button class="sb-track-btn" data-track="sot" onclick="setTrack('sot')">SOT</button>
     </div>
   </div>
-</section>
 
-<!-- ══ OVERVIEW ═══════════════════════════════════════════════════════════ -->
-<section class="hb-section" id="overview">
-  <div class="hb-inner">
-    <div class="hb-eyebrow" id="ovEyebrow">LBI Programme</div>
-    <h2 class="hb-title">Programme Roadmap</h2>
+  <div class="sb-scroll">
+    <div class="sb-section-label">Curriculum</div>
+    <nav id="tocList"></nav>
+
+    <div class="sb-divider"></div>
+
+    <div class="sb-section-label">Programme</div>
+    <a class="sb-link" href="#overview"><span class="sb-link-dot"></span>Overview & Roadmap</a>
+    <a class="sb-link" href="#principles"><span class="sb-link-dot"></span>Core Principles</a>
+    <a class="sb-link" href="#bye-laws"><span class="sb-link-dot"></span>Bye-Laws</a>
+    <a class="sb-link" href="#prayer"><span class="sb-link-dot"></span>Prayer Schedule</a>
+    <a class="sb-link" href="#faq"><span class="sb-link-dot"></span>FAQ</a>
+  </div>
+
+  <div class="sb-foot">
+    <div class="sb-foot-email">theteam@heaveventures.com</div>
+    <button class="sb-oh-btn" onclick="window.open('https://calendar.app.google/GnsdPBRKd3SAZkqn6','_blank')">
+      Book Office Hours →
+    </button>
+  </div>
+</aside>
+
+<!-- Mobile overlay -->
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- Mobile toggle -->
+<button id="mob-toggle" onclick="toggleSidebar()">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- ══ MAIN ═══════════════════════════════════════════════════════════════════ -->
+<main id="main">
+
+  <!-- HERO -->
+  <header id="hero">
+    <div class="hero-bg-num" id="heroBgNum">Y26</div>
+    <div class="hero-eyebrow">STARK Y'26 · Heave Ventures</div>
+    <h1 class="hero-title" id="heroTitle">Life Business<br>Incubator</h1>
+    <p class="hero-sub" id="heroSubtitle">8-Week Founder Curriculum + Demo Day</p>
+    <div class="hero-meta">
+      <span class="hero-meta-chip" id="heroSession">📅 Mondays, 6:00–8:30PM WAT</span>
+      <span class="hero-meta-chip">🙏 Prayer: Tues & Thurs, 7AM WAT</span>
+      <span class="hero-meta-chip" id="heroDates">May 18 – July 13, 2026</span>
+    </div>
+    <blockquote class="hero-scripture" id="heroScripture">
+      "For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do." — Ephesians 2:10
+    </blockquote>
+  </header>
+
+  <!-- OVERVIEW -->
+  <section class="hb-section" id="overview">
+    <div class="sec-eyebrow" id="ovEyebrow">LBI Programme</div>
+    <h2 class="sec-title">Programme Roadmap</h2>
     <div id="ovContent"></div>
-  </div>
-</section>
+  </section>
 
-<!-- ══ CURRICULUM ═════════════════════════════════════════════════════════ -->
-<section id="curriculum" style="padding:60px 6%;">
-  <div class="curr-inner">
+  <!-- CURRICULUM -->
+  <section id="curriculum">
     <div class="curr-hdr">
-      <div class="curr-title" id="currTitle">Weekly Curriculum</div>
-      <div class="curr-sub" id="currSub">Life Business Incubator — 9 Weeks</div>
+      <div class="curr-hdr-label">Weekly Curriculum</div>
+      <div class="curr-hdr-title" id="currTitle">Life Business Incubator — 9 Weeks</div>
     </div>
     <div id="weeksWrap"></div>
-  </div>
-</section>
+  </section>
 
-<!-- ══ PRINCIPLES ══════════════════════════════════════════════════════════ -->
-<section class="hb-section" id="principles">
-  <div class="hb-inner">
-    <div class="hb-eyebrow" id="prEyebrow">Programme-Wide</div>
-    <h2 class="hb-title" id="prTitle">Core Principles</h2>
+  <!-- PRINCIPLES -->
+  <section class="hb-section" id="principles">
+    <div class="sec-eyebrow" id="prEyebrow">Programme-Wide</div>
+    <h2 class="sec-title">Core Principles</h2>
     <div class="principles-grid" id="principlesGrid"></div>
-  </div>
-</section>
+  </section>
 
-<!-- ══ BYE-LAWS ═══════════════════════════════════════════════════════════ -->
-<section class="ph-section" id="bye-laws">
-  <div class="ph-icon">⚖️</div>
-  <div class="ph-title">BYE-LAWS</div>
-  <div class="ph-desc">Programme rules, code of conduct, and community standards for STARK Y'26 participants.</div>
-  <div class="ph-pill">Content coming soon</div>
-</section>
+  <!-- BYE-LAWS -->
+  <section class="ph-section" id="bye-laws">
+    <div class="ph-inner">
+      <div class="ph-icon">⚖️</div>
+      <div class="ph-label">Fellowship Governance</div>
+      <h2 class="ph-title">Bye-Laws</h2>
+      <p class="ph-desc">Programme rules, code of conduct, and community standards for all STARK Y'26 participants. Content is being prepared by the Heave Ventures team.</p>
+      <span class="ph-pill">Content coming soon</span>
+    </div>
+  </section>
 
-<!-- ══ PRAYER SCHEDULE ════════════════════════════════════════════════════ -->
-<section class="ph-section" id="prayer">
-  <div class="ph-icon">🙏</div>
-  <div class="ph-title">PRAYER SCHEDULE</div>
-  <div class="ph-desc">Weekly prayer sessions for the LBI & SOT cohort — Tuesdays & Thursdays, 7:00AM WAT.</div>
-  <div class="ph-pill">Content coming soon</div>
-</section>
+  <!-- PRAYER -->
+  <section class="ph-section" id="prayer">
+    <div class="ph-inner">
+      <div class="ph-icon">🙏</div>
+      <div class="ph-label">Spiritual Discipline</div>
+      <h2 class="ph-title">Prayer Schedule</h2>
+      <p class="ph-desc">Weekly prayer sessions for the full LBI & SOT cohort — Tuesdays & Thursdays at 7:00AM WAT. Zoom links and format details coming soon.</p>
+      <span class="ph-pill">Content coming soon</span>
+    </div>
+  </section>
 
-<!-- ══ FAQ ════════════════════════════════════════════════════════════════ -->
-<section class="ph-section" id="faq">
-  <div class="ph-icon">❓</div>
-  <div class="ph-title">FAQ</div>
-  <div class="ph-desc">Frequently asked questions about the programme, submissions, office hours, and Demo Day.</div>
-  <div class="ph-pill">Content coming soon</div>
-</section>
+  <!-- FAQ -->
+  <section class="ph-section" id="faq">
+    <div class="ph-inner">
+      <div class="ph-icon">💬</div>
+      <div class="ph-label">Got Questions?</div>
+      <h2 class="ph-title">FAQ</h2>
+      <p class="ph-desc">Frequently asked questions about the programme, submission format, office hours, Demo Day, and co-founder matching.</p>
+      <span class="ph-pill">Content coming soon</span>
+    </div>
+  </section>
 
-<!-- ══ FOOTER ══════════════════════════════════════════════════════════════ -->
-<footer>
-  <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK" class="footer-logo" />
-  <div class="footer-text">
-    STARK Y'26 · Life Business Incubator &amp; School of Timothy<br/>
-    Heave Ventures · <a href="mailto:theteam@heaveventures.com">theteam@heaveventures.com</a>
-  </div>
-  <div class="footer-links">
-    <a href="#overview">Overview</a>
-    <a href="#curriculum">Curriculum</a>
-    <a href="#principles">Principles</a>
-    <a href="#bye-laws">Bye-Laws</a>
-    <a href="#prayer">Prayer Schedule</a>
-    <a href="#faq">FAQ</a>
-    <a href="https://calendar.app.google/GnsdPBRKd3SAZkqn6" target="_blank">Book Office Hours</a>
-  </div>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK" class="footer-logo" />
+    <div class="footer-info">
+      STARK Y'26 · Heave Ventures ·
+      <a href="mailto:theteam@heaveventures.com">theteam@heaveventures.com</a>
+    </div>
+    <div class="footer-links">
+      <a href="#overview">Roadmap</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="#principles">Principles</a>
+      <a href="#bye-laws">Bye-Laws</a>
+      <a href="#prayer">Prayer</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://calendar.app.google/GnsdPBRKd3SAZkqn6" target="_blank">Office Hours</a>
+    </div>
+  </footer>
 
-<!-- ══ SCRIPT ══════════════════════════════════════════════════════════════ -->
+</main>
+</div><!-- #layout -->
+
+<!-- ══ THREE.JS ══════════════════════════════════════════════════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script>
-// ─── Constants ────────────────────────────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('webgl-canvas');
+  if (!canvas || !window.THREE) return;
+  const W = window.innerWidth, H = window.innerHeight;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha:true, antialias:true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(W, H);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, W/H, 0.1, 1000);
+  camera.position.z = 60;
+  const count = 1800;
+  const pos = new Float32Array(count * 3);
+  for (let i = 0; i < count; i++) {
+    pos[i*3]   = (Math.random() - .5) * 160;
+    pos[i*3+1] = (Math.random() - .5) * 100;
+    pos[i*3+2] = (Math.random() - .5) * 80;
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const mat = new THREE.ShaderMaterial({
+    uniforms: { uTime:{ value:0 }, uMouse:{ value:new THREE.Vector2(.5,.5) } },
+    vertexShader:`
+      uniform float uTime;
+      uniform vec2 uMouse;
+      void main(){
+        vec3 p = position;
+        p.y += sin(p.x * 0.05 + uTime * 0.4) * 1.2;
+        p.x += cos(p.y * 0.04 + uTime * 0.3) * 0.8;
+        p.xy += (uMouse - vec2(0.5)) * 4.0;
+        gl_PointSize = 1.4;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(p,1.0);
+      }`,
+    fragmentShader:`
+      void main(){
+        float d = length(gl_PointCoord - vec2(.5));
+        if(d > .5) discard;
+        gl_FragColor = vec4(1.0,1.0,1.0, 0.55 * (1.0 - d * 1.6));
+      }`,
+    transparent:true, blending:THREE.AdditiveBlending, depthWrite:false
+  });
+  scene.add(new THREE.Points(geo, mat));
+  let mouse = new THREE.Vector2(.5,.5);
+  window.addEventListener('mousemove', e => {
+    mouse.set(e.clientX / window.innerWidth, 1 - e.clientY / window.innerHeight);
+  });
+  window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  });
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.006;
+    mat.uniforms.uTime.value = t;
+    mat.uniforms.uMouse.value.lerp(mouse, 0.04);
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+</script>
+
+<!-- ══ HANDBOOK SCRIPT ════════════════════════════════════════════════════════ -->
+<script>
+// ─── Constants ────────────────────────────────────────────────────────────────
 const LBI_SUB  = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSeiPxf-m1mx6FBHxySbfGQpijwnMjkAZpwyc5qedI12yJaT0Q/viewform?usp=sharing';
 const SOT_SUB  = 'https://forms.gle/r891yJnGRXBBG4w96';
 const SOT_QUIZ = 'https://forms.gle/iMRwaUfo8XRLD1uF6';
 const OH_LINK  = 'https://calendar.app.google/GnsdPBRKd3SAZkqn6';
 
-// ─── LBI Data ─────────────────────────────────────────────────────────────
+// ─── LBI Data ─────────────────────────────────────────────────────────────────
 const LBI_WEEKS = [
   {
     n:1, unlock:'2026-05-18', demo:false,
@@ -608,11 +840,11 @@ const LBI_WEEKS = [
     theme:'Agentic AI & Iteration Sprint ⚡',
     tagline:'God Gave You a Mind. AI Multiplies It. Use Both.',
     milestone:'AI workflow live + First transaction',
-    scripture:'Do you see someone skilled in their work? They will serve before kings; they will not serve before officials of low rank. — Proverbs 22:29',
+    scripture:'Do you see someone skilled in their work? They will serve before kings. — Proverbs 22:29',
     event:{ title:'AI is Your Intern. Your Agent. Your Unfair Advantage.', when:'Monday June 8th, 6:00–8:30PM WAT', guest:'Abiodun Lawal + AI/Tech Practitioner (TBC)' },
     outcome:'Build and deploy at least one AI-powered workflow that does real work in your business. Iterate your product based on customer feedback. Close your first real transaction.',
     sprint:'Build one live AI-powered workflow that saves 3+ hours/week. Make your first sale to any real non-family customer.',
-    acts:['Build Your AI Stack — activate 3+ tools across: Writing (ChatGPT/Claude/Gemini), Design (Canva AI), Video (Descript/Kling), Research (Perplexity), Automation (Make.com/Zapier), Customer Service (ManyChat)','Build One Agentic Workflow end-to-end using Make.com or Zapier (e.g. new lead → personalised WhatsApp → CRM → follow-up reminder)','The Iteration Sprint — identify top 3 things to change, make changes within 48 hours, test with 5 people','First Transaction Challenge — one person pays you any real amount (Paystack or Flutterwave payment link). Follow up 3 times before giving up.','AI-Powered Content Sprint — 3 pieces of content + 1 email/WhatsApp broadcast + 1 AI-drafted follow-up sequence (3 messages)','SOT Co-Founder Assessment (if applicable) — complete Compatibility Worksheet before June 8 Merging Ceremony'],
+    acts:['Build Your AI Stack — activate 3+ tools across: Writing (ChatGPT/Claude/Gemini), Design (Canva AI), Video (Descript/Kling), Research (Perplexity), Automation (Make.com/Zapier), Customer Service (ManyChat)','Build One Agentic Workflow end-to-end using Make.com or Zapier (e.g. new lead → personalised WhatsApp → CRM → follow-up reminder)','The Iteration Sprint — identify top 3 things to change, make changes within 48 hours, test with 5 people','First Transaction Challenge — one person pays you any real amount via Paystack or Flutterwave. Follow up 3 times before giving up.','AI-Powered Content Sprint — 3 pieces of content + 1 broadcast + 1 AI-drafted 3-message follow-up sequence','SOT Co-Founder Assessment (if applicable) — complete Compatibility Worksheet before June 8 Merging Ceremony'],
     reading:[{t:'Zero to One — Thiel (Ch. 3–4)',l:'#'},{t:'The Lean Startup — Ries (Ch. 8–9: Pivot or Persevere)',l:'#'}],
     watch:[{t:'How to Use AI Agents to Build Your Startup — YC',l:'https://youtu.be/ASABxNenD_U'},{t:'How to Build Automated Workflows with Make.com',l:'https://youtu.be/7fV7wFT6B_o'},{t:'How to Close Your First 10 Customers — Startup School',l:'https://youtu.be/xZi4kTvhDo4'},{t:'What is Agentic AI and Why It Matters',l:'https://youtu.be/sal78ACtGTc'}],
     dels:[['AI Tool Stack (3 tools activated)','Notion table: Tool, Use Case, Time Saved'],['Agentic Workflow Screenshot + Description','Screenshot + written explanation'],['Iteration Log (3 changes + results)','Notion page'],['First Transaction Proof','Payment screenshot + 2-sentence reflection'],['3 Content Pieces (links)','Live post URLs'],['Co-Founder Agreement OR Solo Founder Strategy','Signed PDF or Notion page']],
@@ -642,7 +874,7 @@ const LBI_WEEKS = [
     event:{ title:'The Revenue Engine — Sales, Content & Financial Foundations', when:'Monday June 22nd, 6:00–8:30PM WAT', guest:'Abiodun Lawal + Sales / Marketing Practitioner (TBC)' },
     outcome:'Build a repeatable, documented sales process. Launch your content marketing engine using AI. Know your numbers. Define and begin building your MVP.',
     sprint:'Sales script written and used. 3 content pieces live. P&L drafted. MVP defined. Push to 5 total paying customers.',
-    acts:['Build Your 3-Step Sales Framework — Open (lead with the customer\'s pain), Qualify (confirm they have the problem + budget), Close (make a specific ask with a price)','Map your Sales Pipeline in Trello/Notion: Lead → Contacted → Conversation → Proposal → Paid → Retained','AI-Powered Content Engine — Pain + Story + Solution + CTA formula, publish 3 pieces this week','Build Your Financial Model — know Monthly Revenue, Fixed Costs, Variable Costs, Gross Margin, Break-Even Point','Define Your MVP — "My MVP is [simplest version] that delivers [core value] to [specific customer] without [features to add later]"','Push to 5 Paying Customers — use your script, follow up on all Week 5 open conversations, try one new acquisition channel'],
+    acts:['Build Your 3-Step Sales Framework — Open (lead with pain), Qualify (confirm problem + budget), Close (specific ask with price)','Map your Sales Pipeline in Trello/Notion: Lead → Contacted → Conversation → Proposal → Paid → Retained','AI-Powered Content Engine — Pain + Story + Solution + CTA formula, publish 3 pieces this week','Build Your Financial Model — know Monthly Revenue, Fixed Costs, Variable Costs, Gross Margin, Break-Even Point','Define Your MVP — "My MVP is [simplest version] that delivers [core value] to [specific customer] without [features to add later]"','Push to 5 Paying Customers — use your script, follow up on all Week 5 open conversations, try one new acquisition channel'],
     reading:[{t:'The Mom Test — Fitzpatrick (Ch. 3–5)',l:'#'},{t:'Profit First — Michalowicz (Ch. 1)',l:'#'}],
     watch:[{t:'How to Build a Sales Process — YC',l:'https://youtu.be/xZi4kTvhDo4'},{t:'Content Marketing With No Budget — Starter Story',l:'https://youtu.be/Ew6tYi6PzNo'},{t:'How to Build a P&L for Startups',l:'https://youtu.be/pnFPuCNepbM'},{t:'MVP: What It Is and How to Build One',l:'https://youtu.be/1IEWcFMYRBg'}],
     dels:[['Sales Script (written + recorded)','Written + audio/video link'],['Sales Pipeline (set up in Notion/Trello)','Screenshot or link'],['3 Published Content Pieces','Live post URLs'],['P&L Projection (3 months)','Spreadsheet or Notion table'],['MVP Definition (statement + In/Out list)','Written Notion page'],['5th Paying Customer Evidence','Screenshot + note']],
@@ -657,7 +889,7 @@ const LBI_WEEKS = [
     event:{ title:'Ship It — The Art of Launching Fast, Learning Faster', when:'Monday June 29th, 6:00–8:30PM WAT', guest:'Abiodun Lawal + Product Builder / Founder (TBC)' },
     outcome:'Build and publicly launch your MVP. Get your first 10 active users interacting with a real product. Make your first post-launch iteration within 48 hours.',
     sprint:'MVP is publicly live. 10 active users have used or experienced it. 5 pieces of structured post-launch feedback collected.',
-    acts:['Final MVP Preparation — pre-launch checklist: core promise works, payment flow end-to-end, landing page accurate, onboarding ready, feedback mechanism in place','Public Launch — announce across Instagram, LinkedIn, WhatsApp Broadcast, and email list. Send personal messages to your top 20 qualified leads.','Onboard Your First 10 Active Users — personal touch for each (WhatsApp message, Loom video, or quick call)','Structured Feedback Collection from 5+ users: "What was the first thing you did?", "What confused you?", "What would make you tell a friend?"','48-Hour Post-Launch Iteration — identify the single most important fix, make it, communicate the update to users','Pivot Check-In — does the evidence from real users confirm your business model or challenge it?'],
+    acts:['Final MVP Preparation — pre-launch checklist: core promise works, payment flow end-to-end, landing page accurate, onboarding ready, feedback mechanism in place','Public Launch — announce across Instagram, LinkedIn, WhatsApp Broadcast, and email list. Send personal messages to top 20 qualified leads.','Onboard Your First 10 Active Users — personal touch for each (WhatsApp message, Loom video, or quick call)','Structured Feedback Collection from 5+ users: "What was the first thing you did?", "What confused you?", "What would make you tell a friend?"','48-Hour Post-Launch Iteration — identify the single most important fix, make it, communicate the update to users','Pivot Check-In — does the evidence from real users confirm your business model or challenge it?'],
     reading:[{t:'The Lean Startup — Ries (Ch. 10–11: Pivot or Persevere)',l:'#'},{t:'Hooked — Eyal (Ch. 1–2: The Hook Model)',l:'#'}],
     watch:[{t:'How to Launch a Startup — YC',l:'https://youtu.be/u36A-YTxiOw'},{t:'How to Get Your First 100 Users',l:'https://youtu.be/6I8b6AzEyh4'},{t:'Product-Market Fit Explained — a16z',l:'https://youtu.be/0LNQxT9LvM0'},{t:'When to Pivot vs. Persist — YC',l:'https://youtu.be/DFB5T1ZKANE'}],
     dels:[['Live MVP (accessible to public)','URL or download link'],['Launch Announcement (posted)','Screenshots of live posts'],['10 Active Users (documented)','Notion tracker or table'],['5 Structured Feedback Responses','Typeform export or uploaded notes'],['Post-Launch Iteration (what changed + why)','Written Notion update'],['Pivot Check-In Response','Written (Notion or form)']],
@@ -672,7 +904,7 @@ const LBI_WEEKS = [
     event:{ title:'The Final Push — Pitch Prep, Traction Sprint & Demo Day Briefing', when:'Monday July 6th, 6:00–8:30PM WAT', guest:'Abiodun Lawal + Investor / Pitch Coach (TBC)' },
     outcome:'Push to 25 active users. Prepare and rehearse your Demo Day pitch. Build the deck, practise the demo, write the reflection.',
     sprint:'25 active users. Pitch deck submitted. Full rehearsal completed. Founder reflection written.',
-    acts:['Final Traction Sprint — referral campaign (ask 10 users to refer one person), founding member offer (limited discount), reactivate every qualified lead from Weeks 2–7','Build Your Demo Day Pitch Deck (8 slides): Hook · Burden · Solution · Traction · Business Model · Market · Team · Ask','Prepare Your 2-Minute Product Demo — customer pain → product solving it live → result the customer experiences. Test on multiple devices.','Full Pitch Rehearsal — 7 minutes total (5-min pitch + 2-min demo). Record it. Get peer feedback on Clarity, Confidence, Traction Story, and The Ask.','Founder Reflection Journal — 1 page: what problem did you identify, what changed, hardest moment, what your faith taught you, what would you tell a Week 1 founder','Final Validation Conversation with someone you haven\'t spoken to before: "Would you pay? Would you refer? What would make you a lifelong customer?"'],
+    acts:['Final Traction Sprint — referral campaign (ask 10 users to refer one person), founding member offer, reactivate every qualified lead from Weeks 2–7','Build Your Demo Day Pitch Deck (8 slides): Hook · Burden · Solution · Traction · Business Model · Market · Team · Ask','Prepare Your 2-Minute Product Demo — pain → product solving it live → result. Test on multiple devices.','Full Pitch Rehearsal — 7 minutes total (5-min pitch + 2-min demo). Record it. Get peer feedback on Clarity, Confidence, Traction Story, and The Ask.','Founder Reflection Journal — 1 page: what problem did you identify, hardest moment, what your faith taught you, what would you tell a Week 1 founder','Final Validation Conversation with someone new: "Would you pay? Would you refer? What would make you a lifelong customer?"'],
     reading:[{t:'The Art of the Start — Kawasaki (Ch. 5: The Art of Pitching)',l:'#'},{t:'YCombinator: How to Present to Investors',l:'https://www.ycombinator.com/library/6q-how-to-present-to-investors'}],
     watch:[{t:'How to Pitch Your Startup — YC Demo Day Tips',l:'https://youtu.be/17XZGUX_9iM'},{t:'The Best Demo Day Pitches — YC',l:'https://youtu.be/R-IkCYNssDQ'},{t:'How to Tell Your Startup\'s Story — Startup School',l:'https://youtu.be/llAXoFi-3cE'},{t:'The Pitch Deck That Raised $500k — Slidebean',l:'https://youtu.be/0MHGOjRmQAU'}],
     dels:[['Demo Day Pitch Deck','Google Slides or Canva link'],['Product Demo (recorded backup)','Loom or YouTube (unlisted) link'],['Evidence of 25 Active Users','Notion tracker or screenshot'],['Rehearsal Completion Evidence','Peer sign-off (form provided)'],['Founder Reflection (1 page)','Written in Notion'],['Final Validation Conversation Notes','Uploaded notes or audio']],
@@ -684,17 +916,18 @@ const LBI_WEEKS = [
     tagline:'Show the World What God Built Through You.',
     milestone:'Live product presented to investors & community',
     scripture:'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters. — Colossians 3:23',
-    event:{ title:'STARK Y\'26 Demo Day — Show the World What You Built', when:'Sunday July 13th, Time TBC', guest:'Heave Ventures Team · Invited Investors & Angels · Mentors · STARK Y\'26 Community' },
-    outcome:'Present your live product, real traction, and 8-week journey to an audience of investors, mentors, and community. Receive feedback. Graduate as a STARK Y\'26 founder.',
-    sprint:'Show up prepared. Pitch your product in 7 minutes. Receive feedback. Graduate.',
-    acts:['Format: 5-min pitch (8 slides) + 2-min live product demo + 5-min Q&A with panel','Arrive / log in 30 minutes early','Demo Day Readiness: deck submitted, product live at public URL, backup demo ready on phone + laptop, 25 users documented','Know your 5 numbers cold: Revenue, Costs, Margin, Break-Even Point, Active Users','STARK Y\'26 Graduate Benefits: Certificate of Completion, LBI Graduate Profile in Alumni Directory, STARK Alumni Network access, ongoing LBI Resource Bank & AI tool library access'],
-    reading:[], watch:[],
-    dels:[['Pitch deck submitted (feedback incorporated)','Submitted to LBI team by Jul 10'],['Live product accessible from public URL','URL ready'],['Backup demo (recorded video)','On phone and laptop'],['25 active users documented','Notion tracker'],['Founder reflection written and submitted','Notion page']],
-    due:'Demo Day — Sunday July 13th'
+    event:{ title:'STARK Y\'26 Demo Day — Show the World What You Built', when:'Sunday July 13th, Time TBC — In-Person / Zoom', guest:'LBI Founders · Heave Ventures · Invited Investors · Angels · Mentors · STARK Community' },
+    outcome:'Present your live product, real traction, and 8-week journey to an audience of investors, mentors, and community. Graduate as a STARK Y\'26 founder.',
+    sprint:'Each founder presents for 7 minutes total: 5-min pitch (8 slides) + 2-min live product demo + 5-min Q&A with panel.',
+    acts:['Demo Day Format: 5-minute pitch (Slides 1–8) + 2-minute live product demo + 5-minute Q&A with panel','Arrive / log in 30 minutes early','Pre-check: Pitch deck submitted, live product accessible, backup demo ready, full rehearsal done, 25 active users documented','Know your 5 key numbers cold: Revenue, Costs, Margin, Break-Even, Users','Graduates receive: Certificate of Completion · LBI Graduate Profile in Heave Ventures Alumni Directory · Access to STARK Alumni Network'],
+    reading:[],
+    watch:[],
+    dels:[['Certificate of Completion','Issued at Demo Day'],['LBI Graduate Profile','Published in Alumni Directory']],
+    due:'Sunday July 13th'
   }
 ];
 
-// ─── SOT Data ─────────────────────────────────────────────────────────────
+// ─── SOT Data ──────────────────────────────────────────────────────────────────
 const SOT_WEEKS = [
   {
     n:1, unlock:'2026-05-16', demo:false,
@@ -705,7 +938,7 @@ const SOT_WEEKS = [
     event:{ title:'How to Be a Co-Founder in a Godly Business', when:'Friday May 16th, 6:00–8:30PM WAT', guest:'Ayomide Awe, Co-Founder, Termii' },
     outcome:'Understand the second-man archetype — biblically, historically, and in the startup world. Examine whether co-founding is truly your calling.',
     sprint:'Complete the SOT Calling Assessment, write your first reflection journal entry, and submit your Week 1 quiz.',
-    acts:['The Second Man Bible Study — study 5 co-founder pairs: Moses & Aaron, Moses & Joshua, Elijah & Elisha, Paul & Barnabas, Paul & Timothy (answer: What did the second man contribute? What was the cost? The reward?)','Historical & Startup Second Men — research Sheryl Sandberg (Facebook COO), Charlie Munger (Berkshire), Jonathan Ive (Apple), or Susan Wojcicki (Google). Write 3 sentences on what made them irreplaceable.','SOT Calling Assessment — complete the structured self-assessment and the Founder vs. Co-Founder Spectrum Tool','Review the LBI Startup Directory (read-only access) — which problems stir something in you? Do NOT reach out to founders yet.','Reflection Journal Entry 1 (200+ words) — "What would it look like for me to be a strong Number 2? What kind of founder would I need alongside me?"'],
+    acts:['The Second Man Bible Study — study 5 co-founder pairs: Moses & Aaron, Moses & Joshua, Elijah & Elisha, Paul & Barnabas, Paul & Timothy (What did the second man contribute? Cost? Reward?)','Historical & Startup Second Men — research Sheryl Sandberg (Facebook COO), Charlie Munger (Berkshire), Jonathan Ive (Apple), or Susan Wojcicki (Google). Write 3 sentences on what made them irreplaceable.','SOT Calling Assessment — complete the structured self-assessment and the Founder vs. Co-Founder Spectrum Tool','Review the LBI Startup Directory (read-only access) — which problems stir something in you? Do NOT reach out to founders yet.','Reflection Journal Entry 1 (200+ words) — "What would it look like for me to be a strong Number 2? What kind of founder would I need alongside me?"'],
     reading:[{t:'The Timothy Spirit — Biblical leadership analysis',l:'https://www.enlivenpublishing.com/2012/02/27/why-timothy-is-one-of-my-leadership-role-models/'},{t:'The Most Successful Deputies in History',l:'https://www.managers.org.uk/knowledge-and-insights/blog/most-successful-deputies-history/'}],
     watch:[{t:'Valuing Relationships',l:'https://youtu.be/ne_lmNx7xVw'},{t:'Co-Founder Mistakes That Kill Companies — YC',l:'https://youtu.be/dlfjs_eEEzs'},{t:'2nd Level Leadership',l:'https://youtu.be/oA92W6dc-Ps'},{t:'How to Find a Co-Founder — YC',l:'https://youtu.be/Fk9BCr5pLTU'}],
     dels:[['SOT Calling Assessment (completed)','Uploaded via submission link'],['Reflection Journal — Entry 1 (200+ words)','Notion/Google Docs link submitted'],['Week 1 Quiz','Completed via quiz link'],['Status Report','Submitted via link']],
@@ -716,11 +949,11 @@ const SOT_WEEKS = [
     theme:'The Skill of Support',
     tagline:'Operating in the Shadows with Excellence',
     milestone:'Skills inventory complete + Top 3 startup matches identified',
-    scripture:'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters. — Colossians 3:23',
+    scripture:'Whatever you do, work at it with all your heart, as working for the Lord. — Colossians 3:23',
     event:{ title:'The Indispensable Second — Skills, Execution & Excellence Without Ego', when:'Friday May 23rd, 6:00–8:30PM WAT', guest:'Heave Ventures Team / COO Practitioner (TBC)' },
     outcome:'Conduct an honest skills inventory. Learn the disciplines that separate great co-founders from glorified assistants. Begin identifying which LBI startups your skills are best positioned to accelerate.',
     sprint:'Complete the 6-Domain Skills Inventory, write your Personal Support Philosophy, and produce your Top 3 Startup Match List with clear strategic reasoning.',
-    acts:['The 6-Domain Co-Founder Skills Inventory — rate yourself 1–5 on: Technology, Sales & Biz Dev, Operations, Finance, Marketing & Brand, People & Culture. Write your one-line positioning statement.','Audit Your Evidence — for your top 2 domains, one concrete SAR example each (Situation, Action, Result). Evidence, not assertion.','Ego Audit — read Nehemiah 1–2. Answer: Have I felt resentment while supporting someone else\'s vision? Can I submit to a founder\'s final decision even when I believe I\'m right?','Write Your Personal Support Philosophy (3 sentences): what you believe about the second-chair role, how you commit to support through difficulty, what you need from a founder','Startup-Skill Matching — mark each LBI startup Strong Fit / Possible Fit / Not a Fit based purely on whether your skills move their most important needle. Identify Top 3.','AI as a Co-Founder Tool — use ChatGPT/Claude to research your Top 3 match industries and generate 5 questions for your first founder conversation'],
+    acts:['The 6-Domain Co-Founder Skills Inventory — rate yourself 1–5 on: Technology, Sales & Biz Dev, Operations, Finance, Marketing & Brand, People & Culture. Write your one-line positioning statement.','Audit Your Evidence — for your top 2 domains, one concrete SAR example each (Situation, Action, Result). Evidence, not assertion.','Ego Audit — read Nehemiah 1–2. Answer: Have I felt resentment while supporting someone else\'s vision? Can I submit to a founder\'s final decision even when I believe I\'m right?','Write Your Personal Support Philosophy (3 sentences): what you believe about the second-chair role, how you commit to support through difficulty, what you need from a founder','Startup-Skill Matching — mark each LBI startup Strong Fit / Possible Fit / Not a Fit based on whether your skills move their most important needle. Identify Top 3.','AI as a Co-Founder Tool — use ChatGPT/Claude to research Top 3 match industries and generate 5 questions for your first founder conversation'],
     reading:[{t:'Execution — Bossidy & Charan (Ch. 1: The Discipline of Getting Things Done)',l:'#'},{t:'Nehemiah, Chapters 1–6 (read in full)',l:'#'}],
     watch:[{t:'What Does a COO Actually Do? — a16z',l:'https://youtu.be/8oFDQ4eXzYE'},{t:'The Role of a Co-Founder vs. Early Employee — First Round',l:'https://youtu.be/YPo2P2BZYTM'},{t:'How to Use AI Tools for Startup Research',l:'https://youtu.be/K6aEJ1UFNRE'}],
     dels:[['6-Domain Skills Inventory (completed + scored)','Uploaded table or PDF'],['Evidence Audit (2 examples for top 2 domains)','Written in Notion or Google Docs'],['Personal Support Philosophy (3 sentences)','Submitted in Notion journal'],['Top 3 Startup Matches (with reasoning)','Written in submission form'],['Reflection Journal — Entry 2','Notion/Google Docs link submitted']],
@@ -731,12 +964,12 @@ const SOT_WEEKS = [
     theme:'The Power of Profile',
     tagline:'Crafting Your Founder\'s Manifesto',
     milestone:'Co-Founder Profile live + Manifesto written',
-    scripture:'Let your light shine before others, that they may see your good deeds and glorify your Father in heaven. — Matthew 5:16',
+    scripture:'Let your light shine before others, that they may see your good deeds. — Matthew 5:16',
     event:{ title:'The Profile That Opens Doors — Co-Founder Manifesto Workshop', when:'Friday May 30th, 6:00–8:30PM WAT', guest:'Lawal Abiodun (CEO, Heave Ventures) + SOT Programme Lead' },
     outcome:'Build your Co-Founder Profile. Write your personal manifesto. Begin intentional, direct conversations with your top LBI founder matches.',
     sprint:'Co-Founder Profile published. Manifesto written. First direct conversations with top 2 LBI matches documented.',
-    acts:['Build Your Co-Founder Profile (1 page) — Who I Am, What I Bring (3 skills + evidence), Availability (hours/week, location, start date), What I\'m Looking For (stage, industry, founder personality, 2 non-negotiables), References','Write Your Co-Founder Manifesto — 5 "I believe..." statements that tell the right founder who you really are before they meet you','Digital Presence Setup — update LinkedIn headline and bio (AI-draft, then personalise), update Instagram/X bio, create personal Notion page with public profile link','First Intentional Founder Conversations — personal message to Top 2 LBI founders (not broadcast). Reference something specific. Ask 2 genuine questions. Listen more than you speak.','Founder Assessment Journal — what did you observe about their communication style, vision clarity, and compatibility gut-check?'],
-    reading:[{t:'The Advantage — Lencioni (Ch. 1: Organisational Health)',l:'#'},{t:'Philippians 2:1–30 (Paul\'s theology of the second chair)',l:'#'},{t:'The Art of Being an Effective Deputy — HBR',l:'https://hbr.org/2015/05/the-art-of-being-an-effective-deputy'}],
+    acts:['Build Your Co-Founder Profile (1 page) — Who I Am, What I Bring (3 skills + evidence), Availability, What I\'m Looking For (stage, industry, founder personality, 2 non-negotiables), References','Write Your Co-Founder Manifesto — 5 "I believe..." statements that tell the right founder who you really are before they meet you','Digital Presence Setup — update LinkedIn headline and bio (AI-draft, then personalise), update Instagram/X bio, create personal Notion page with public profile link','First Intentional Founder Conversations — personal message to Top 2 LBI founders (not broadcast). Reference something specific. Ask 2 genuine questions. Listen more than you speak.','Founder Assessment Journal — observe communication style, vision clarity, and compatibility gut-check'],
+    reading:[{t:'The Advantage — Lencioni (Ch. 1: Organisational Health)',l:'#'},{t:'The Art of Being an Effective Deputy — HBR',l:'https://hbr.org/2015/05/the-art-of-being-an-effective-deputy'}],
     watch:[{t:'How much equity should you give a co-founder?',l:'https://youtu.be/9NhEBVPlJs4'},{t:'What Investors Look for in a Co-Founder Team — Sequoia',l:'https://youtu.be/CVfnkM559lY'},{t:'How to Evaluate a Startup Before Joining as Co-Founder — YC',l:'https://youtu.be/oFAqe3GWGE4'}],
     dels:[['Co-Founder Profile (complete — 1 page)','PDF or Notion public link submitted'],['Co-Founder Manifesto (5 statements, appended to profile)','Included in profile submission'],['Updated LinkedIn / Digital Presence','LinkedIn URL submitted'],['Founder Conversation Notes (top 2 founders)','Written in Notion journal'],['Reflection Journal — Entry 3','Notion/Google Docs link submitted']],
     due:'Thursday June 5th, 5:59PM', quiz:SOT_QUIZ, sub:SOT_SUB
@@ -746,11 +979,11 @@ const SOT_WEEKS = [
     theme:'Becoming the Co-Founder',
     tagline:'Making the Decision',
     milestone:'Due diligence complete + SOT Closing Declaration made',
-    scripture:'Suppose one of you wants to build a tower. Won\'t you first sit down and estimate the cost to see if you have enough money to complete it? — Luke 14:28',
+    scripture:'Suppose one of you wants to build a tower. Won\'t you first sit down and estimate the cost? — Luke 14:28',
     event:{ title:'Count the Cost — Decision Framework + SOT Closing Ceremony', when:'Friday June 6th, 6:00–8:30PM WAT', guest:'Lawal Abiodun (CEO, Heave Ventures) + SOT Programme Lead' },
     outcome:'Apply a rigorous decision framework. Ask the hard questions. Count the real cost. Prepare your co-founder pitch. Make a public declaration.',
     sprint:'Co-Founder Due Diligence completed. Cost-counting reflection written. 2-min pitch recorded. Public declaration made at the SOT Closing Ceremony.',
-    acts:['Co-Founder Due Diligence — assess top 1–2 founders on 6 dimensions: Character (1–5), Vision Clarity, Resilience, Coachability, Commitment, Compatibility. Write a 1-paragraph honest summary per candidate.','Counting the Cost — answer 6 questions in writing: What am I giving up? Do I believe in the founder or just the idea? Am I at peace with the equity? What are my deal-breakers? Have I prayed about this specific decision?','The 2-Minute Co-Founder Pitch — Who you are (15s), What you bring for this specific vision (45s), Why you chose this founder specifically (30s), What you\'re committing to and need in return (30s). Practise, record, review.','The SOT Closing Ceremony — public declaration: "I am ready to merge" (with named founder) OR "I am pursuing the solo path" (with clear reason and next step). Both are honourable.'],
+    acts:['Co-Founder Due Diligence — assess top 1–2 founders on 6 dimensions: Character, Vision Clarity, Resilience, Coachability, Commitment, Compatibility (1–5 each). Write 1-paragraph honest summary per candidate.','Counting the Cost — answer 6 questions in writing: What am I giving up? Do I believe in the founder or just the idea? Am I at peace with the equity? What are my deal-breakers?','The 2-Minute Co-Founder Pitch — Who you are (15s), What you bring for this specific vision (45s), Why you chose this founder specifically (30s), What you\'re committing to (30s). Record and review.','The SOT Closing Ceremony — public declaration: "I am ready to merge" OR "I am pursuing the solo path". Both are honourable. Bind yourself to nothing you have not fully decided.'],
     reading:[{t:'The Partnership Charter — Gage (Ch. 1–3)',l:'#'},{t:'Luke 14:25–33 (The Parable of the Tower)',l:'#'},{t:'Ruth 1:1–22 (The co-founder covenant)',l:'#'}],
     watch:[{t:'How to Evaluate a Co-Founder Before Committing — First Round',l:'https://youtu.be/I4oMqiasGAs'},{t:'Co-Founder Equity and Agreement Essentials — YC',l:'https://youtu.be/kSmSmKH0-_Q'},{t:'What Makes Great Co-Founder Relationships Work — YC',l:'https://youtu.be/T3TnCgMwIgc'}],
     dels:[['Due Diligence Assessment (top 1–2 founders)','Completed table + 1-paragraph summary — uploaded'],['Cost-Counting Reflection (6 questions answered)','Written in Notion journal'],['Co-Founder Pitch (recorded)','Loom or voice note link'],['SOT Declaration','Verbal (at ceremony) + written submission via form'],['Reflection Journal — Entry 4','Notion/Google Docs link submitted']],
@@ -761,11 +994,11 @@ const SOT_WEEKS = [
     theme:'Co-Founder Merging Week ⭐',
     tagline:'Introductions, Agreements & Ceremony',
     milestone:'Agreement signed OR Solo Path declared',
-    scripture:'Two are better than one, because they have a good return for their labour: if either of them falls down, one can help the other up. — Ecclesiastes 4:9–10',
+    scripture:'Two are better than one, because they have a good return for their labour. — Ecclesiastes 4:9–10',
     event:{ title:'The Merging Ceremony — STARK Y\'26 Co-Founder Matching Day', when:'June 8th (Time TBC) — Joint LBI + SOT session', guest:'Lawal Abiodun · SOT Programme Lead · LBI Founders · Invited mentors & community witnesses' },
     outcome:'Formally introduce yourself to the LBI cohort. Complete and sign your Co-Founder Agreement. Participate in the Merging Ceremony.',
     sprint:'Matched and signed — or Solo Path declared with a clear plan. No ambiguity. No deferral.',
-    acts:['Final Profile Review — verify all skill claims backed by evidence, confirm availability section is accurate, ensure manifesto still reflects who you are','Co-Founder Speed Introductions (2 min max) — 30s bio, 45s top 2 skills + example, 30s what you\'re looking for, 15s non-negotiable','Structured 1-on-1 Conversations (20 min each) with top 2 LBI founders using the Co-Founder Interview Guide: equity, roles, time commitment, working style, values','Co-Founder Agreement Review — equity split, vesting schedule (4yr/1yr cliff), role titles, working norms, IP ownership, exit conditions. Do not sign anything you don\'t fully understand.','The Merging Ceremony — founder states "I receive [Name] as my co-founder because..." · co-founder responds "I commit to this founder\'s mission because..." · community prays and witnesses','Solo Path Declaration (if applicable) — what did you learn, what is your next step?','Final Reflection Journal Entry 5 (300+ words)'],
+    acts:['Final Profile Review — verify all skill claims backed by evidence, confirm availability is accurate, ensure manifesto still reflects who you are after 4 weeks of growth','Co-Founder Speed Introductions (2 min max) — 30s bio, 45s top 2 skills + example, 30s what you\'re looking for, 15s non-negotiable','Structured 1-on-1 Conversations (20 min each) with top 2 LBI founders using the Co-Founder Interview Guide: equity, roles, time commitment, working style, values','Co-Founder Agreement Review — equity split, vesting schedule (4yr/1yr cliff), role titles, IP ownership, exit conditions. Do not sign anything you don\'t fully understand.','The Merging Ceremony — founder states "I receive [Name] as my co-founder because..." · co-founder responds "I commit to this founder\'s mission because..."','Solo Path Declaration (if applicable) — what did you learn, what is your next step? Final Reflection Journal Entry 5 (300+ words)'],
     reading:[{t:'The Partnership Charter — Gage (Ch. 5: Making It Official)',l:'#'},{t:'Ecclesiastes 4:9–12 (Two are better than one)',l:'#'},{t:'2 Timothy 2:1–7 (Paul\'s final charge to Timothy)',l:'#'}],
     watch:[{t:'How much equity should you give a co-founder?',l:'https://youtu.be/9NhEBVPlJs4'},{t:'What Makes the Best Co-Founder Relationships — First Round',l:'https://youtu.be/I4oMqiasGAs'},{t:'Splitting Equity the Right Way — Startup School',l:'https://youtu.be/kSmSmKH0-_Q'},{t:'Co-Founder Mistakes That Kill Companies — YC',l:'https://youtu.be/dlfjs_eEEzs'}],
     dels:[['Co-Founder Profile (final version)','Presented live + PDF submitted to team'],['Compatibility Worksheet (completed per conversation)','Uploaded'],['Co-Founder Agreement (signed)','PDF submitted to programme team'],['Merging Declaration','Verbal (at ceremony) + written log in Notion'],['Final Reflection Journal — Entry 5','Notion/Google Docs link submitted'],['OR: Solo Path Declaration + Plan','Written Notion page submitted']],
@@ -773,7 +1006,7 @@ const SOT_WEEKS = [
   }
 ];
 
-// ─── Principles ────────────────────────────────────────────────────────────
+// ─── Principles ────────────────────────────────────────────────────────────────
 const LBI_PRINCIPLES = [
   { title:'Validate before you build.', text:'Every assumption is a hypothesis. Test it with real people before spending money or time building it.' },
   { title:'Pivoting is sacred agility.', text:'When the evidence tells you to change direction, changing direction is faithfulness — not failure. Follow the evidence.' },
@@ -791,296 +1024,320 @@ const SOT_PRINCIPLES = [
   { title:'Discern before you decide. Decide before you commit.', text:'These are four different steps. Do not collapse them. The Merging Ceremony confirms a decision already made in private.' },
   { title:'Validate your match the way LBI validates their market.', text:'Test the fit before you commit. Have the hard conversations in Weeks 3 and 4 — not after the agreement is signed.' },
   { title:'Pivoting applies to partnerships too.', text:'If the evidence tells you a specific founder is not the right fit — changing direction is faithfulness, not failure.' },
-  { title:'Biblical integrity is the foundation of every agreement.', text:'Your word is your contract before the document is your contract. If you would not fulfil it under God\'s watch, do not sign it under anyone else\'s.' },
+  { title:'Biblical integrity is the foundation.', text:'Your word is your contract before the document is your contract. If you would not fulfil it under God\'s watch, do not sign it.' },
   { title:'You are not a co-founder for the title.', text:'You are a co-founder for the mission. The day you forget that — re-read Philippians 2.' }
 ];
 
-// ─── State ─────────────────────────────────────────────────────────────────
+// ─── State ─────────────────────────────────────────────────────────────────────
 let track = 'lbi';
 let timers = {};
 
-// ─── Utils ─────────────────────────────────────────────────────────────────
-function unlockAt(dateStr) {
-  return new Date(dateStr + 'T06:00:00+01:00'); // 6 AM WAT
-}
-function isUnlocked(dateStr) { return new Date() >= unlockAt(dateStr); }
+// ─── Utils ─────────────────────────────────────────────────────────────────────
+function unlockAt(d) { return new Date(d + 'T06:00:00+01:00'); }
+function isUnlocked(d) { return new Date() >= unlockAt(d); }
 function isCurrent(w, weeks) {
-  const idx = weeks.indexOf(w);
-  return isUnlocked(w.unlock) && (idx === weeks.length - 1 || !isUnlocked(weeks[idx + 1].unlock));
+  const i = weeks.indexOf(w);
+  return isUnlocked(w.unlock) && (i === weeks.length-1 || !isUnlocked(weeks[i+1].unlock));
 }
-function timeUntil(dateStr) {
-  const diff = unlockAt(dateStr) - new Date();
+function timeUntil(d) {
+  const diff = unlockAt(d) - new Date();
   if (diff <= 0) return null;
-  return {
-    d: Math.floor(diff / 86400000),
-    h: Math.floor((diff % 86400000) / 3600000),
-    m: Math.floor((diff % 3600000) / 60000),
-    s: Math.floor((diff % 60000) / 1000)
-  };
+  return { d:Math.floor(diff/86400000), h:Math.floor((diff%86400000)/3600000), m:Math.floor((diff%3600000)/60000), s:Math.floor((diff%60000)/1000) };
 }
-function pad(n) { return String(n).padStart(2, '0'); }
-function dateLabel(str) {
-  return new Date(str).toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
-}
+function pad(n) { return String(n).padStart(2,'0'); }
 
 // SVG icons
-const SVG_DOC = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="2" y="1" width="9" height="11" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 5h4M4.5 7h4M4.5 9h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`;
-const SVG_PLAY = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.3"/><path d="M5.2 4.5l4 2-4 2V4.5z" fill="currentColor"/></svg>`;
-const SVG_EXT  = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 8L8 2M8 2H4M8 2v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const SVG_DL   = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1v7M4 6l2.5 2.5L9 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 10.5h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
-const SVG_CHV  = `<svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M3 5l3.5 3.5L10 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const SVG_CAL  = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="2" width="10" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 5h10M4 1v2M8 1v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`;
+const IC_DOC  = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1.5" y=".5" width="9" height="11" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M3.5 4.5h5M3.5 6.5h5M3.5 8.5h3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>`;
+const IC_PLAY = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/><path d="M4.8 4.2l3.6 1.8-3.6 1.8V4.2z" fill="currentColor"/></svg>`;
+const IC_EXT  = `<svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1.5 7.5L7.5 1.5M7.5 1.5H3.5M7.5 1.5v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const IC_DL   = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1.5v6M4 6l2 2.5L8 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 10h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>`;
+const IC_CAL  = `<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x=".5" y="1.5" width="10" height="9" rx="1.5" stroke="currentColor" stroke-width="1.1"/><path d="M.5 4.5h10M3.5 1v1.5M7.5 1v1.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>`;
+const IC_CHV  = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
-// ─── Set Track ─────────────────────────────────────────────────────────────
+// ─── Set Track ─────────────────────────────────────────────────────────────────
 function setTrack(t) {
   track = t;
-  // Update all track buttons
-  document.querySelectorAll('.track-btn').forEach(b => {
+  document.querySelectorAll('[data-track]').forEach(b => {
     b.classList.toggle('active', b.dataset.track === t);
   });
-  // Hero cards
-  document.getElementById('heroLBI').classList.toggle('active', t === 'lbi');
-  document.getElementById('heroSOT').classList.toggle('active', t === 'sot');
-  // Hero sub
-  document.getElementById('heroSub').textContent = t === 'lbi'
-    ? 'Life Business Incubator · 8-Week Founder Programme'
-    : 'School of Timothy · 5-Week Co-Founder Programme';
+  // Update hero
+  if (t === 'lbi') {
+    document.getElementById('heroTitle').innerHTML = 'Life Business<br>Incubator';
+    document.getElementById('heroSubtitle').textContent = '8-Week Founder Curriculum + Demo Day';
+    document.getElementById('heroSession').textContent = '📅 Mondays, 6:00–8:30PM WAT';
+    document.getElementById('heroDates').textContent = 'May 18 – July 13, 2026';
+    document.getElementById('heroScripture').textContent = '"For we are God\'s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do." — Ephesians 2:10';
+  } else {
+    document.getElementById('heroTitle').innerHTML = 'School of<br>Timothy';
+    document.getElementById('heroSubtitle').textContent = '5-Week Co-Founder Curriculum + Merging Ceremony';
+    document.getElementById('heroSession').textContent = '📅 Fridays, 6:00–8:30PM WAT';
+    document.getElementById('heroDates').textContent = 'May 16 – June 8, 2026';
+    document.getElementById('heroScripture').textContent = '"You then, my son, be strong in the grace that is in Christ Jesus. And the things you have heard me say... entrust to reliable people who will also be qualified to teach others." — 2 Timothy 2:1–2';
+  }
   renderAll();
+  renderTOC();
 }
 
-// ─── Render All ────────────────────────────────────────────────────────────
+// ─── Render All ────────────────────────────────────────────────────────────────
 function renderAll() {
   renderOverview();
   renderWeeks();
   renderPrinciples();
 }
 
-// ─── Render Overview ───────────────────────────────────────────────────────
+// ─── Render Overview ───────────────────────────────────────────────────────────
 function renderOverview() {
   const weeks = track === 'lbi' ? LBI_WEEKS : SOT_WEEKS;
   document.getElementById('ovEyebrow').textContent = track === 'lbi' ? 'LBI Programme' : 'SOT Programme';
-
-  const rows = weeks.map(w => {
-    const unlocked = isUnlocked(w.unlock);
-    const cur = isCurrent(w, weeks);
-    let badge;
-    if (cur)       badge = `<span class="rm-status s-live">● Live</span>`;
-    else if (unlocked) badge = `<span class="rm-status s-done">Done</span>`;
-    else           badge = `<span class="rm-status s-lock">Locked</span>`;
-    return `<tr>
-      <td class="rm-wk">W${w.n}</td>
-      <td>${dateLabel(w.unlock)}</td>
-      <td class="rm-theme">${w.theme}</td>
-      <td class="rm-mile">${w.milestone}</td>
-      <td>${badge}</td>
-    </tr>`;
-  }).join('');
-
+  const rows = weeks.map(w => `
+    <tr class="${w.demo ? 'rm-demo' : ''}">
+      <td>W${w.n}</td>
+      <td>${new Date(w.unlock).toLocaleDateString('en-GB',{month:'short',day:'numeric'})}</td>
+      <td>${w.theme}</td>
+      <td>${w.milestone}</td>
+    </tr>`).join('');
   document.getElementById('ovContent').innerHTML = `
     <table class="rm-table">
-      <thead><tr><th>Week</th><th>Date</th><th>Theme</th><th>Milestone</th><th>Status</th></tr></thead>
+      <thead><tr><th>Week</th><th>Date</th><th>Theme</th><th>Milestone</th></tr></thead>
       <tbody>${rows}</tbody>
     </table>`;
 }
 
-// ─── Render Weeks ──────────────────────────────────────────────────────────
+// ─── Render Weeks ──────────────────────────────────────────────────────────────
 function renderWeeks() {
-  Object.values(timers).forEach(clearInterval);
-  timers = {};
-
   const weeks = track === 'lbi' ? LBI_WEEKS : SOT_WEEKS;
   const sub   = track === 'lbi' ? LBI_SUB   : SOT_SUB;
-
-  document.getElementById('currSub').textContent = track === 'lbi'
-    ? 'Life Business Incubator — 9 Weeks' : 'School of Timothy — 5 Weeks';
-
-  document.getElementById('weeksWrap').innerHTML = weeks.map(w => buildCard(w, weeks, sub)).join('');
-
-  // Start timers for locked weeks
-  weeks.filter(w => !isUnlocked(w.unlock)).forEach(w => {
-    const id = setInterval(() => tickCountdown(w, weeks), 1000);
-    timers[w.n] = id;
-    tickCountdown(w, weeks);
+  document.getElementById('currTitle').textContent =
+    track === 'lbi' ? 'Life Business Incubator — 9 Weeks' : 'School of Timothy — 5 Weeks';
+  Object.values(timers).forEach(clearInterval);
+  timers = {};
+  document.getElementById('weeksWrap').innerHTML = weeks.map(w => buildChapter(w, weeks, sub)).join('');
+  weeks.forEach(w => {
+    if (!isUnlocked(w.unlock)) {
+      timers[w.n] = setInterval(() => tickCountdown(w, weeks), 1000);
+    }
   });
-
   // Auto-open current week
   const cur = weeks.find(w => isCurrent(w, weeks));
-  if (cur) openCard(cur.n);
+  if (cur) openChapter(cur.n);
 }
 
-function buildCard(w, weeks, sub) {
-  const locked  = !isUnlocked(w.unlock);
-  const cur     = isCurrent(w, weeks);
-  const classes = ['wk-card', locked ? 'is-locked' : cur ? 'is-current' : ''].filter(Boolean).join(' ');
+// ─── Build Chapter ─────────────────────────────────────────────────────────────
+function buildChapter(w, weeks, sub) {
+  const locked   = !isUnlocked(w.unlock);
+  const current  = isCurrent(w, weeks);
+  const t        = timeUntil(w.unlock);
+  const num      = String(w.n).padStart(2, '0');
 
-  let tag;
-  if (cur)    tag = `<span class="wk-tag tag-live">Live Now</span>`;
-  else if (w.demo && !locked) tag = `<span class="wk-tag tag-demo">Ceremony</span>`;
-  else if (locked) tag = `<span class="wk-tag tag-lock">Unlocks ${dateLabel(w.unlock)}</span>`;
-  else        tag = `<span class="wk-tag tag-done">Completed</span>`;
-
-  const chevron = locked ? '' : `<div class="wk-chevron">${SVG_CHV}</div>`;
-
-  const countdown = locked ? `
-    <div class="wk-countdown">
-      <div class="cd-label">Unlocks in</div>
-      <div class="cd-row">
-        <div class="cd-unit"><div class="cd-num" id="cd-d-${w.n}">--</div><div class="cd-unit-lbl">Days</div></div>
-        <span class="cd-sep">:</span>
-        <div class="cd-unit"><div class="cd-num" id="cd-h-${w.n}">--</div><div class="cd-unit-lbl">Hrs</div></div>
-        <span class="cd-sep">:</span>
-        <div class="cd-unit"><div class="cd-num" id="cd-m-${w.n}">--</div><div class="cd-unit-lbl">Min</div></div>
-        <span class="cd-sep">:</span>
-        <div class="cd-unit"><div class="cd-num" id="cd-s-${w.n}">--</div><div class="cd-unit-lbl">Sec</div></div>
+  const countdown = locked && t ? `
+    <div class="chapter-countdown">
+      <div class="countdown-label">Unlocks in</div>
+      <div class="countdown-units">
+        <div class="cd-unit"><span class="cd-val" id="cd-d-${w.n}">${pad(t.d)}</span><span class="cd-lbl">days</span></div>
+        <div class="cd-unit"><span class="cd-val" id="cd-h-${w.n}">${pad(t.h)}</span><span class="cd-lbl">hrs</span></div>
+        <div class="cd-unit"><span class="cd-val" id="cd-m-${w.n}">${pad(t.m)}</span><span class="cd-lbl">min</span></div>
+        <div class="cd-unit"><span class="cd-val" id="cd-s-${w.n}">${pad(t.s)}</span><span class="cd-lbl">sec</span></div>
       </div>
     </div>` : '';
 
-  const body = locked ? '' : buildBody(w, sub);
+  const expandBtn = !locked ? `
+    <div class="chapter-cta">
+      <button class="chapter-expand-btn" onclick="toggleChapter(${w.n})">
+        ${w.demo ? '🌟 View Demo Day' : 'Open Chapter'}
+        <span class="expand-chevron">${IC_CHV}</span>
+      </button>
+    </div>` : `<div class="chapter-cta">${countdown}</div>`;
 
-  const clickAttr = locked ? '' : `onclick="toggleCard(${w.n})"`;
+  const lockClass   = locked ? ' locked' : '';
+  const currentAttr = current ? ' data-current="true"' : '';
 
   return `
-  <div class="${classes}" id="wk-${w.n}">
-    <div class="wk-header" ${clickAttr}>
-      <div class="wk-badge-num">${w.n === 9 || (w.n === 5 && w.demo) ? '⭐' : w.n}</div>
-      <div class="wk-info">
-        <div class="wk-top">
-          <span class="wk-label">Week ${w.n}</span>
-          ${tag}
+  <div class="chapter${lockClass}" id="wk-${w.n}"${currentAttr}>
+    <div class="chapter-bg-num">${num}</div>
+    <div class="chapter-header" onclick="${locked ? '' : `toggleChapter(${w.n})`}" style="${locked ? 'cursor:default;' : ''}">
+      <div>
+        <div class="chapter-label">
+          WEEK ${num}
+          <span class="chapter-milestone">${w.milestone}</span>
         </div>
-        <div class="wk-theme">${w.theme}</div>
-        <div class="wk-tagline">${w.tagline}</div>
+        <h2 class="chapter-title">${w.theme}</h2>
+        <p class="chapter-tagline">${w.tagline}</p>
+        <blockquote class="chapter-scripture">${w.scripture}</blockquote>
+        <div class="chapter-event-row">
+          <span class="chapter-event-chip">${w.event.when}</span>
+          <span class="chapter-event-chip">${w.event.guest}</span>
+        </div>
       </div>
-      ${chevron}
+      ${expandBtn}
     </div>
-    ${countdown}
-    <div class="wk-content"><div class="wk-body">${body}</div></div>
+    <div class="chapter-content">${buildBody(w, sub)}</div>
   </div>`;
 }
 
+// ─── Build Chapter Body ────────────────────────────────────────────────────────
 function buildBody(w, sub) {
   const acts = w.acts.map(a => `<li>${a}</li>`).join('');
 
   const reading = w.reading.length
-    ? w.reading.map(r => `<a class="res-link" href="${r.l}" target="_blank" rel="noopener">${SVG_DOC}<span class="rl-text">${r.t}</span>${SVG_EXT}</a>`).join('')
-    : `<p style="font-size:.78rem;color:var(--text-3)">No required reading this week.</p>`;
+    ? w.reading.map(r => `<a class="res-link" href="${r.l}" target="_blank" rel="noopener">${IC_DOC}<span class="rl-text">${r.t}</span><span class="ext-icon">${IC_EXT}</span></a>`).join('')
+    : `<p style="font-size:.76rem;color:var(--text-3)">No required reading this week.</p>`;
 
   const videos = w.watch.length
-    ? w.watch.map(v => `<a class="res-link" href="${v.l}" target="_blank" rel="noopener">${SVG_PLAY}<span class="rl-text">${v.t}</span>${SVG_EXT}</a>`).join('')
+    ? w.watch.map(v => `<a class="res-link" href="${v.l}" target="_blank" rel="noopener">${IC_PLAY}<span class="rl-text">${v.t}</span><span class="ext-icon">${IC_EXT}</span></a>`).join('')
     : '';
 
-  const dRows = w.dels.map((d, i) => `
-    <tr><td>${i + 1}. ${d[0]}</td><td>${d[1]}</td></tr>`).join('');
-
-  const quizBtn = w.quiz
-    ? `<a class="act-btn btn-ghost" href="${w.quiz}" target="_blank" rel="noopener">✅ Weekly Quiz</a>`
-    : '';
-
+  const dRows = w.dels.map((d,i) => `<tr><td>${i+1}. ${d[0]}</td><td>${d[1]}</td></tr>`).join('');
+  const quizBtn = w.quiz ? `<a class="act-btn btn-outline" href="${w.quiz}" target="_blank" rel="noopener">✅ Take Quiz</a>` : '';
   const subLink = w.sub || sub;
 
   return `
-    <div class="scripture-blk">${w.scripture}</div>
-
-    <div class="cs">
+  <div class="chapter-content-inner">
+    <div class="cc-full cs">
       <div class="cs-title">Live Event</div>
       <div class="live-box">
         <div class="live-box-title">${w.event.title}</div>
         <div class="live-meta">
-          <span>📅&nbsp; ${w.event.when}</span>
-          <span>🎤&nbsp; ${w.event.guest}</span>
+          <span>📅 ${w.event.when}</span>
+          <span>🎤 ${w.event.guest}</span>
         </div>
       </div>
     </div>
 
-    <div class="cs">
-      <div class="cs-title">Core Outcome</div>
-      <div class="outcome-blk">${w.outcome}</div>
+    <div class="cc-col">
+      <div class="cs">
+        <div class="cs-title">Core Outcome</div>
+        <div class="outcome-blk">${w.outcome}</div>
+      </div>
+      <div class="cs">
+        <div class="cs-title">Sprint Goal</div>
+        <div class="sprint-blk">${w.sprint}</div>
+      </div>
+      <div class="cs">
+        <div class="cs-title">Activities</div>
+        <ul class="act-list">${acts}</ul>
+      </div>
     </div>
 
-    <div class="cs">
-      <div class="cs-title">Sprint Goal</div>
-      <div class="sprint-blk">${w.sprint}</div>
+    <div class="cc-col">
+      <div class="cs">
+        <div class="cs-title">Reading</div>
+        <div class="res-list">${reading}</div>
+      </div>
+      ${w.watch.length ? `<div class="cs"><div class="cs-title">Watch List</div><div class="res-list">${videos}</div></div>` : ''}
+      <div class="cs">
+        <div class="cs-title">Deliverables — Due ${w.due}</div>
+        <table class="del-table">
+          <thead><tr><th>Deliverable</th><th>Format</th></tr></thead>
+          <tbody>${dRows}</tbody>
+        </table>
+      </div>
     </div>
 
-    <div class="cs">
-      <div class="cs-title">Activities</div>
-      <ul class="act-list">${acts}</ul>
+    <div class="cc-full">
+      <div class="wk-actions">
+        <a class="act-btn btn-orange" href="${subLink}" target="_blank" rel="noopener">${IC_DL} Submit Deliverables</a>
+        <a class="act-btn btn-outline" href="${OH_LINK}" target="_blank" rel="noopener">${IC_CAL} Book Office Hours</a>
+        ${quizBtn}
+      </div>
     </div>
-
-    ${w.reading.length ? `<div class="cs"><div class="cs-title">Reading</div><div class="res-list">${reading}</div></div>` : ''}
-    ${w.watch.length   ? `<div class="cs"><div class="cs-title">Watch List</div><div class="res-list">${videos}</div></div>` : ''}
-
-    <div class="cs">
-      <div class="cs-title">Deliverables — Due ${w.due}</div>
-      <table class="del-table">
-        <thead><tr><th>Deliverable</th><th>Format</th></tr></thead>
-        <tbody>${dRows}</tbody>
-      </table>
-    </div>
-
-    <div class="wk-actions">
-      <a class="act-btn btn-gold" href="${subLink}" target="_blank" rel="noopener">
-        ${SVG_DL} Submit Deliverables
-      </a>
-      <a class="act-btn btn-ghost" href="${OH_LINK}" target="_blank" rel="noopener">
-        ${SVG_CAL} Book Office Hours
-      </a>
-      ${quizBtn}
-    </div>`;
+  </div>`;
 }
 
-// ─── Countdown ─────────────────────────────────────────────────────────────
+// ─── Countdown ────────────────────────────────────────────────────────────────
 function tickCountdown(w, weeks) {
   const t = timeUntil(w.unlock);
-  if (!t) {
-    clearInterval(timers[w.n]);
-    renderWeeks(); // week just unlocked
-    return;
-  }
-  const g = (id) => document.getElementById(`cd-${id}-${w.n}`);
-  if (g('d')) { g('d').textContent = pad(t.d); g('h').textContent = pad(t.h); g('m').textContent = pad(t.m); g('s').textContent = pad(t.s); }
+  if (!t) { clearInterval(timers[w.n]); renderWeeks(); renderTOC(); return; }
+  const g = id => document.getElementById(`cd-${id}-${w.n}`);
+  if (g('d')) { g('d').textContent=pad(t.d); g('h').textContent=pad(t.h); g('m').textContent=pad(t.m); g('s').textContent=pad(t.s); }
 }
 
-// ─── Accordion ─────────────────────────────────────────────────────────────
-function toggleCard(n) {
-  const card = document.getElementById(`wk-${n}`);
-  if (!card || card.classList.contains('is-locked')) return;
-  const wasOpen = card.classList.contains('open');
-  document.querySelectorAll('.wk-card.open').forEach(c => c.classList.remove('open'));
-  if (!wasOpen) card.classList.add('open');
+// ─── Accordion ────────────────────────────────────────────────────────────────
+function toggleChapter(n) {
+  const el = document.getElementById(`wk-${n}`);
+  if (!el || el.classList.contains('locked')) return;
+  const wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.chapter.open').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) el.classList.add('open');
 }
-function openCard(n) {
-  const card = document.getElementById(`wk-${n}`);
-  if (card && !card.classList.contains('is-locked')) card.classList.add('open');
+function openChapter(n) {
+  const el = document.getElementById(`wk-${n}`);
+  if (el && !el.classList.contains('locked')) el.classList.add('open');
 }
 
-// ─── Principles ─────────────────────────────────────────────────────────────
+// ─── Principles ───────────────────────────────────────────────────────────────
 function renderPrinciples() {
   const list = track === 'lbi' ? LBI_PRINCIPLES : SOT_PRINCIPLES;
   document.getElementById('prEyebrow').textContent = track === 'lbi' ? 'LBI Programme' : 'SOT Programme';
-  document.getElementById('principlesGrid').innerHTML = list.map((p, i) => `
+  document.getElementById('principlesGrid').innerHTML = list.map((p,i) => `
     <div class="principle-card">
-      <div class="principle-num">0${i + 1}</div>
+      <div class="principle-num">0${i+1}</div>
       <div class="principle-title">${p.title}</div>
       <div class="principle-text">${p.text}</div>
     </div>`).join('');
 }
 
-// ─── Nav / Drawer ──────────────────────────────────────────────────────────
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
-});
-function toggleDrawer() {
-  document.getElementById('mobileDrawer').classList.toggle('open');
-  document.getElementById('burgerBtn').classList.toggle('open');
-}
-function closeDrawer() {
-  document.getElementById('mobileDrawer').classList.remove('open');
-  document.getElementById('burgerBtn').classList.remove('open');
+// ─── TOC ──────────────────────────────────────────────────────────────────────
+function renderTOC() {
+  const weeks = track === 'lbi' ? LBI_WEEKS : SOT_WEEKS;
+  document.getElementById('tocList').innerHTML = weeks.map(w => {
+    const locked  = !isUnlocked(w.unlock);
+    const cls     = locked ? 'toc-item locked' : 'toc-item';
+    const onClick = locked ? '' : `onclick="scrollToChapter(${w.n})"`;
+    return `
+      <div class="${cls}" id="toc-${w.n}" ${onClick}>
+        <span class="toc-num">W${w.n}</span>
+        <span class="toc-theme">${w.theme}</span>
+        ${locked ? '<span class="toc-lock">🔒</span>' : ''}
+      </div>`;
+  }).join('');
 }
 
-// ─── Init ──────────────────────────────────────────────────────────────────
+function scrollToChapter(n) {
+  const el = document.getElementById(`wk-${n}`);
+  if (el) { el.scrollIntoView({ behavior:'smooth', block:'start' }); openChapter(n); }
+  if (window.innerWidth < 900) closeSidebar();
+  updateTOCActive(n);
+}
+
+function updateTOCActive(n) {
+  document.querySelectorAll('.toc-item').forEach(el => el.classList.remove('active'));
+  const item = document.getElementById(`toc-${n}`);
+  if (item) item.classList.add('active');
+}
+
+// Scroll-based TOC highlighting
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.intersectionRatio > 0.2) {
+      const n = e.target.id.replace('wk-', '');
+      updateTOCActive(n);
+    }
+  });
+}, { threshold: 0.2 });
+
+function observeChapters() {
+  document.querySelectorAll('.chapter').forEach(el => observer.observe(el));
+}
+
+// ─── Sidebar ──────────────────────────────────────────────────────────────────
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebar-overlay');
+  const btn = document.getElementById('mob-toggle');
+  sb.classList.toggle('open');
+  ov.classList.toggle('visible');
+  btn.classList.toggle('open');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('visible');
+  document.getElementById('mob-toggle').classList.remove('open');
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
 renderAll();
+renderTOC();
+setTimeout(observeChapters, 100);
 </script>
 </body>
 </html>
