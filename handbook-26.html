@@ -507,32 +507,126 @@
     }
     .principle-text { font-size:.76rem; font-weight:300; color:var(--text-2); line-height:1.65; }
 
-    /* ── PLACEHOLDER SECTIONS ───────────────────────────────────────────────── */
-    .ph-section {
-      padding:72px 9%; border-bottom:1px solid var(--border);
+    /* ── BYE-LAWS / HANDBOOK ─────────────────────────────────────────────────── */
+    .bylaws-wrap { max-width:780px; }
+    .bylaws-sub { font-size:.82rem; font-weight:300; color:var(--text-2); margin-bottom:32px; font-style:italic; }
+    .bylaws-block {
+      background:var(--surf); border:1px solid var(--border);
+      border-radius:var(--r); padding:24px 28px; margin-bottom:12px;
     }
-    .ph-inner {
-      max-width:480px;
-      border:1px solid var(--border); border-radius:var(--r);
-      padding:40px; background:var(--surf);
+    .bylaws-block-title {
+      font-size:.82rem; font-weight:500; color:var(--text);
+      margin-bottom:14px; display:flex; align-items:center; gap:8px;
     }
-    .ph-icon { font-size:1.8rem; margin-bottom:16px; }
-    .ph-label {
-      font-size:.58rem; font-weight:500; letter-spacing:.2em;
-      text-transform:uppercase; color:var(--orange); margin-bottom:8px;
+    .bylaws-text { font-size:.82rem; font-weight:300; color:var(--text-2); line-height:1.75; margin-bottom:12px; }
+    .bylaws-text:last-child { margin-bottom:0; }
+    .bylaws-rule-title {
+      font-size:.72rem; font-weight:500; color:var(--orange);
+      margin:16px 0 8px; letter-spacing:.04em;
     }
-    .ph-title {
-      font-size:1.3rem; font-weight:200; letter-spacing:-0.02em;
-      color:var(--text); margin-bottom:10px;
+    .bylaws-list { list-style:none; display:flex; flex-direction:column; gap:6px; margin-bottom:8px; }
+    .bylaws-list li {
+      font-size:.8rem; font-weight:300; color:var(--text-2); line-height:1.6;
+      display:flex; gap:10px; align-items:flex-start;
     }
-    .ph-desc { font-size:.82rem; font-weight:300; color:var(--text-2); line-height:1.65; margin-bottom:16px; }
-    .ph-pill {
+    .bylaws-list li::before { content:'–'; color:var(--text-3); flex-shrink:0; }
+    .bylaws-link { color:var(--orange); text-decoration:underline; text-decoration-color:var(--orange-dim); }
+    .bylaws-link:hover { text-decoration-color:var(--orange); }
+    .bylaws-strike-box {
+      background:rgba(232,93,34,.06); border:1px solid rgba(232,93,34,.15);
+      border-radius:var(--r); padding:16px 20px; margin-top:16px;
+    }
+    .bylaws-strike-title { font-size:.7rem; font-weight:500; color:var(--orange); margin-bottom:10px; letter-spacing:.04em; }
+    .bylaws-strike-row { display:flex; align-items:center; gap:12px; margin-bottom:6px; font-size:.8rem; font-weight:300; color:var(--text-2); }
+    .strike-badge {
+      display:inline-block; padding:2px 10px; border-radius:var(--r);
+      font-size:.62rem; font-weight:500; letter-spacing:.06em;
+      background:var(--surf-hover); border:1px solid var(--border-hi); color:var(--text-2); white-space:nowrap;
+    }
+    .strike-red { background:rgba(220,38,38,.1); border-color:rgba(220,38,38,.3); color:#FF6B6B; }
+
+    /* ── PRAYER ──────────────────────────────────────────────────────────────── */
+    .prayer-meta-row { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+    .prayer-zoom-btn {
       display:inline-flex; align-items:center; gap:6px;
-      padding:4px 12px; border:1px solid var(--border);
-      border-radius:var(--r); font-size:.64rem; font-weight:400;
-      letter-spacing:.06em; color:var(--text-3);
+      padding:8px 16px; border:1px solid var(--border-hi); border-radius:var(--r);
+      font-size:.74rem; font-weight:400; color:var(--text-2);
+      transition:all .2s;
     }
-    .ph-pill::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--text-3); animation:pulse 2s infinite; }
+    .prayer-zoom-btn:hover { border-color:var(--orange); color:var(--orange); background:var(--orange-dim); }
+    .prayer-lead-grid {
+      background:var(--surf); border:1px solid var(--border); border-radius:var(--r);
+      padding:20px 24px; margin-bottom:24px;
+    }
+    .prayer-lead-title { font-size:.62rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3); margin-bottom:12px; }
+    .prayer-lead-list { display:flex; flex-wrap:wrap; gap:8px; }
+    .plead-item { display:inline-flex; align-items:center; gap:6px; font-size:.76rem; font-weight:300; color:var(--text-2); }
+    .plead-num { font-size:.6rem; font-weight:500; color:var(--orange); background:var(--orange-dim); padding:1px 7px; border-radius:2px; }
+    .prayer-weeks { display:flex; flex-direction:column; gap:4px; max-width:780px; }
+    .prayer-week {
+      background:var(--surf); border:1px solid var(--border); border-radius:var(--r);
+      overflow:hidden;
+    }
+    .prayer-week summary {
+      display:flex; align-items:center; gap:12px;
+      padding:14px 18px; cursor:pointer; list-style:none;
+      font-size:.8rem; font-weight:300; color:var(--text-2);
+      transition:background .18s;
+    }
+    .prayer-week summary::-webkit-details-marker { display:none; }
+    .prayer-week summary:hover { background:var(--surf-hover); }
+    .prayer-week[open] summary { background:var(--orange-dim); color:var(--text); }
+    .pw-num { font-size:.6rem; font-weight:500; color:var(--orange); background:var(--orange-dim); padding:2px 8px; border-radius:2px; flex-shrink:0; }
+    .prayer-week[open] .pw-num { background:rgba(232,93,34,.25); }
+    .pw-title { flex:1; font-weight:400; }
+    .pw-lead { font-size:.68rem; color:var(--text-3); white-space:nowrap; }
+    .pw-body { padding:16px 18px 18px; border-top:1px solid var(--border); }
+    .pw-session { display:flex; gap:14px; margin-bottom:14px; font-size:.78rem; font-weight:300; color:var(--text-2); line-height:1.6; }
+    .pw-day { font-size:.58rem; font-weight:600; color:var(--orange); background:var(--orange-dim); padding:3px 8px; border-radius:2px; height:fit-content; flex-shrink:0; letter-spacing:.06em; }
+    .pw-msg { font-size:.74rem; font-weight:400; color:var(--gold); padding:8px 12px; background:rgba(200,168,75,.06); border:1px solid rgba(200,168,75,.15); border-radius:var(--r); }
+
+    /* ── LEGAL LIBRARY ───────────────────────────────────────────────────────── */
+    .legal-grid { display:flex; flex-wrap:wrap; gap:10px; }
+    .legal-card {
+      display:flex; flex-direction:column; gap:6px;
+      background:var(--surf); border:1px solid var(--border); border-radius:var(--r);
+      padding:22px 24px; max-width:340px;
+      transition:all .2s; color:inherit;
+    }
+    .legal-card:hover { border-color:var(--orange); background:var(--orange-dim); }
+    .legal-icon { font-size:1.4rem; }
+    .legal-name { font-size:.88rem; font-weight:500; color:var(--text); }
+    .legal-desc { font-size:.76rem; font-weight:300; color:var(--text-2); line-height:1.6; }
+    .legal-open { font-size:.7rem; font-weight:400; color:var(--orange); margin-top:4px; }
+
+    /* ── FAQ ─────────────────────────────────────────────────────────────────── */
+    .faq-cat {
+      font-size:.6rem; font-weight:500; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--text-3);
+      margin:28px 0 10px; padding-bottom:8px;
+      border-bottom:1px solid var(--border);
+    }
+    .faq-list { display:flex; flex-direction:column; gap:4px; max-width:780px; }
+    .faq-item {
+      background:var(--surf); border:1px solid var(--border); border-radius:var(--r);
+      overflow:hidden;
+    }
+    .faq-item summary {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 18px; cursor:pointer; list-style:none;
+      font-size:.84rem; font-weight:400; color:var(--text);
+      transition:background .18s;
+    }
+    .faq-item summary::-webkit-details-marker { display:none; }
+    .faq-item summary::after { content:'↓'; color:var(--text-3); font-size:.7rem; flex-shrink:0; transition:transform .25s; }
+    .faq-item[open] summary::after { transform:rotate(180deg); }
+    .faq-item summary:hover { background:var(--surf-hover); }
+    .faq-item[open] summary { background:var(--orange-dim); border-bottom:1px solid var(--border); }
+    .faq-ans {
+      padding:16px 18px; font-size:.8rem; font-weight:300;
+      color:var(--text-2); line-height:1.75; border-top:1px solid var(--border);
+    }
+
     @keyframes pulse { 0%,100%{opacity:.4;} 50%{opacity:1;} }
 
     /* ── FOOTER ─────────────────────────────────────────────────────────────── */
@@ -598,8 +692,9 @@
     <div class="sb-section-label">Programme</div>
     <a class="sb-link" href="#overview"><span class="sb-link-dot"></span>Overview & Roadmap</a>
     <a class="sb-link" href="#principles"><span class="sb-link-dot"></span>Core Principles</a>
-    <a class="sb-link" href="#bye-laws"><span class="sb-link-dot"></span>Bye-Laws</a>
+    <a class="sb-link" href="#bye-laws"><span class="sb-link-dot"></span>Handbook & Bye-Laws</a>
     <a class="sb-link" href="#prayer"><span class="sb-link-dot"></span>Prayer Schedule</a>
+    <a class="sb-link" href="#legal" id="sb-legal-link"><span class="sb-link-dot"></span>Legal Library</a>
     <a class="sb-link" href="#faq"><span class="sb-link-dot"></span>FAQ</a>
   </div>
 
@@ -662,35 +757,277 @@
   </section>
 
   <!-- BYE-LAWS -->
-  <section class="ph-section" id="bye-laws">
-    <div class="ph-inner">
-      <div class="ph-icon">⚖️</div>
-      <div class="ph-label">Fellowship Governance</div>
-      <h2 class="ph-title">Bye-Laws</h2>
-      <p class="ph-desc">Programme rules, code of conduct, and community standards for all STARK Y'26 participants. Content is being prepared by the Heave Ventures team.</p>
-      <span class="ph-pill">Content coming soon</span>
+  <section class="hb-section" id="bye-laws">
+    <!-- LBI Handbook -->
+    <div id="bylaws-lbi" class="bylaws-wrap">
+      <div class="sec-eyebrow">LBI Programme</div>
+      <h2 class="sec-title">LBI Programme Handbook</h2>
+      <p class="bylaws-sub">Life Business Incubator — Launch. Build. Impact.</p>
+
+      <div class="bylaws-block">
+        <div class="bylaws-block-title">📘 Welcome to the Stark LBI Program</div>
+        <p class="bylaws-text">The <strong>Stark Life Business Incubator (LBI)</strong> is a 9-week program designed to nurture bold, Christ-centered founders as they build ventures that serve both purpose and profit. We help you launch with clarity, build with excellence, and scale with spiritual integrity.</p>
+        <p class="bylaws-text">Through structured weekly sprints, prayer sessions, funding access, mentorship, and a supportive founder community, <strong>LBI is where your faith meets your startup vision.</strong></p>
+      </div>
+
+      <div class="bylaws-block">
+        <div class="bylaws-block-title">📏 Ground Rules & Discipline Policy</div>
+        <p class="bylaws-text" style="font-style:italic;color:var(--orange);">This is a Commitment to Purposeful Excellence.</p>
+
+        <div class="bylaws-rule-title">✅ Attendance & Punctuality</div>
+        <ul class="bylaws-list">
+          <li>All live sessions (sprints, prayers, reviews) are <strong>mandatory</strong> for each founder of a LBI business.</li>
+          <li>Attendance is recorded for every session. View the live attendance sheet <a href="https://docs.google.com/spreadsheets/d/1_xAE2AxHcIX09gJH-efJeY10MzeYmIFE_FfxzKg3qcc/edit?usp=sharing" target="_blank" rel="noopener" class="bylaws-link">here</a>.</li>
+          <li>A grace period of <strong>5 minutes</strong> for Prayer Sessions and <strong>15 minutes</strong> for Live Sessions is allowed for latecomers.</li>
+          <li><strong>1 absence from Live Sessions = automatic removal from the program.</strong></li>
+          <li><strong>2 absences from Prayer Sessions = automatic removal from the program.</strong></li>
+        </ul>
+
+        <div class="bylaws-rule-title">✅ Deadlines</div>
+        <ul class="bylaws-list">
+          <li>Assignments and sprint deliverables must be submitted before Office Hours on Friday.</li>
+          <li>Late submissions reduce access to funding and exposure opportunities.</li>
+          <li>Submit through this <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiPxf-m1mx6FBHxySbfGQpijwnMjkAZpwyc5qedI12yJaT0Q/viewform?usp=sharing" target="_blank" rel="noopener" class="bylaws-link">link</a>.</li>
+        </ul>
+
+        <div class="bylaws-rule-title">✅ Professional Conduct</div>
+        <ul class="bylaws-list">
+          <li>Always use your full name when joining a live session or prayer meeting.</li>
+          <li>If possible, turn on your camera during live Zoom sessions.</li>
+          <li>Avoid distractions and multitasking.</li>
+          <li>Show respect to facilitators, mentors, and peers.</li>
+        </ul>
+
+        <div class="bylaws-strike-box">
+          <div class="bylaws-strike-title">🚨 Strike Policy</div>
+          <div class="bylaws-strike-row"><span class="strike-badge">1st Strike</span><span>Warning</span></div>
+          <div class="bylaws-strike-row"><span class="strike-badge strike-red">2nd Strike</span><span>Dismissal from LBI</span></div>
+        </div>
+      </div>
+
+      <div class="bylaws-block">
+        <div class="bylaws-block-title">🗓️ Weekly Calendar Overview</div>
+        <table class="rm-table" style="margin-top:12px;">
+          <thead><tr><th>Day</th><th>Time</th><th>Activity</th></tr></thead>
+          <tbody>
+            <tr><td>Monday</td><td>6:00 PM – 8:00 PM</td><td>Live Session</td></tr>
+            <tr><td>Tuesday</td><td>11:30 AM – 12:00 PM</td><td>Prayer + Business Insight</td></tr>
+            <tr><td>Thursday</td><td>7:00 AM – 7:30 AM</td><td>Prayer + Business Insight</td></tr>
+            <tr><td>Friday</td><td>By 5:59 PM</td><td>Submit Deliverables</td></tr>
+            <tr><td>Friday / Saturday</td><td>Flexible</td><td>Office Hours</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bylaws-block">
+        <div class="bylaws-block-title">🔑 Ethos: Life, Business, and Faith in Harmony</div>
+        <p class="bylaws-text">LBI is not just about building businesses. It's about building a life that reflects purpose, stewardship, and kingdom values. We challenge you to:</p>
+        <ul class="bylaws-list">
+          <li>Launch boldly, rooted in purpose</li>
+          <li>Build responsibly, guided by scripture and strategy</li>
+          <li>Impact lives while honouring God</li>
+        </ul>
+      </div>
+
+      <div class="bylaws-block">
+        <div class="bylaws-block-title">📞 Support</div>
+        <p class="bylaws-text">Need help? Reach out via email: <a href="mailto:theteam@heaveventures.com" class="bylaws-link">theteam@heaveventures.com</a></p>
+      </div>
+    </div>
+
+    <!-- SOT Handbook -->
+    <div id="bylaws-sot" class="bylaws-wrap" style="display:none;">
+      <div class="sec-eyebrow">SOT Programme</div>
+      <h2 class="sec-title">SOT Programme Handbook</h2>
+      <p class="bylaws-sub">School of Timothy — Co-Founder Formation Programme</p>
+
+      <div class="bylaws-block">
+        <div class="bylaws-block-title">📘 Welcome to the Stark SOT Program</div>
+        <p class="bylaws-text">The <strong>Stark School of Timothy (SOT)</strong> is a 5-week intensive program to train co-founders — CTO, CPO, COO, CMO, CFO, CCO, and more.</p>
+      </div>
+
+      <div class="bylaws-block">
+        <div class="bylaws-block-title">📏 Ground Rules & Discipline Policy</div>
+        <p class="bylaws-text" style="font-style:italic;color:var(--orange);">This is a Commitment to Purposeful Excellence.</p>
+
+        <div class="bylaws-rule-title">✅ Attendance & Punctuality</div>
+        <ul class="bylaws-list">
+          <li>All live sessions are <strong>mandatory</strong>.</li>
+          <li>Attendance is recorded after every session.</li>
+          <li>A grace period of <strong>5 minutes</strong> for Prayer Sessions and <strong>15 minutes</strong> for Live Sessions is allowed.</li>
+          <li><strong>1 absence = automatic removal from the program.</strong></li>
+        </ul>
+
+        <div class="bylaws-rule-title">✅ Deadlines</div>
+        <ul class="bylaws-list">
+          <li>Assignments and weekly deliverables must be submitted every Thursday evening.</li>
+          <li>Submit weekly tasks using this <a href="https://forms.gle/NLdENLAukBz8Sb5U9" target="_blank" rel="noopener" class="bylaws-link">form</a>.</li>
+        </ul>
+
+        <div class="bylaws-rule-title">✅ Professional Conduct</div>
+        <ul class="bylaws-list">
+          <li>Always use your full name when joining a live session or prayer meeting.</li>
+          <li>If possible, turn on your camera during live Zoom sessions.</li>
+          <li>Avoid distractions and multitasking.</li>
+          <li>Show respect to facilitators, mentors, and peers.</li>
+        </ul>
+
+        <div class="bylaws-strike-box">
+          <div class="bylaws-strike-title">🚨 Strike Policy</div>
+          <div class="bylaws-strike-row"><span class="strike-badge">1st Strike</span><span>Warning</span></div>
+          <div class="bylaws-strike-row"><span class="strike-badge strike-red">2nd Strike</span><span>Dismissal from SOT Program</span></div>
+        </div>
+      </div>
+
+      <div class="bylaws-block">
+        <div class="bylaws-block-title">🗓️ Weekly Calendar Overview</div>
+        <table class="rm-table" style="margin-top:12px;">
+          <thead><tr><th>Day</th><th>Time</th><th>Activity</th></tr></thead>
+          <tbody>
+            <tr><td>Tuesday</td><td>11:30 AM – 12:00 PM</td><td>Prayer + Business Insight</td></tr>
+            <tr><td>Thursday</td><td>7:00 AM – 7:30 AM</td><td>Prayer + Business Insight + Submit Deliverables</td></tr>
+            <tr><td>Friday</td><td>6:00 PM – 8:00 PM</td><td>Live Session</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bylaws-block">
+        <div class="bylaws-block-title">🔑 Ethos: Life, Business, and Faith in Harmony</div>
+        <p class="bylaws-text">SOT is not just about moulding co-founders. It's about building a life that reflects support, purpose, stewardship, and kingdom values. We challenge you to:</p>
+        <ul class="bylaws-list">
+          <li>Launch boldly, rooted in purpose</li>
+          <li>Build responsibly, guided by scripture and strategy</li>
+          <li>Impact lives while honoring God</li>
+        </ul>
+      </div>
+
+      <div class="bylaws-block">
+        <div class="bylaws-block-title">📞 Support</div>
+        <p class="bylaws-text">Need help? Reach out via email: <a href="mailto:theteam@heaveventures.com" class="bylaws-link">theteam@heaveventures.com</a></p>
+      </div>
     </div>
   </section>
 
   <!-- PRAYER -->
-  <section class="ph-section" id="prayer">
-    <div class="ph-inner">
-      <div class="ph-icon">🙏</div>
-      <div class="ph-label">Spiritual Discipline</div>
-      <h2 class="ph-title">Prayer Schedule</h2>
-      <p class="ph-desc">Weekly prayer sessions for the full LBI & SOT cohort — Tuesdays & Thursdays at 7:00AM WAT. Zoom links and format details coming soon.</p>
-      <span class="ph-pill">Content coming soon</span>
+  <section class="hb-section" id="prayer">
+    <div class="sec-eyebrow">Spiritual Discipline</div>
+    <h2 class="sec-title">Prayer, Bible Study & Message Plan</h2>
+    <p class="bylaws-text" style="max-width:680px;margin-bottom:28px;">A 10-week plan of Tuesdays & Thursdays prayer sessions, weekly message listening, and a rotating startup prayer lead schedule — grounded in righteousness and kingdom stewardship.</p>
+
+    <div class="prayer-meta-row">
+      <a href="https://us06web.zoom.us/j/89222126054?pwd=b8vWkPqRmdxoaq18aBT4QeTbQxl6HQ.1" target="_blank" rel="noopener" class="prayer-zoom-btn">📅 Tuesday Zoom</a>
+      <a href="https://us06web.zoom.us/j/81508541170?pwd=JFAovwUAQex0PlZyaPb9RxBpMXlaEo.1" target="_blank" rel="noopener" class="prayer-zoom-btn">📅 Thursday Zoom</a>
+      <a href="https://youtube.com/playlist?list=PL7I_EwoCmN5BYDt-dN9fO9_zUaQKy-2Lr&si=9ldkcBh8_CLcb-iv" target="_blank" rel="noopener" class="prayer-zoom-btn" style="border-color:var(--gold);color:var(--gold);">▶ Message Playlist</a>
+    </div>
+
+    <div class="prayer-lead-grid">
+      <div class="prayer-lead-title">Prayer Lead Rotation</div>
+      <div class="prayer-lead-list">
+        <span class="plead-item"><span class="plead-num">W0</span> Dive</span>
+        <span class="plead-item"><span class="plead-num">W1</span> DoNotify</span>
+        <span class="plead-item"><span class="plead-num">W2</span> EcoPower</span>
+        <span class="plead-item"><span class="plead-num">W3</span> HireTrust</span>
+        <span class="plead-item"><span class="plead-num">W4</span> Loran</span>
+        <span class="plead-item"><span class="plead-num">W5</span> MedRelay</span>
+        <span class="plead-item"><span class="plead-num">W6</span> Saleshub NG</span>
+        <span class="plead-item"><span class="plead-num">W7</span> TAMS360</span>
+        <span class="plead-item"><span class="plead-num">W8</span> Transplify</span>
+        <span class="plead-item"><span class="plead-num">W9</span> Tride</span>
+      </div>
+    </div>
+
+    <div class="prayer-weeks">
+      <details class="prayer-week"><summary><span class="pw-num">W0</span><span class="pw-title">Foundations of Righteousness</span><span class="pw-lead">Led by Dive</span></summary><div class="pw-body"><div class="pw-session"><div class="pw-day">TUE</div><div><strong>Understanding Righteousness</strong> — Hebrews 5:13-14<br><em>Prayer:</em> Desire the meat of the Word.<br><em>Insight:</em> Mature decisions stem from spiritual discernment.</div></div><div class="pw-session"><div class="pw-day">THU</div><div><strong>The Journey to Perfection</strong> — Hebrews 6:1-3<br><em>Prayer:</em> Commitment to spiritual growth.<br><em>Insight:</em> Continuous improvement is key to excellence.</div></div><div class="pw-msg">📖 Message: Part 1 – Introduction to Financial Stewardship</div></div></details>
+
+      <details class="prayer-week"><summary><span class="pw-num">W1</span><span class="pw-title">The Path of Righteousness</span><span class="pw-lead">Led by DoNotify</span></summary><div class="pw-body"><div class="pw-session"><div class="pw-day">TUE</div><div><strong>Walking in God's Ways</strong> — Psalm 23:3<br><em>Prayer:</em> Guidance in righteous paths.<br><em>Insight:</em> Ethical practices sustain success.</div></div><div class="pw-session"><div class="pw-day">THU</div><div><strong>Obedience and Righteousness</strong> — Romans 6:16<br><em>Prayer:</em> Willingness to obey.<br><em>Insight:</em> Obedience ensures organisational integrity.</div></div><div class="pw-msg">📖 Message: Part 2 – The Principles of Financial Stewardship</div></div></details>
+
+      <details class="prayer-week"><summary><span class="pw-num">W2</span><span class="pw-title">The Law and Righteousness</span><span class="pw-lead">Led by EcoPower</span></summary><div class="pw-body"><div class="pw-session"><div class="pw-day">TUE</div><div><strong>The Role of the Law</strong> — Romans 7:12<br><em>Prayer:</em> Appreciate God's commandments.<br><em>Insight:</em> Adherence to standards builds trust.</div></div><div class="pw-session"><div class="pw-day">THU</div><div><strong>Freedom through Righteousness</strong> — Romans 8:2<br><em>Prayer:</em> Embrace spiritual liberty.<br><em>Insight:</em> Freedom encourages innovation.</div></div><div class="pw-msg">📖 Message: Part 3 – Principles of Kingdom Economics</div></div></details>
+
+      <details class="prayer-week"><summary><span class="pw-num">W3</span><span class="pw-title">Righteousness and Faith</span><span class="pw-lead">Led by HireTrust</span></summary><div class="pw-body"><div class="pw-session"><div class="pw-day">TUE</div><div><strong>Faith Leading to Righteousness</strong> — Romans 4:3<br><em>Prayer:</em> Strengthen faith in promises.<br><em>Insight:</em> Faith drives growth.</div></div><div class="pw-session"><div class="pw-day">THU</div><div><strong>Living by Faith</strong> — Galatians 3:11<br><em>Prayer:</em> Trust God in all matters.<br><em>Insight:</em> Boldness in vision leads to breakthroughs.</div></div><div class="pw-msg">📖 Message: Part 4 – The Role of Faith in Finances</div></div></details>
+
+      <details class="prayer-week"><summary><span class="pw-num">W4</span><span class="pw-title">Righteousness and the Heart</span><span class="pw-lead">Led by Loran</span></summary><div class="pw-body"><div class="pw-session"><div class="pw-day">TUE</div><div><strong>Purity of Heart</strong> — Matthew 5:8<br><em>Prayer:</em> Seek a pure heart.<br><em>Insight:</em> Sincerity builds loyalty.</div></div><div class="pw-session"><div class="pw-day">THU</div><div><strong>Guarding the Heart</strong> — Proverbs 4:23<br><em>Prayer:</em> Protect inner life.<br><em>Insight:</em> Emotional health fuels leadership.</div></div><div class="pw-msg">📖 Message: Part 5 – Generosity and Giving</div></div></details>
+
+      <details class="prayer-week"><summary><span class="pw-num">W5</span><span class="pw-title">Righteousness and Peace</span><span class="pw-lead">Led by MedRelay</span></summary><div class="pw-body"><div class="pw-session"><div class="pw-day">TUE</div><div><strong>Peace through Righteousness</strong> — Isaiah 32:17<br><em>Prayer:</em> Experience divine peace.<br><em>Insight:</em> Peace enhances productivity.</div></div><div class="pw-session"><div class="pw-day">THU</div><div><strong>Pursuing Peace</strong> — Hebrews 12:14<br><em>Prayer:</em> Strive for peaceful relationships.<br><em>Insight:</em> Resolution fosters cohesion.</div></div><div class="pw-msg">📖 Message: Part 6 – Avoiding the Love of Money</div></div></details>
+
+      <details class="prayer-week"><summary><span class="pw-num">W6</span><span class="pw-title">Righteousness and Joy</span><span class="pw-lead">Led by Saleshub NG</span></summary><div class="pw-body"><div class="pw-session"><div class="pw-day">TUE</div><div><strong>Joy in Righteousness</strong> — Romans 14:17<br><em>Prayer:</em> Joy in God's kingdom.<br><em>Insight:</em> Joy improves morale.</div></div><div class="pw-session"><div class="pw-day">THU</div><div><strong>Strength through Joy</strong> — Nehemiah 8:10<br><em>Prayer:</em> Draw strength from joy.<br><em>Insight:</em> Positivity supports resilience.</div></div><div class="pw-msg">📖 Message: Part 7 – Investing in Eternal Treasures</div></div></details>
+
+      <details class="prayer-week"><summary><span class="pw-num">W7</span><span class="pw-title">Righteousness and Justice</span><span class="pw-lead">Led by TAMS360</span></summary><div class="pw-body"><div class="pw-session"><div class="pw-day">TUE</div><div><strong>God's Justice</strong> — Psalm 89:14<br><em>Prayer:</em> Align with God's justice.<br><em>Insight:</em> Fairness builds reputation.</div></div><div class="pw-session"><div class="pw-day">THU</div><div><strong>Practicing Justice</strong> — Micah 6:8<br><em>Prayer:</em> Act justly.<br><em>Insight:</em> Social responsibility enhances brand.</div></div><div class="pw-msg">📖 Message: Part 8 – Managing Resources Wisely</div></div></details>
+
+      <details class="prayer-week"><summary><span class="pw-num">W8</span><span class="pw-title">Righteousness and Holiness</span><span class="pw-lead">Led by Transplify</span></summary><div class="pw-body"><div class="pw-session"><div class="pw-day">TUE</div><div><strong>Call to Holiness</strong> — 1 Peter 1:15-16<br><em>Prayer:</em> Embrace holiness.<br><em>Insight:</em> Values distinguish you.</div></div><div class="pw-session"><div class="pw-day">THU</div><div><strong>Sanctification Process</strong> — 1 Thessalonians 4:3<br><em>Prayer:</em> Accept sanctification.<br><em>Insight:</em> Growth fuels excellence.</div></div><div class="pw-msg">📖 Message: Part 9 – Breaking Financial Limitations</div></div></details>
+
+      <details class="prayer-week"><summary><span class="pw-num">W9</span><span class="pw-title">Righteousness and Love</span><span class="pw-lead">Led by Tride</span></summary><div class="pw-body"><div class="pw-session"><div class="pw-day">TUE</div><div><strong>Love Fulfils the Law</strong> — Romans 13:10<br><em>Prayer:</em> Love others genuinely.<br><em>Insight:</em> Love earns loyalty.</div></div><div class="pw-session"><div class="pw-day">THU</div><div><strong>Abiding in Love</strong> — 1 John 4:16<br><em>Prayer:</em> Live in God's love.<br><em>Insight:</em> Empathy strengthens networks.</div></div><div class="pw-msg">📖 Message: Part 10 – Walking in Abundance</div></div></details>
+    </div>
+  </section>
+
+  <!-- LEGAL LIBRARY -->
+  <section class="hb-section" id="legal" style="display:none;">
+    <div class="sec-eyebrow">LBI Programme</div>
+    <h2 class="sec-title">Legal Library</h2>
+    <p class="bylaws-text" style="margin-bottom:24px;">Essential legal documents for LBI founders. Review these carefully — ask questions during office hours before signing anything.</p>
+    <div class="legal-grid">
+      <a href="https://docs.google.com/document/d/1hrEbkRER1lRLboKGzw79f7bC8Z8B7C5B/edit?usp=share_link&ouid=100567991664178714341&rtpof=true&sd=true" target="_blank" rel="noopener" class="legal-card">
+        <div class="legal-icon">📄</div>
+        <div class="legal-name">Founders Agreement</div>
+        <div class="legal-desc">Standard co-founder agreement template for LBI businesses. Review with your team before the Merging Ceremony.</div>
+        <div class="legal-open">Open Document →</div>
+      </a>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="ph-section" id="faq">
-    <div class="ph-inner">
-      <div class="ph-icon">💬</div>
-      <div class="ph-label">Got Questions?</div>
-      <h2 class="ph-title">FAQ</h2>
-      <p class="ph-desc">Frequently asked questions about the programme, submission format, office hours, Demo Day, and co-founder matching.</p>
-      <span class="ph-pill">Content coming soon</span>
+  <section class="hb-section" id="faq">
+    <div class="sec-eyebrow">Got Questions?</div>
+    <h2 class="sec-title">Frequently Asked Questions</h2>
+
+    <div class="faq-cat">Getting Started</div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>How do I know which programme is right for me?</summary><div class="faq-ans">The simplest test: do you have an idea or burden you feel compelled to build into a business? That's LBI. Do you feel more energised by coming alongside someone else's vision — executing, organising, and making things run, rather than leading the charge yourself? That's SOT.<br><br>Neither track is lesser than the other. SOT is not a fallback for people who could not get into LBI. If you are still unsure, email the team at <a href="mailto:theteam@heaveventures.com" class="bylaws-link">theteam@heaveventures.com</a> before committing.</div></details>
+
+      <details class="faq-item"><summary>Do LBI and SOT run at the same time? Will I attend all the same sessions?</summary><div class="faq-ans">Both programmes run during the same overall period (May 18 – July 17) but the SOT programme ends June 19 except for SOT Fellows merged with a LBI business.<br><br>LBI live sessions are Mondays, 6–8 PM WAT. SOT live sessions are Fridays, 6–8 PM WAT. Both tracks share prayer sessions on Tuesdays (11:30 AM) and Thursdays (7 AM).</div></details>
+
+      <details class="faq-item"><summary>I signed up but I have not received any onboarding information. What should I do?</summary><div class="faq-ans">Reach out to us via email at <a href="mailto:theteam@heaveventures.com" class="bylaws-link">theteam@heaveventures.com</a>. Include your full name and which track you are enrolled in (LBI or SOT).</div></details>
+    </div>
+
+    <div class="faq-cat">Programme Structure</div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>What exactly is the Merging Ceremony and do I have to participate?</summary><div class="faq-ans">The Merging Ceremony is on June 19 (Week 5). It is the moment LBI founders and SOT co-founders are formally matched, agreements are signed, and merged teams begin working as one unit.<br><br>If you're in LBI, you are expected to have a co-founder by this date. If your business already enrolled with a co-founder, merging with an SOT Fellow is optional. If you're in SOT, your entire 5 weeks build toward this moment.</div></details>
+
+      <details class="faq-item"><summary>What happens after the Merging Ceremony? Do the two cohorts now attend the same sessions?</summary><div class="faq-ans">From Week 6, if you merged with an LBI business, you join that founding team and work through the rest of the LBI curriculum together — operations, sales, finance, people management, and product readiness, all the way to Demo Day on July 17.<br><br>If you are an SOT Fellow who did not merge with an LBI business by the end of Week 5, your programme ends at that point.</div></details>
+
+      <details class="faq-item"><summary>SOT is only 5 weeks. What happens to SOT participants after the Merging Ceremony?</summary><div class="faq-ans">It depends. If you merge with an LBI business at the Merging Ceremony, you continue as part of that founding team through Demo Day (July 17). If you do not merge with an LBI business by the end of Week 5, you have completed your programme at that point.</div></details>
+
+      <details class="faq-item"><summary>What is Demo Day and who presents?</summary><div class="faq-ans">Demo Day is July 17, 2026 (Week 9) — the programme's closing event where founders pitch their startups publicly. By this point, Stark Fellows are expected to have a live product, paying customers, and a functional team. Every LBI founding team presents.</div></details>
+    </div>
+
+    <div class="faq-cat">Weekly Tasks & Deliverables</div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>How much time should I realistically set aside each week?</summary><div class="faq-ans">Treat STARK like a part-time commitment of roughly 8–12 hours per week, not a passive course you show up to. The workload increases as each week passes.<br><br>Each week involves at least one 2-hour live session, two 30-minute prayer sessions, plus time to complete that week's deliverables — tasks that can take several hours.</div></details>
+
+      <details class="faq-item"><summary>Where do I submit my weekly deliverables?</summary><div class="faq-ans">Deliverables are submitted via a Google Form linked in the respective Bye-Laws page. Submissions must be in before Friday at 5:59 PM WAT for LBI Fellows — before Office Hours start, irrespective of the time slot booked.<br><br>SOT deliverables are due every Thursday evening.</div></details>
+
+      <details class="faq-item"><summary>What is a deliverable, and is it graded?</summary><div class="faq-ans">Deliverables are tangible weekly outputs — a pitch recording, landing page URL, written statement, or worksheet. There is no formal grade but feedback can be given, and late or no submissions can lead to strikes. Think of them as proof of work.</div></details>
+
+      <details class="faq-item"><summary>Do I have to read the full books on the reading list?</summary><div class="faq-ans">No. The curriculum assigns specific chapters only (e.g. chapters 1–3) and encourages using AI tools (Google's Notebook LM) to summarise. Read what's listed and apply it to your startup context.</div></details>
+    </div>
+
+    <div class="faq-cat">Attendance & Discipline</div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>What if I have an emergency and can not attend a session?</summary><div class="faq-ans">Send an email to <a href="mailto:theteam@heaveventures.com" class="bylaws-link">theteam@heaveventures.com</a> or reach out to your WhatsApp group admin before the relevant session to be excused.</div></details>
+
+      <details class="faq-item"><summary>What's the difference between a strike and an absence?</summary><div class="faq-ans">An absence is a missed session and can trigger immediate removal. A strike is issued for conduct issues (disrespect, unprofessional behaviour, or no/late submissions).<br><br>LBI: 1st strike = warning, 2nd = dismissal. SOT: 1st = warning, 2nd = dismissal.</div></details>
+
+      <details class="faq-item"><summary>Can I catch up using session recordings?</summary><div class="faq-ans">Given the strict absence policy, treat every session as irreplaceable. Nonetheless, recordings may be made available subsequently.</div></details>
+
+      <details class="faq-item"><summary>How do I know if my attendance was recorded?</summary><div class="faq-ans">Each track has a live attendance sheet linked in its Bye-Laws page. For LBI, view it <a href="https://docs.google.com/spreadsheets/d/1_xAE2AxHcIX09gJH-efJeY10MzeYmIFE_FfxzKg3qcc/edit?usp=sharing" target="_blank" rel="noopener" class="bylaws-link">here</a>.</div></details>
+    </div>
+
+    <div class="faq-cat">Faith & Community</div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>Do I need to belong to a specific denomination?</summary><div class="faq-ans">No. STARK is Christ-centred and integrates prayer and scripture throughout, but has a focus on individuals within the Word of Righteousness communities.</div></details>
+
+      <details class="faq-item"><summary>What is the WhatsApp community for?</summary><div class="faq-ans">It is the main space for cohort interaction between sessions — peer feedback, announcements, and support. If you haven't received an invite, contact the Stark team.</div></details>
+
+      <details class="faq-item"><summary>Is mentorship available?</summary><div class="faq-ans">Yes. Mentorship is a programme benefit for LBI Fellows, primarily accessed through office hours on Fridays and Saturdays. Bring specific questions or deliverable challenges.</div></details>
     </div>
   </section>
 
@@ -705,8 +1042,9 @@
       <a href="#overview">Roadmap</a>
       <a href="#curriculum">Curriculum</a>
       <a href="#principles">Principles</a>
-      <a href="#bye-laws">Bye-Laws</a>
+      <a href="#bye-laws">Handbook</a>
       <a href="#prayer">Prayer</a>
+      <a href="#legal">Legal</a>
       <a href="#faq">FAQ</a>
       <a href="https://calendar.app.google/GnsdPBRKd3SAZkqn6" target="_blank">Office Hours</a>
     </div>
@@ -796,7 +1134,7 @@ const LBI_WEEKS = [
     tagline:'The Problem Is the Point',
     milestone:'Problem locked + Digital footprint live',
     scripture:'Before I formed you in the womb I knew you, before you were born I set you apart. — Jeremiah 1:5',
-    event:{ title:'From Burden to Business — Why Your Pain Is Someone Else\'s Prayer', when:'Monday May 18th, 6:00–8:30PM WAT', guest:'Abiodun Lawal, Startup Coach & CEO, Heave Ventures' },
+    event:{ title:'From Burden to Business — Why Your Pain Is Someone Else\'s Prayer', when:'Monday May 18th, 6:00–8:30PM WAT', guest:'Pastor Abiodun Lawal' },
     outcome:'Identify a real, painful, recurring problem — rooted in your own lived experience — and begin to frame it as a startup opportunity with a specific customer in mind. Secure your digital territory before anyone else does.',
     sprint:'Identify 1–2 problems you are uniquely positioned to solve — grounded in your lived experience, connected to a real customer — with your digital footprint live by Friday.',
     acts:['Choose Your Industry (Education, Agriculture, Finance, Health, Mobility, Faith Tech, Fashion, Logistics, Housing)','Life Mapping: Burden → Story → Pattern — Use the Life Map Canvas to trace your personal journey','Problem Discovery: The Purpose-to-Problem Worksheet — who is suffering, why is this bigger than it looks, what currently exists, why are YOU the right person','Idea Emergence Journal — brainstorm 3–5 solutions using the Idea Card Template (Problem, Target user, Your unique insight, Potential solution)','Claim Your Digital Footprint — domain (Namecheap), landing page (Carrd/Notion), business email (Zoho Mail)','Loom Video Journal — "Why this problem? Why now? Why me?" (Max 1 minute, unscripted)','Agile Board Setup on Trello using the Lean Customer Discovery template','First Customer Discovery Conversations — 5–10 real people using The Mom Test framework'],
@@ -811,7 +1149,7 @@ const LBI_WEEKS = [
     tagline:'Don\'t Build the Bridge Before You Test the River',
     milestone:'20 signals + 5 real conversations',
     scripture:'Plans fail for lack of counsel, but with many advisers they succeed. — Proverbs 15:22',
-    event:{ title:'Show Me the Signal — The Art of Validating Without Building', when:'Monday May 25th, 6:00–8:30PM WAT', guest:'Abiodun Lawal, Startup Coach' },
+    event:{ title:'Show Me the Signal — The Art of Validating Without Building', when:'Monday May 25th, 6:00–8:30PM WAT', guest:'Pastor Abiodun Lawal' },
     outcome:'Test your problem hypothesis with real people using zero-code experiments. Gather 20 real signals of interest. Avoid the build trap at all costs.',
     sprint:'Gather at least 20 documented signals of real market interest and have at least 5 in-depth conversations without writing a single line of code.',
     acts:['Design 2–3 no-code validation experiments: landing page with email capture, WhatsApp Broadcast, Instagram poll, pre-order page (Paystack), or prototype video','Run the Experiments — track every signal using the Validation Scorecard (DM, signup, pre-order, call, referral)','The 5 Deep-Dive Conversations — 15–20 minutes each using The Mom Test (ask about their life, not your idea)','AI-Powered Research Sprint — use ChatGPT/Claude/Gemini to research market size, generate interview questions, summarise notes','Pivot Readiness Check — does the evidence support your hypothesis or suggest a different customer/problem/solution?','Update Trello board & landing page with language your customers actually used'],
@@ -826,7 +1164,7 @@ const LBI_WEEKS = [
     tagline:'Design the Machine Before You Build the Factory',
     milestone:'BMC complete + First pricing conversation',
     scripture:'Suppose one of you wants to build a tower. Won\'t you first sit down and estimate the cost to see if you have enough money to complete it? — Luke 14:28',
-    event:{ title:'How Does Your Business Actually Make Money?', when:'Monday June 1st, 6:00–8:30PM WAT', guest:'Abiodun Lawal, Startup Coach' },
+    event:{ title:'How Does Your Business Actually Make Money?', when:'Monday June 1st, 6:00–8:30PM WAT', guest:'Pastor Ademola Akogun' },
     outcome:'Design a lean, testable business model — how you create value, deliver it, and get paid for it. Price your offer. Know your customer\'s journey from stranger to paying client.',
     sprint:'Complete your Business Model Canvas, run a pricing experiment with at least 3 real people, and document the results.',
     acts:['Build Your Business Model Canvas (all 9 blocks: Segments, Value Proposition, Channels, Relationships, Revenue, Resources, Activities, Partners, Cost Structure)','Choose Your Revenue Model: one-time payment, subscription/retainer, commission/marketplace, or freemium','The Pricing Experiment — 3 explicit money conversations with a real price (document reactions, hesitations, and what would remove them)','Customer Journey Map — stranger → aware → interested → trying → paying → returning → referring','Lean Offer Design — "I help [WHO] achieve [OUTCOME] in [TIMEFRAME] using [METHOD] for [PRICE]"','AI-Powered Business Modelling — use Claude/ChatGPT to critique your BMC and build a 3-month P&L projection'],
@@ -841,7 +1179,7 @@ const LBI_WEEKS = [
     tagline:'God Gave You a Mind. AI Multiplies It. Use Both.',
     milestone:'AI workflow live + First transaction',
     scripture:'Do you see someone skilled in their work? They will serve before kings. — Proverbs 22:29',
-    event:{ title:'AI is Your Intern. Your Agent. Your Unfair Advantage.', when:'Monday June 8th, 6:00–8:30PM WAT', guest:'Abiodun Lawal + AI/Tech Practitioner (TBC)' },
+    event:{ title:'AI is Your Intern. Your Agent. Your Unfair Advantage.', when:'Monday June 8th, 6:00–8:30PM WAT', guest:'Bro Ayo Awe' },
     outcome:'Build and deploy at least one AI-powered workflow that does real work in your business. Iterate your product based on customer feedback. Close your first real transaction.',
     sprint:'Build one live AI-powered workflow that saves 3+ hours/week. Make your first sale to any real non-family customer.',
     acts:['Build Your AI Stack — activate 3+ tools across: Writing (ChatGPT/Claude/Gemini), Design (Canva AI), Video (Descript/Kling), Research (Perplexity), Automation (Make.com/Zapier), Customer Service (ManyChat)','Build One Agentic Workflow end-to-end using Make.com or Zapier (e.g. new lead → personalised WhatsApp → CRM → follow-up reminder)','The Iteration Sprint — identify top 3 things to change, make changes within 48 hours, test with 5 people','First Transaction Challenge — one person pays you any real amount via Paystack or Flutterwave. Follow up 3 times before giving up.','AI-Powered Content Sprint — 3 pieces of content + 1 broadcast + 1 AI-drafted 3-message follow-up sequence','SOT Co-Founder Assessment (if applicable) — complete Compatibility Worksheet before June 8 Merging Ceremony'],
@@ -856,7 +1194,7 @@ const LBI_WEEKS = [
     tagline:'Run It Right Before You Run It Fast',
     milestone:'Business registered + 3 paying customers',
     scripture:'If the ax is dull and its edge unsharpened, more strength is needed, but skill will bring success. — Ecclesiastes 10:10',
-    event:{ title:'The Business Behind the Business — Operations, Legal & Lean Team Design', when:'Monday June 15th, 6:00–8:30PM WAT', guest:'Abiodun Lawal + Legal / Business Registration Expert (TBC)' },
+    event:{ title:'The Business Behind the Business — Operations, Legal & Lean Team Design', when:'Monday June 15th, 6:00–8:30PM WAT', guest:'Pastor Abiodun Lawal & Sis. Tobi Asechemie' },
     outcome:'Register your business. Build your first operating systems. Get the legal protection you need. Define the smallest team structure that can deliver your product consistently.',
     sprint:'Business registration initiated. 3 SOPs written. 3 paying customers documented.',
     acts:['Business Registration — choose Business Name (sole prop) or LLC via CAC at cac.gov.ng. Estimated: ₦10,000–₦50,000','Legal Documents — AI-generate Client Service Agreement, NDA, and Privacy Policy (NDPR compliance). AI drafts; lawyer reviews.','Build Your First 3 SOPs — (Process Name | Trigger | Steps | Owner | Time | Success Criteria) for your 3 most repeated processes','Lean Team Design — draw current structure, identify next 2 roles (Employee/Contractor/AI/Volunteer) and why','Push to 3 Paying Customers — follow-up campaign to every lead from Weeks 2–4 who showed interest but hasn\'t paid'],
@@ -871,7 +1209,7 @@ const LBI_WEEKS = [
     tagline:'The Story You Tell Determines the Customers You Keep',
     milestone:'Repeatable sales process + 5 paying customers',
     scripture:'A good name is more desirable than great riches; to be esteemed is better than silver or gold. — Proverbs 22:1',
-    event:{ title:'The Revenue Engine — Sales, Content & Financial Foundations', when:'Monday June 22nd, 6:00–8:30PM WAT', guest:'Abiodun Lawal + Sales / Marketing Practitioner (TBC)' },
+    event:{ title:'The Revenue Engine — Sales, Content & Financial Foundations', when:'Monday June 22nd, 6:00–8:30PM WAT', guest:'Sis. Olabisi Shusi; Pastor Arab Gazi / Bro. Jeffrey Itepu' },
     outcome:'Build a repeatable, documented sales process. Launch your content marketing engine using AI. Know your numbers. Define and begin building your MVP.',
     sprint:'Sales script written and used. 3 content pieces live. P&L drafted. MVP defined. Push to 5 total paying customers.',
     acts:['Build Your 3-Step Sales Framework — Open (lead with pain), Qualify (confirm problem + budget), Close (specific ask with price)','Map your Sales Pipeline in Trello/Notion: Lead → Contacted → Conversation → Proposal → Paid → Retained','AI-Powered Content Engine — Pain + Story + Solution + CTA formula, publish 3 pieces this week','Build Your Financial Model — know Monthly Revenue, Fixed Costs, Variable Costs, Gross Margin, Break-Even Point','Define Your MVP — "My MVP is [simplest version] that delivers [core value] to [specific customer] without [features to add later]"','Push to 5 Paying Customers — use your script, follow up on all Week 5 open conversations, try one new acquisition channel'],
@@ -886,7 +1224,7 @@ const LBI_WEEKS = [
     tagline:'Ship the Thing. Then Make It Better.',
     milestone:'MVP live + 10 active users',
     scripture:'Whatever your hand finds to do, do it with all your might. — Ecclesiastes 9:10',
-    event:{ title:'Ship It — The Art of Launching Fast, Learning Faster', when:'Monday June 29th, 6:00–8:30PM WAT', guest:'Abiodun Lawal + Product Builder / Founder (TBC)' },
+    event:{ title:'Ship It — The Art of Launching Fast, Learning Faster', when:'Monday June 29th, 6:00–8:30PM WAT', guest:'Pastor Ope Odu' },
     outcome:'Build and publicly launch your MVP. Get your first 10 active users interacting with a real product. Make your first post-launch iteration within 48 hours.',
     sprint:'MVP is publicly live. 10 active users have used or experienced it. 5 pieces of structured post-launch feedback collected.',
     acts:['Final MVP Preparation — pre-launch checklist: core promise works, payment flow end-to-end, landing page accurate, onboarding ready, feedback mechanism in place','Public Launch — announce across Instagram, LinkedIn, WhatsApp Broadcast, and email list. Send personal messages to top 20 qualified leads.','Onboard Your First 10 Active Users — personal touch for each (WhatsApp message, Loom video, or quick call)','Structured Feedback Collection from 5+ users: "What was the first thing you did?", "What confused you?", "What would make you tell a friend?"','48-Hour Post-Launch Iteration — identify the single most important fix, make it, communicate the update to users','Pivot Check-In — does the evidence from real users confirm your business model or challenge it?'],
@@ -901,7 +1239,7 @@ const LBI_WEEKS = [
     tagline:'Polish the Work. Tell the Story. Stand and Deliver.',
     milestone:'Pitch deck complete + 25 active users',
     scripture:'The preparations of the heart belong to man, but the answer of the tongue is from the Lord. — Proverbs 16:1',
-    event:{ title:'The Final Push — Pitch Prep, Traction Sprint & Demo Day Briefing', when:'Monday July 6th, 6:00–8:30PM WAT', guest:'Abiodun Lawal + Investor / Pitch Coach (TBC)' },
+    event:{ title:'The Final Push — Pitch Prep, Traction Sprint & Demo Day Briefing', when:'Monday July 6th, 6:00–8:30PM WAT', guest:'Pastor Abiodun Lawal' },
     outcome:'Push to 25 active users. Prepare and rehearse your Demo Day pitch. Build the deck, practise the demo, write the reflection.',
     sprint:'25 active users. Pitch deck submitted. Full rehearsal completed. Founder reflection written.',
     acts:['Final Traction Sprint — referral campaign (ask 10 users to refer one person), founding member offer, reactivate every qualified lead from Weeks 2–7','Build Your Demo Day Pitch Deck (8 slides): Hook · Burden · Solution · Traction · Business Model · Market · Team · Ask','Prepare Your 2-Minute Product Demo — pain → product solving it live → result. Test on multiple devices.','Full Pitch Rehearsal — 7 minutes total (5-min pitch + 2-min demo). Record it. Get peer feedback on Clarity, Confidence, Traction Story, and The Ask.','Founder Reflection Journal — 1 page: what problem did you identify, hardest moment, what your faith taught you, what would you tell a Week 1 founder','Final Validation Conversation with someone new: "Would you pay? Would you refer? What would make you a lifelong customer?"'],
@@ -916,7 +1254,7 @@ const LBI_WEEKS = [
     tagline:'Show the World What God Built Through You.',
     milestone:'Live product presented to investors & community',
     scripture:'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters. — Colossians 3:23',
-    event:{ title:'STARK Y\'26 Demo Day — Show the World What You Built', when:'Sunday July 13th, Time TBC — In-Person / Zoom', guest:'LBI Founders · Heave Ventures · Invited Investors · Angels · Mentors · STARK Community' },
+    event:{ title:'STARK Y\'26 Demo Day — Show the World What You Built', when:'Sunday July 13th, Time TBC — In-Person / Zoom', guest:'Team 101 Pastors' },
     outcome:'Present your live product, real traction, and 8-week journey to an audience of investors, mentors, and community. Graduate as a STARK Y\'26 founder.',
     sprint:'Each founder presents for 7 minutes total: 5-min pitch (8 slides) + 2-min live product demo + 5-min Q&A with panel.',
     acts:['Demo Day Format: 5-minute pitch (Slides 1–8) + 2-minute live product demo + 5-minute Q&A with panel','Arrive / log in 30 minutes early','Pre-check: Pitch deck submitted, live product accessible, backup demo ready, full rehearsal done, 25 active users documented','Know your 5 key numbers cold: Revenue, Costs, Margin, Break-Even, Users','Graduates receive: Certificate of Completion · LBI Graduate Profile in Heave Ventures Alumni Directory · Access to STARK Alumni Network'],
@@ -930,12 +1268,12 @@ const LBI_WEEKS = [
 // ─── SOT Data ──────────────────────────────────────────────────────────────────
 const SOT_WEEKS = [
   {
-    n:1, unlock:'2026-05-16', demo:false,
+    n:1, unlock:'2026-05-18', demo:false,
     theme:'The Spirit of the Second Man',
     tagline:'What Does It Mean to Be a Timothy?',
     milestone:'Calling assessment submitted + Reflection journal live',
     scripture:'As iron sharpens iron, so one person sharpens another. — Proverbs 27:17',
-    event:{ title:'How to Be a Co-Founder in a Godly Business', when:'Friday May 16th, 6:00–8:30PM WAT', guest:'Ayomide Awe, Co-Founder, Termii' },
+    event:{ title:'The Spirit of the Second Man – Understanding the Co-Founder Calling', when:'Friday May 23rd, 6:00–8:30PM WAT', guest:'Bro. Ayomide Awe' },
     outcome:'Understand the second-man archetype — biblically, historically, and in the startup world. Examine whether co-founding is truly your calling.',
     sprint:'Complete the SOT Calling Assessment, write your first reflection journal entry, and submit your Week 1 quiz.',
     acts:['The Second Man Bible Study — study 5 co-founder pairs: Moses & Aaron, Moses & Joshua, Elijah & Elisha, Paul & Barnabas, Paul & Timothy (What did the second man contribute? Cost? Reward?)','Historical & Startup Second Men — research Sheryl Sandberg (Facebook COO), Charlie Munger (Berkshire), Jonathan Ive (Apple), or Susan Wojcicki (Google). Write 3 sentences on what made them irreplaceable.','SOT Calling Assessment — complete the structured self-assessment and the Founder vs. Co-Founder Spectrum Tool','Review the LBI Startup Directory (read-only access) — which problems stir something in you? Do NOT reach out to founders yet.','Reflection Journal Entry 1 (200+ words) — "What would it look like for me to be a strong Number 2? What kind of founder would I need alongside me?"'],
@@ -950,7 +1288,7 @@ const SOT_WEEKS = [
     tagline:'Operating in the Shadows with Excellence',
     milestone:'Skills inventory complete + Top 3 startup matches identified',
     scripture:'Whatever you do, work at it with all your heart, as working for the Lord. — Colossians 3:23',
-    event:{ title:'The Indispensable Second — Skills, Execution & Excellence Without Ego', when:'Friday May 23rd, 6:00–8:30PM WAT', guest:'Heave Ventures Team / COO Practitioner (TBC)' },
+    event:{ title:'The Skill of Support – Operating in the Shadows with Excellence', when:'Friday May 30th, 6:00–8:30PM WAT', guest:'Pastor Sam Auta' },
     outcome:'Conduct an honest skills inventory. Learn the disciplines that separate great co-founders from glorified assistants. Begin identifying which LBI startups your skills are best positioned to accelerate.',
     sprint:'Complete the 6-Domain Skills Inventory, write your Personal Support Philosophy, and produce your Top 3 Startup Match List with clear strategic reasoning.',
     acts:['The 6-Domain Co-Founder Skills Inventory — rate yourself 1–5 on: Technology, Sales & Biz Dev, Operations, Finance, Marketing & Brand, People & Culture. Write your one-line positioning statement.','Audit Your Evidence — for your top 2 domains, one concrete SAR example each (Situation, Action, Result). Evidence, not assertion.','Ego Audit — read Nehemiah 1–2. Answer: Have I felt resentment while supporting someone else\'s vision? Can I submit to a founder\'s final decision even when I believe I\'m right?','Write Your Personal Support Philosophy (3 sentences): what you believe about the second-chair role, how you commit to support through difficulty, what you need from a founder','Startup-Skill Matching — mark each LBI startup Strong Fit / Possible Fit / Not a Fit based on whether your skills move their most important needle. Identify Top 3.','AI as a Co-Founder Tool — use ChatGPT/Claude to research Top 3 match industries and generate 5 questions for your first founder conversation'],
@@ -965,7 +1303,7 @@ const SOT_WEEKS = [
     tagline:'Crafting Your Founder\'s Manifesto',
     milestone:'Co-Founder Profile live + Manifesto written',
     scripture:'Let your light shine before others, that they may see your good deeds. — Matthew 5:16',
-    event:{ title:'The Profile That Opens Doors — Co-Founder Manifesto Workshop', when:'Friday May 30th, 6:00–8:30PM WAT', guest:'Lawal Abiodun (CEO, Heave Ventures) + SOT Programme Lead' },
+    event:{ title:'The Power of Profile – Crafting Your Founder\'s Manifesto', when:'Friday June 6th, 6:00–8:30PM WAT', guest:'Bro Akinbisola Dolapo' },
     outcome:'Build your Co-Founder Profile. Write your personal manifesto. Begin intentional, direct conversations with your top LBI founder matches.',
     sprint:'Co-Founder Profile published. Manifesto written. First direct conversations with top 2 LBI matches documented.',
     acts:['Build Your Co-Founder Profile (1 page) — Who I Am, What I Bring (3 skills + evidence), Availability, What I\'m Looking For (stage, industry, founder personality, 2 non-negotiables), References','Write Your Co-Founder Manifesto — 5 "I believe..." statements that tell the right founder who you really are before they meet you','Digital Presence Setup — update LinkedIn headline and bio (AI-draft, then personalise), update Instagram/X bio, create personal Notion page with public profile link','First Intentional Founder Conversations — personal message to Top 2 LBI founders (not broadcast). Reference something specific. Ask 2 genuine questions. Listen more than you speak.','Founder Assessment Journal — observe communication style, vision clarity, and compatibility gut-check'],
@@ -980,7 +1318,7 @@ const SOT_WEEKS = [
     tagline:'Making the Decision',
     milestone:'Due diligence complete + SOT Closing Declaration made',
     scripture:'Suppose one of you wants to build a tower. Won\'t you first sit down and estimate the cost? — Luke 14:28',
-    event:{ title:'Count the Cost — Decision Framework + SOT Closing Ceremony', when:'Friday June 6th, 6:00–8:30PM WAT', guest:'Lawal Abiodun (CEO, Heave Ventures) + SOT Programme Lead' },
+    event:{ title:'Becoming the Co-Founder / Closing Ceremony', when:'Friday June 13th, 6:00–8:30PM WAT', guest:'Bro Abiodun Lawal' },
     outcome:'Apply a rigorous decision framework. Ask the hard questions. Count the real cost. Prepare your co-founder pitch. Make a public declaration.',
     sprint:'Co-Founder Due Diligence completed. Cost-counting reflection written. 2-min pitch recorded. Public declaration made at the SOT Closing Ceremony.',
     acts:['Co-Founder Due Diligence — assess top 1–2 founders on 6 dimensions: Character, Vision Clarity, Resilience, Coachability, Commitment, Compatibility (1–5 each). Write 1-paragraph honest summary per candidate.','Counting the Cost — answer 6 questions in writing: What am I giving up? Do I believe in the founder or just the idea? Am I at peace with the equity? What are my deal-breakers?','The 2-Minute Co-Founder Pitch — Who you are (15s), What you bring for this specific vision (45s), Why you chose this founder specifically (30s), What you\'re committing to (30s). Record and review.','The SOT Closing Ceremony — public declaration: "I am ready to merge" OR "I am pursuing the solo path". Both are honourable. Bind yourself to nothing you have not fully decided.'],
@@ -995,7 +1333,7 @@ const SOT_WEEKS = [
     tagline:'Introductions, Agreements & Ceremony',
     milestone:'Agreement signed OR Solo Path declared',
     scripture:'Two are better than one, because they have a good return for their labour. — Ecclesiastes 4:9–10',
-    event:{ title:'The Merging Ceremony — STARK Y\'26 Co-Founder Matching Day', when:'June 8th (Time TBC) — Joint LBI + SOT session', guest:'Lawal Abiodun · SOT Programme Lead · LBI Founders · Invited mentors & community witnesses' },
+    event:{ title:'Co-Founder Merging Week — No Live Session', when:'June 19th, 2026', guest:'No Live Session this week — Merging happens informally between matched pairs.' },
     outcome:'Formally introduce yourself to the LBI cohort. Complete and sign your Co-Founder Agreement. Participate in the Merging Ceremony.',
     sprint:'Matched and signed — or Solo Path declared with a clear plan. No ambiguity. No deferral.',
     acts:['Final Profile Review — verify all skill claims backed by evidence, confirm availability is accurate, ensure manifesto still reflects who you are after 4 weeks of growth','Co-Founder Speed Introductions (2 min max) — 30s bio, 45s top 2 skills + example, 30s what you\'re looking for, 15s non-negotiable','Structured 1-on-1 Conversations (20 min each) with top 2 LBI founders using the Co-Founder Interview Guide: equity, roles, time commitment, working style, values','Co-Founder Agreement Review — equity split, vesting schedule (4yr/1yr cliff), role titles, IP ownership, exit conditions. Do not sign anything you don\'t fully understand.','The Merging Ceremony — founder states "I receive [Name] as my co-founder because..." · co-founder responds "I commit to this founder\'s mission because..."','Solo Path Declaration (if applicable) — what did you learn, what is your next step? Final Reflection Journal Entry 5 (300+ words)'],
@@ -1076,6 +1414,7 @@ function setTrack(t) {
   }
   renderAll();
   renderTOC();
+  updateTrackSections(t);
 }
 
 // ─── Render All ────────────────────────────────────────────────────────────────
@@ -1334,9 +1673,20 @@ function closeSidebar() {
   document.getElementById('mob-toggle').classList.remove('open');
 }
 
+// ─── Track-specific sections ──────────────────────────────────────────────────
+function updateTrackSections(t) {
+  document.getElementById('bylaws-lbi').style.display = t === 'lbi' ? 'block' : 'none';
+  document.getElementById('bylaws-sot').style.display = t === 'sot' ? 'block' : 'none';
+  const legal = document.getElementById('legal');
+  if (legal) legal.style.display = t === 'lbi' ? 'block' : 'none';
+  const legalLink = document.getElementById('sb-legal-link');
+  if (legalLink) legalLink.style.display = t === 'lbi' ? 'flex' : 'none';
+}
+
 // ─── Init ─────────────────────────────────────────────────────────────────────
 renderAll();
 renderTOC();
+updateTrackSections('lbi');
 setTimeout(observeChapters, 100);
 </script>
 </body>
