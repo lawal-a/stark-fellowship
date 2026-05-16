@@ -471,6 +471,17 @@
     .del-table td:first-child { color:var(--text); font-weight:400; }
     .del-table tr:last-child td { border-bottom:none; }
 
+    /* Drive note */
+    .drive-note {
+      display:flex; align-items:flex-start; gap:8px;
+      font-size:.74rem; font-weight:300; color:var(--text-2); line-height:1.6;
+      padding:10px 14px; border-radius:var(--r);
+      background:rgba(66,133,244,0.07); border:1px solid rgba(66,133,244,0.18);
+      margin-bottom:12px;
+    }
+    .drive-note svg { color:rgba(66,133,244,0.8); flex-shrink:0; margin-top:2px; }
+    .drive-note strong { color:var(--text); font-weight:500; }
+
     /* Actions */
     .wk-actions {
       display:flex; gap:8px; flex-wrap:wrap;
@@ -785,9 +796,16 @@
 
         <div class="bylaws-rule-title">✅ Deadlines</div>
         <ul class="bylaws-list">
-          <li>Assignments and sprint deliverables must be submitted before Office Hours on Friday.</li>
+          <li>Assignments and sprint deliverables must be submitted <strong>by Friday morning</strong>, before your one-on-one session with Abiodun Lawal that same week.</li>
           <li>Late submissions reduce access to funding and exposure opportunities.</li>
           <li>Submit through this <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiPxf-m1mx6FBHxySbfGQpijwnMjkAZpwyc5qedI12yJaT0Q/viewform?usp=sharing" target="_blank" rel="noopener" class="bylaws-link">link</a>.</li>
+        </ul>
+
+        <div class="bylaws-rule-title">✅ Google Drive Artefacts</div>
+        <ul class="bylaws-list">
+          <li>Create a dedicated <strong>Google Drive folder for each week</strong> of the programme. Every worksheet, canvas, recording, screenshot, and document you produce that week goes into that folder.</li>
+          <li>Name your folders clearly: <em>LBI W1 – [Your Name]</em>, <em>LBI W2 – [Your Name]</em>, etc.</li>
+          <li>Share the relevant week's folder link when submitting your weekly deliverables form.</li>
         </ul>
 
         <div class="bylaws-rule-title">✅ Professional Conduct</div>
@@ -813,8 +831,8 @@
             <tr><td>Monday</td><td>6:00 PM – 8:00 PM</td><td>Live Session</td></tr>
             <tr><td>Tuesday</td><td>11:30 AM – 12:00 PM</td><td>Prayer + Business Insight</td></tr>
             <tr><td>Thursday</td><td>7:00 AM – 7:30 AM</td><td>Prayer + Business Insight</td></tr>
-            <tr><td>Friday</td><td>By 5:59 PM</td><td>Submit Deliverables</td></tr>
-            <tr><td>Friday / Saturday</td><td>Flexible</td><td>Office Hours</td></tr>
+            <tr><td>Friday</td><td>Morning (before 1-on-1)</td><td>Submit Deliverables</td></tr>
+            <tr><td>Friday / Saturday</td><td>Flexible</td><td>One-on-One with Abiodun + Office Hours</td></tr>
           </tbody>
         </table>
       </div>
@@ -860,8 +878,15 @@
 
         <div class="bylaws-rule-title">✅ Deadlines</div>
         <ul class="bylaws-list">
-          <li>Assignments and weekly deliverables must be submitted every Thursday evening.</li>
+          <li>Your live session is Wednesday evening. Assignments are due <strong>by the following Tuesday evening</strong> — giving you the full week after your session to complete them.</li>
           <li>Submit weekly tasks using this <a href="https://forms.gle/NLdENLAukBz8Sb5U9" target="_blank" rel="noopener" class="bylaws-link">form</a>.</li>
+        </ul>
+
+        <div class="bylaws-rule-title">✅ Google Drive Artefacts</div>
+        <ul class="bylaws-list">
+          <li>Create a dedicated <strong>Google Drive folder for each week</strong> of the programme. Every worksheet, journal entry, recording, and document you produce that week goes into that folder.</li>
+          <li>Name your folders clearly: <em>SOT W1 – [Your Name]</em>, <em>SOT W2 – [Your Name]</em>, etc.</li>
+          <li>Share the relevant week's folder link when submitting your weekly deliverables form.</li>
         </ul>
 
         <div class="bylaws-rule-title">✅ Professional Conduct</div>
@@ -885,8 +910,10 @@
           <thead><tr><th>Day</th><th>Time</th><th>Activity</th></tr></thead>
           <tbody>
             <tr><td>Tuesday</td><td>11:30 AM – 12:00 PM</td><td>Prayer + Business Insight</td></tr>
-            <tr><td>Thursday</td><td>7:00 AM – 7:30 AM</td><td>Prayer + Business Insight + Submit Deliverables</td></tr>
-            <tr><td>Friday</td><td>6:00 PM – 8:00 PM</td><td>Live Session</td></tr>
+            <tr><td>Tuesday</td><td>11:30 AM – 12:00 PM</td><td>Prayer + Business Insight</td></tr>
+            <tr><td>Tuesday</td><td>By end of day</td><td>Submit previous week's deliverables</td></tr>
+            <tr><td>Wednesday</td><td>6:00 PM – 8:00 PM</td><td>Live Session (new week begins)</td></tr>
+            <tr><td>Thursday</td><td>7:00 AM – 7:30 AM</td><td>Prayer + Business Insight</td></tr>
           </tbody>
         </table>
       </div>
@@ -983,7 +1010,7 @@
     <div class="faq-list">
       <details class="faq-item"><summary>How do I know which programme is right for me?</summary><div class="faq-ans">The simplest test: do you have an idea or burden you feel compelled to build into a business? That's LBI. Do you feel more energised by coming alongside someone else's vision — executing, organising, and making things run, rather than leading the charge yourself? That's SOT.<br><br>Neither track is lesser than the other. SOT is not a fallback for people who could not get into LBI. If you are still unsure, email the team at <a href="mailto:theteam@heaveventures.com" class="bylaws-link">theteam@heaveventures.com</a> before committing.</div></details>
 
-      <details class="faq-item"><summary>Do LBI and SOT run at the same time? Will I attend all the same sessions?</summary><div class="faq-ans">Both programmes run during the same overall period (May 18 – July 17) but the SOT programme ends June 19 except for SOT Fellows merged with a LBI business.<br><br>LBI live sessions are Mondays, 6–8 PM WAT. SOT live sessions are Fridays, 6–8 PM WAT. Both tracks share prayer sessions on Tuesdays (11:30 AM) and Thursdays (7 AM).</div></details>
+      <details class="faq-item"><summary>Do LBI and SOT run at the same time? Will I attend all the same sessions?</summary><div class="faq-ans">Both programmes run during the same overall period (May 18 – July 17) but the SOT programme ends June 19 except for SOT Fellows merged with a LBI business.<br><br>LBI live sessions are <strong>Mondays, 6–8 PM WAT</strong>. SOT live sessions are <strong>Wednesdays, 6–8 PM WAT</strong>. Both tracks share prayer sessions on Tuesdays (11:30 AM) and Thursdays (7 AM).</div></details>
 
       <details class="faq-item"><summary>I signed up but I have not received any onboarding information. What should I do?</summary><div class="faq-ans">Reach out to us via email at <a href="mailto:theteam@heaveventures.com" class="bylaws-link">theteam@heaveventures.com</a>. Include your full name and which track you are enrolled in (LBI or SOT).</div></details>
     </div>
@@ -1003,7 +1030,7 @@
     <div class="faq-list">
       <details class="faq-item"><summary>How much time should I realistically set aside each week?</summary><div class="faq-ans">Treat STARK like a part-time commitment of roughly 8–12 hours per week, not a passive course you show up to. The workload increases as each week passes.<br><br>Each week involves at least one 2-hour live session, two 30-minute prayer sessions, plus time to complete that week's deliverables — tasks that can take several hours.</div></details>
 
-      <details class="faq-item"><summary>Where do I submit my weekly deliverables?</summary><div class="faq-ans">Deliverables are submitted via a Google Form linked in the respective Bye-Laws page. Submissions must be in before Friday at 5:59 PM WAT for LBI Fellows — before Office Hours start, irrespective of the time slot booked.<br><br>SOT deliverables are due every Thursday evening.</div></details>
+      <details class="faq-item"><summary>Where do I submit my weekly deliverables?</summary><div class="faq-ans">Deliverables are submitted via a Google Form linked in the Handbook section.<br><br><strong>LBI:</strong> Due by Friday morning before your one-on-one session with Abiodun Lawal. Upload all artefacts to your weekly Google Drive folder first, then include the folder link in your submission.<br><br><strong>SOT:</strong> Live sessions are Wednesday evenings. Deliverables are due by the following Tuesday evening. Upload artefacts to your weekly Google Drive folder and include the link in your submission form.</div></details>
 
       <details class="faq-item"><summary>What is a deliverable, and is it graded?</summary><div class="faq-ans">Deliverables are tangible weekly outputs — a pitch recording, landing page URL, written statement, or worksheet. There is no formal grade but feedback can be given, and late or no submissions can lead to strikes. Think of them as proof of work.</div></details>
 
@@ -1273,7 +1300,7 @@ const SOT_WEEKS = [
     tagline:'What Does It Mean to Be a Timothy?',
     milestone:'Calling assessment submitted + Reflection journal live',
     scripture:'As iron sharpens iron, so one person sharpens another. — Proverbs 27:17',
-    event:{ title:'The Spirit of the Second Man – Understanding the Co-Founder Calling', when:'Friday May 23rd, 6:00–8:30PM WAT', guest:'Bro. Ayomide Awe' },
+    event:{ title:'The Spirit of the Second Man – Understanding the Co-Founder Calling', when:'Wednesday May 20th, 6:00–8:30PM WAT', guest:'Bro. Ayomide Awe' },
     outcome:'Understand the second-man archetype — biblically, historically, and in the startup world. Examine whether co-founding is truly your calling.',
     sprint:'Complete the SOT Calling Assessment, write your first reflection journal entry, and submit your Week 1 quiz.',
     acts:['The Second Man Bible Study — study 5 co-founder pairs: Moses & Aaron, Moses & Joshua, Elijah & Elisha, Paul & Barnabas, Paul & Timothy (What did the second man contribute? Cost? Reward?)','Historical & Startup Second Men — research Sheryl Sandberg (Facebook COO), Charlie Munger (Berkshire), Jonathan Ive (Apple), or Susan Wojcicki (Google). Write 3 sentences on what made them irreplaceable.','SOT Calling Assessment — complete the structured self-assessment and the Founder vs. Co-Founder Spectrum Tool','Review the LBI Startup Directory (read-only access) — which problems stir something in you? Do NOT reach out to founders yet.','Reflection Journal Entry 1 (200+ words) — "What would it look like for me to be a strong Number 2? What kind of founder would I need alongside me?"'],
@@ -1288,7 +1315,7 @@ const SOT_WEEKS = [
     tagline:'Operating in the Shadows with Excellence',
     milestone:'Skills inventory complete + Top 3 startup matches identified',
     scripture:'Whatever you do, work at it with all your heart, as working for the Lord. — Colossians 3:23',
-    event:{ title:'The Skill of Support – Operating in the Shadows with Excellence', when:'Friday May 30th, 6:00–8:30PM WAT', guest:'Pastor Sam Auta' },
+    event:{ title:'The Skill of Support – Operating in the Shadows with Excellence', when:'Wednesday May 27th, 6:00–8:30PM WAT', guest:'Pastor Sam Auta' },
     outcome:'Conduct an honest skills inventory. Learn the disciplines that separate great co-founders from glorified assistants. Begin identifying which LBI startups your skills are best positioned to accelerate.',
     sprint:'Complete the 6-Domain Skills Inventory, write your Personal Support Philosophy, and produce your Top 3 Startup Match List with clear strategic reasoning.',
     acts:['The 6-Domain Co-Founder Skills Inventory — rate yourself 1–5 on: Technology, Sales & Biz Dev, Operations, Finance, Marketing & Brand, People & Culture. Write your one-line positioning statement.','Audit Your Evidence — for your top 2 domains, one concrete SAR example each (Situation, Action, Result). Evidence, not assertion.','Ego Audit — read Nehemiah 1–2. Answer: Have I felt resentment while supporting someone else\'s vision? Can I submit to a founder\'s final decision even when I believe I\'m right?','Write Your Personal Support Philosophy (3 sentences): what you believe about the second-chair role, how you commit to support through difficulty, what you need from a founder','Startup-Skill Matching — mark each LBI startup Strong Fit / Possible Fit / Not a Fit based on whether your skills move their most important needle. Identify Top 3.','AI as a Co-Founder Tool — use ChatGPT/Claude to research Top 3 match industries and generate 5 questions for your first founder conversation'],
@@ -1303,7 +1330,7 @@ const SOT_WEEKS = [
     tagline:'Crafting Your Founder\'s Manifesto',
     milestone:'Co-Founder Profile live + Manifesto written',
     scripture:'Let your light shine before others, that they may see your good deeds. — Matthew 5:16',
-    event:{ title:'The Power of Profile – Crafting Your Founder\'s Manifesto', when:'Friday June 6th, 6:00–8:30PM WAT', guest:'Bro Akinbisola Dolapo' },
+    event:{ title:'The Power of Profile – Crafting Your Founder\'s Manifesto', when:'Wednesday June 3rd, 6:00–8:30PM WAT', guest:'Bro Akinbisola Dolapo' },
     outcome:'Build your Co-Founder Profile. Write your personal manifesto. Begin intentional, direct conversations with your top LBI founder matches.',
     sprint:'Co-Founder Profile published. Manifesto written. First direct conversations with top 2 LBI matches documented.',
     acts:['Build Your Co-Founder Profile (1 page) — Who I Am, What I Bring (3 skills + evidence), Availability, What I\'m Looking For (stage, industry, founder personality, 2 non-negotiables), References','Write Your Co-Founder Manifesto — 5 "I believe..." statements that tell the right founder who you really are before they meet you','Digital Presence Setup — update LinkedIn headline and bio (AI-draft, then personalise), update Instagram/X bio, create personal Notion page with public profile link','First Intentional Founder Conversations — personal message to Top 2 LBI founders (not broadcast). Reference something specific. Ask 2 genuine questions. Listen more than you speak.','Founder Assessment Journal — observe communication style, vision clarity, and compatibility gut-check'],
@@ -1318,7 +1345,7 @@ const SOT_WEEKS = [
     tagline:'Making the Decision',
     milestone:'Due diligence complete + SOT Closing Declaration made',
     scripture:'Suppose one of you wants to build a tower. Won\'t you first sit down and estimate the cost? — Luke 14:28',
-    event:{ title:'Becoming the Co-Founder / Closing Ceremony', when:'Friday June 13th, 6:00–8:30PM WAT', guest:'Bro Abiodun Lawal' },
+    event:{ title:'Becoming the Co-Founder / Closing Ceremony', when:'Wednesday June 10th, 6:00–8:30PM WAT', guest:'Bro Abiodun Lawal' },
     outcome:'Apply a rigorous decision framework. Ask the hard questions. Count the real cost. Prepare your co-founder pitch. Make a public declaration.',
     sprint:'Co-Founder Due Diligence completed. Cost-counting reflection written. 2-min pitch recorded. Public declaration made at the SOT Closing Ceremony.',
     acts:['Co-Founder Due Diligence — assess top 1–2 founders on 6 dimensions: Character, Vision Clarity, Resilience, Coachability, Commitment, Compatibility (1–5 each). Write 1-paragraph honest summary per candidate.','Counting the Cost — answer 6 questions in writing: What am I giving up? Do I believe in the founder or just the idea? Am I at peace with the equity? What are my deal-breakers?','The 2-Minute Co-Founder Pitch — Who you are (15s), What you bring for this specific vision (45s), Why you chose this founder specifically (30s), What you\'re committing to (30s). Record and review.','The SOT Closing Ceremony — public declaration: "I am ready to merge" OR "I am pursuing the solo path". Both are honourable. Bind yourself to nothing you have not fully decided.'],
@@ -1408,7 +1435,7 @@ function setTrack(t) {
   } else {
     document.getElementById('heroTitle').innerHTML = 'School of<br>Timothy';
     document.getElementById('heroSubtitle').textContent = '5-Week Co-Founder Curriculum + Merging Ceremony';
-    document.getElementById('heroSession').textContent = '📅 Fridays, 6:00–8:30PM WAT';
+    document.getElementById('heroSession').textContent = '📅 Wednesdays, 6:00–8:30PM WAT';
     document.getElementById('heroDates').textContent = 'May 16 – June 8, 2026';
     document.getElementById('heroScripture').textContent = '"You then, my son, be strong in the grace that is in Christ Jesus. And the things you have heard me say... entrust to reliable people who will also be qualified to teach others." — 2 Timothy 2:1–2';
   }
@@ -1573,6 +1600,10 @@ function buildBody(w, sub) {
     </div>
 
     <div class="cc-full">
+      <div class="drive-note">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5L11 9.5H2L6.5 1.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M2 9.5h9l-4.5 2.5-4.5-2.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" opacity=".5"/></svg>
+        Upload all artefacts from this week to your Google Drive folder <strong>before submitting</strong> — include the folder link in your submission form.
+      </div>
       <div class="wk-actions">
         <a class="act-btn btn-orange" href="${subLink}" target="_blank" rel="noopener">${IC_DL} Submit Deliverables</a>
         <a class="act-btn btn-outline" href="${OH_LINK}" target="_blank" rel="noopener">${IC_CAL} Book Office Hours</a>
