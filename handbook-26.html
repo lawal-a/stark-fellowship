@@ -1322,7 +1322,7 @@ const SOT_WEEKS = [
     reading:[{t:'Execution — Bossidy & Charan (Ch. 1: The Discipline of Getting Things Done)',l:'http://ndl.ethernet.edu.et/bitstream/123456789/15042/1/Larry%20Bossidy.pdf'},{t:'Nehemiah, Chapters 1–6 (KJV)',l:'https://www.biblegateway.com/passage/?search=Nehemiah%201&version=KJV'}],
     watch:[{t:'Hiring a COO — a16z',l:'https://a16z.com/hiring-a-chief-operating-officer/'},{t:'Co-Founders: Roles, Responsibilities and Everything In Between',l:'https://www.youtube.com/watch?v=kv_lt4p7qqA'},{t:'How to Do Market Research Using AI',l:'https://youtu.be/wch27po2fs8?si=OJughvmAqhEzYniP'}],
     dels:[['6-Domain Skills Inventory (completed + scored)','Uploaded table or PDF'],['Evidence Audit (2 examples for top 2 domains)','Written in Notion or Google Docs'],['Personal Support Philosophy (3 sentences)','Submitted in Notion journal'],['Top 3 Startup Matches (with reasoning)','Written in submission form'],['Reflection Journal — Entry 2','Notion/Google Docs link submitted']],
-    due:'Thursday May 29th, 5:59PM', quiz:SOT_QUIZ, sub:SOT_SUB
+    due:'Tuesday June 2nd, 5:59PM', quiz:'https://forms.gle/CvdhwzNCDSAyWD9e9', quizLabel:'Startup Match Quiz', sub:SOT_SUB
   },
   {
     n:3, unlock:'2026-05-30', demo:false,
@@ -1553,7 +1553,7 @@ function buildBody(w, sub, trk) {
     : '';
 
   const dRows = w.dels.map((d,i) => `<tr><td>${i+1}. ${d[0]}</td><td>${d[1]}</td></tr>`).join('');
-  const quizBtn = w.quiz ? `<a class="act-btn btn-outline" href="${w.quiz}" target="_blank" rel="noopener">✅ Take Quiz</a>` : '';
+  const quizBtn = w.quiz ? `<a class="act-btn btn-outline" href="${w.quiz}" target="_blank" rel="noopener">✅ ${w.quizLabel || 'Take Quiz'}</a>` : '';
   const subLink = w.sub || sub;
 
   return `
