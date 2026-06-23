@@ -59,17 +59,28 @@ To make the subdomain work, two options:
    - Target: `starkfellowship.org/handbook-26`
 2. **Separate Pages project**: Deploy a new Cloudflare Pages project with just `handbook-26.html` as `index.html` and attach `handbook-26.starkfellowship.org` as its custom domain.
 
+## Programs Page Pattern
+`programs.html` is the **canonical active program URL** (`starkfellowship.org/programs`).
+It is linked from the homepage nav. When a program ends:
+1. Rename `programs.html` → `archive/name-year.html` (e.g. `archive/jos-26.html`)
+2. Drop the next program's content into a new `programs.html`
+
+`conference-26.html` is the archived source for the Jos '26 bootcamp page.
+
 ## Files
 ```
 /
 ├── index.html          ← Main landing page (starkfellowship.org)
+├── programs.html       ← Active program page (starkfellowship.org/programs) ← linked from nav
 ├── admin.html          ← Admin panel
 ├── handbook-26.html    ← Y'26 Participant Handbook
+├── conference-26.html  ← Archived Jos '26 bootcamp source
 ├── wrangler.toml       ← Cloudflare Pages + Workers config
 ├── CLAUDE.md           ← This file
 └── functions/
     ├── register.js     ← Waitlist registration API
     ├── volunteer.js    ← Volunteer signup API
+    ├── conference-register.js ← Conference registration API
     └── api/
         └── admin-data.js ← Admin data API
 ```
