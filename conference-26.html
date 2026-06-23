@@ -50,20 +50,24 @@
     }
     .hero-edition {
       font-size:.72rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
-      color:var(--ink-2); margin-bottom:36px;
+      color:var(--ink-2); margin-bottom:40px;
     }
     .hero-headline {
       font-family:'Barlow Condensed',sans-serif; font-weight:900;
-      text-transform:uppercase; line-height:.88;
+      text-transform:uppercase; line-height:.86; margin-bottom:36px;
     }
-    .hl-1 { display:block; font-size:clamp(3rem,8vw,8rem); color:var(--ink); }
-    .hl-2 { display:block; font-size:clamp(1.2rem,3.2vw,3.2rem); color:var(--ink-2); font-weight:700; letter-spacing:.02em; }
-    .hl-3 { display:block; font-size:clamp(2.5rem,6.5vw,6.5rem); color:var(--blue); }
-    .hl-4 { display:block; font-size:clamp(1rem,2.5vw,2.5rem); color:var(--gold); font-weight:800; margin-top:4px; }
+    .hl-1 { display:block; font-size:clamp(4rem,11vw,11rem); color:var(--ink); }
+    .hl-2 { display:block; font-size:clamp(1.6rem,4.5vw,4.5rem); color:var(--ink-2); font-weight:700; letter-spacing:.02em; }
+    .hl-3 { display:block; font-size:clamp(3.5rem,9.5vw,9.5rem); color:var(--blue); }
+    .hl-4 { display:block; font-size:clamp(1.4rem,3.5vw,3.5rem); color:var(--gold); font-weight:800; margin-top:8px; }
 
+    .hero-tag {
+      font-size:clamp(.9rem,1.2vw,1.2rem); color:var(--ink-2); font-weight:300;
+      line-height:1.7; margin-bottom:32px; max-width:480px;
+    }
     .hero-bottom {
       width:100%; display:flex; align-items:center; justify-content:space-between;
-      padding:28px 0 40px; margin-top:auto;
+      padding:24px 0 36px; margin-top:auto;
       border-top:1px solid var(--bd); flex-wrap:wrap; gap:24px;
     }
     .hero-meta { display:flex; align-items:center; gap:32px; flex-wrap:wrap; }
@@ -268,6 +272,11 @@
     <span class="hl-3">Bootcamp</span>
     <span class="hl-4">Jos '26</span>
   </div>
+  <p class="hero-tag">Three days. 60 faith-driven founders. One city.<br>Free to attend — registration required.</p>
+  <div class="hero-btns">
+    <a href="#register" class="btn-dark">Secure Your Seat →</a>
+    <a href="#what" class="btn-line">What to Expect</a>
+  </div>
   <div class="hero-bottom">
     <div class="hero-meta">
       <div class="hero-meta-item">
@@ -284,10 +293,6 @@
         <span class="hero-meta-key">Entry</span>
         <span class="hero-meta-val">Free</span>
       </div>
-    </div>
-    <div class="hero-btns">
-      <a href="#register" class="btn-dark">Secure Your Seat →</a>
-      <a href="#what" class="btn-line">What to Expect</a>
     </div>
   </div>
 </section>
