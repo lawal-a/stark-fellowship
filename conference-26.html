@@ -175,16 +175,20 @@
     .sess-items li:last-child { border-bottom:none; }
     .day-note { font-size:.75rem; color:var(--ink-3); margin-top:8px; font-style:italic; }
 
-    /* ── Community image ── */
+    /* ── Photo mosaic ── */
     .community-img-wrap { padding:0 0 100px; border-bottom:1px solid var(--bd); }
     .community-img-inner { max-width:1100px; margin:0 auto; padding:0 5%; }
-    .community-img-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-    .community-photo { border-radius:16px; overflow:hidden; aspect-ratio:4/3; }
-    .community-photo img { width:100%; height:100%; object-fit:cover; filter:grayscale(10%); }
-    .community-caption { display:flex; flex-direction:column; justify-content:flex-end; padding:40px; background:var(--ink); border-radius:16px; }
-    .community-cap-label { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:12px; }
-    .community-cap-text { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2.4rem; text-transform:uppercase; line-height:.92; color:#fff; }
-    .community-cap-sub { font-size:.85rem; color:rgba(255,255,255,.55); line-height:1.65; margin-top:12px; font-weight:300; }
+    .photo-mosaic { display:grid; grid-template-columns:1.15fr 1fr; gap:12px; height:520px; }
+    .mosaic-a { border-radius:22px; overflow:hidden; }
+    .mosaic-a img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+    .mosaic-b { display:grid; grid-template-rows:1fr 1fr; gap:12px; }
+    .mosaic-b-top { border-radius:18px; overflow:hidden; }
+    .mosaic-b-top img { width:100%; height:100%; object-fit:cover; display:block; }
+    .mosaic-b-bot { background:var(--ink); border-radius:18px; padding:32px 28px; display:flex; flex-direction:column; justify-content:flex-end; }
+    .mc-label { font-size:.6rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:12px; }
+    .mc-h { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.8rem; text-transform:uppercase; line-height:.9; color:#fff; margin-bottom:10px; }
+    .mc-p { font-size:.78rem; color:rgba(255,255,255,.45); line-height:1.65; font-weight:300; }
+    @media(max-width:860px){ .photo-mosaic{grid-template-columns:1fr;height:auto;} .mosaic-a{height:300px;} .mosaic-b-top{height:200px;} }
 
     /* ── Venue ── */
     .venue { padding:100px 0; border-bottom:1px solid var(--bd); }
@@ -261,7 +265,6 @@
       .venue-card { grid-template-columns:1fr; padding:36px 28px; }
       .venue-right { text-align:left; }
       .register-grid { grid-template-columns:1fr; gap:48px; }
-      .community-img-grid { grid-template-columns:1fr; }
     }
     @media(max-width:640px) {
       nav { padding:0 5%; } .nav-sponsor { display:none; }
@@ -317,7 +320,7 @@
     </div>
   </div>
   <div class="hero-right">
-    <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=900" alt="Business professionals" class="hero-img">
+    <img src="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=900" alt="African entrepreneurs at a business conference" class="hero-img">
     <div class="hero-img-overlay"></div>
   </div>
 </section>
@@ -416,17 +419,22 @@
   </div>
 </section>
 
-<!-- Community photo -->
+<!-- Community photo mosaic -->
 <div class="community-img-wrap">
   <div class="community-img-inner">
-    <div class="community-img-grid">
-      <div class="community-photo reveal">
-        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=900&h=675" alt="Entrepreneurs collaborating">
+    <div class="photo-mosaic">
+      <div class="mosaic-a reveal">
+        <img src="https://images.pexels.com/photos/5699519/pexels-photo-5699519.jpeg?auto=compress&cs=tinysrgb&w=900&h=1100" alt="Faith-driven entrepreneur">
       </div>
-      <div class="community-caption reveal reveal-d1">
-        <div class="community-cap-label">Second Edition · Jos '26</div>
-        <div class="community-cap-text">60 Faith-Driven Founders. One Room.</div>
-        <div class="community-cap-sub">Build relationships that outlast the conference. Network with brethren who are building with God.</div>
+      <div class="mosaic-b">
+        <div class="mosaic-b-top reveal reveal-d1">
+          <img src="https://images.pexels.com/photos/7551437/pexels-photo-7551437.jpeg?auto=compress&cs=tinysrgb&w=800&h=500" alt="Brethren in business collaborating">
+        </div>
+        <div class="mosaic-b-bot reveal reveal-d2">
+          <div class="mc-label">Second Edition · Jos '26</div>
+          <div class="mc-h">60 Faith-Driven Founders.<br>One Room.</div>
+          <div class="mc-p">Build relationships that outlast the conference. Network with brethren who are building with God.</div>
+        </div>
       </div>
     </div>
   </div>

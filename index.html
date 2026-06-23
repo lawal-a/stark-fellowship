@@ -164,6 +164,32 @@
 
     /* ── About ── */
     .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+
+    /* ── Editorial photo stack ── */
+    .pe-wrap { position:relative; padding-bottom:80px; }
+    .pe-main { border-radius:20px; overflow:hidden; height:340px; position:relative; }
+    .pe-main img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+    .pe-chip {
+      position:absolute; top:18px; left:18px;
+      background:rgba(25,25,40,.82); backdrop-filter:blur(10px);
+      color:#fff; padding:9px 16px; border-radius:20px;
+      font-size:.58rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    }
+    .pe-accent {
+      position:absolute; bottom:0; right:0;
+      width:55%; height:200px; border-radius:18px; overflow:hidden;
+      border:5px solid var(--cream); box-shadow:0 20px 60px rgba(0,0,0,.14);
+    }
+    .pe-accent img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+    .pe-quote-pill {
+      position:absolute; bottom:20px; left:-12px; z-index:5;
+      background:var(--blue); color:#fff;
+      padding:14px 20px; border-radius:12px;
+      font-size:.68rem; line-height:1.6; font-weight:300; font-style:italic;
+      max-width:185px; box-shadow:0 12px 40px rgba(24,24,232,.35);
+    }
+    @media(max-width:960px){ .pe-wrap{padding-bottom:60px;} .pe-accent{width:50%;height:170px;} }
+    @media(max-width:640px){ .pe-accent{width:60%;} }
     .about-values { margin-top:32px; display:flex; flex-direction:column; gap:14px; }
     .about-val { display:flex; align-items:flex-start; gap:14px; }
     .about-val-dot { width:5px; height:5px; border-radius:50%; background:var(--blue); margin-top:10px; flex-shrink:0; }
@@ -594,17 +620,16 @@
             </div>
           </div>
         </div>
-        <div class="fu fd3" style="position:relative;">
-          <div class="about-card" style="padding:0;overflow:hidden;">
-            <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800&h=500" alt="Entrepreneurs collaborating" style="width:100%;height:240px;object-fit:cover;display:block;filter:grayscale(10%);">
-            <div style="padding:28px 32px 36px;">
-              <div class="about-card-star" style="font-size:.82rem;margin-bottom:12px;">✦ Fellowship Principle</div>
-              <p class="about-quote" style="font-size:.92rem;margin-bottom:0;">"When your business becomes an act of worship, profit as the overflow of purpose, you are building The Master's Business."</p>
-            </div>
+        <div class="fu fd3 pe-wrap">
+          <div class="pe-main">
+            <img src="https://images.pexels.com/photos/8090137/pexels-photo-8090137.jpeg?auto=compress&cs=tinysrgb&w=900&h=700" alt="African entrepreneurs in a collaborative workspace">
+            <span class="pe-chip">✦ Team101 · Brethren in Business</span>
           </div>
-          <div class="about-badge">
-            <span class="badge-num">2</span>
-            <span class="badge-text">Program Tracks</span>
+          <div class="pe-accent">
+            <img src="https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=600&h=500" alt="Kingdom entrepreneur">
+          </div>
+          <div class="pe-quote-pill">
+            "When business becomes an act of worship, profit is simply the overflow of purpose."
           </div>
         </div>
       </div>
