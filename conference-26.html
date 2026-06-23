@@ -333,10 +333,10 @@
       <span class="what-header-hint">Select a card to explore · Click again to close</span>
     </div>
     <div class="xp-cards reveal">
-      <div class="xp-card open">
+      <div class="xp-card open" onclick="expand(0)">
         <div class="xp-card-header">
           <span class="xp-num">01 / MINISTRY</span>
-          <button class="xp-toggle" onclick="expand(0)">×</button>
+          <button class="xp-toggle" onclick="expand(0);event.stopPropagation()">×</button>
         </div>
         <div class="xp-body">
           <div>

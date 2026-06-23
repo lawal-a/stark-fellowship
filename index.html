@@ -661,10 +661,10 @@
         <span class="fu fd2" style="font-size:.8rem;color:var(--ink-3);">Select a principle to explore</span>
       </div>
       <div class="mb-cards fu fd3">
-        <div class="mb-card open">
+        <div class="mb-card open" onclick="expandMb(0)">
           <div class="mb-card-header">
             <span class="mb-num">01 / ACCOLADES</span>
-            <button class="mb-toggle" onclick="expandMb(0)">×</button>
+            <button class="mb-toggle" onclick="expandMb(0);event.stopPropagation()">×</button>
           </div>
           <div class="mb-body">
             <div>
