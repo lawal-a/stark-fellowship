@@ -64,5 +64,14 @@ export async function onRequestPost({ request, env }) {
     console.log('[STARK conference] KV not bound:', JSON.stringify(record));
   }
 
+  try {
+    await fetch(
+      'https://script.google.com/macros/s/AKfycbwjgQSLzJlU1NISuZjq7-6Lx__E9n3SJpiLi3qARxHoXFF-kB9EnYu0zUNY0ns8sltW/exec',
+      { method: 'POST', body: JSON.stringify(record), headers: { 'Content-Type': 'application/json' } }
+    );
+  } catch (err) {
+    console.log('[STARK conference] Sheets sync failed:', err.message);
+  }
+
   return json({ success: true, message: 'Registration received!', id });
 }
