@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STARK Entrepreneurship Bootcamp 2026 — Jos</title>
-  <meta name="description" content="STARK Entrepreneurship Bootcamp, Second Edition. July 23–25, 2026 in Jos, Plateau State. Free entry, registration required.">
+  <title>STARK Bootcamp '26 — Jos</title>
+  <meta name="description" content="STARK Entrepreneurship Bootcamp '26, Second Edition. July 23–25, 2026 in Jos, Plateau State. Free entry, registration required.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -13,15 +13,9 @@
     html { scroll-behavior:smooth; }
 
     :root {
-      --cream:  #EDEAE1;
-      --white:  #FFFFFF;
-      --ink:    #191928;
-      --ink-2:  #6B6870;
-      --ink-3:  rgba(25,25,40,.38);
-      --blue:   #1818E8;
-      --gold:   #C8A84B;
-      --bd:     rgba(25,25,40,.1);
-      --bd-hi:  rgba(25,25,40,.18);
+      --cream: #EDEAE1; --white: #FFFFFF; --ink: #191928;
+      --ink-2: #6B6870; --ink-3: rgba(25,25,40,.36);
+      --blue: #1818E8; --gold: #C8A84B; --bd: rgba(25,25,40,.1); --bd-hi: rgba(25,25,40,.18);
     }
 
     body { font-family:'Inter',sans-serif; background:var(--cream); color:var(--ink); overflow-x:hidden; font-weight:300; }
@@ -46,52 +40,46 @@
     /* ── Layout ── */
     section { position:relative; }
     .container { max-width:1100px; margin:0 auto; padding:0 5%; }
-    .label {
-      display:inline-block; font-size:.68rem; font-weight:600; letter-spacing:.14em;
-      text-transform:uppercase; color:var(--ink-2);
-    }
-    .label-blue { color:var(--blue); }
-    .section-head { margin-bottom:56px; }
-    .section-head h2 {
-      font-family:'Barlow Condensed',sans-serif; font-weight:900;
-      font-size:clamp(2.4rem,5vw,4rem); text-transform:uppercase; line-height:.92;
-      margin:10px 0 14px; color:var(--ink);
-    }
-    .section-head p { color:var(--ink-2); font-size:.95rem; line-height:1.75; max-width:540px; }
+    .label { display:inline-block; font-size:.68rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); }
 
     /* ── Hero ── */
     .hero {
-      min-height:100vh; display:flex; flex-direction:column;
-      align-items:flex-start; justify-content:flex-end;
-      padding:140px 5% 80px; border-bottom:1px solid var(--bd);
+      min-height:100vh; display:grid; grid-template-columns:1fr 1fr;
+      gap:0; align-items:stretch; border-bottom:1px solid var(--bd);
     }
-    .hero-top {
-      position:absolute; top:80px; left:5%; right:5%;
-      display:flex; align-items:center; justify-content:space-between;
+    .hero-left {
+      display:flex; flex-direction:column; justify-content:flex-end;
+      padding:140px 5% 80px; border-right:1px solid var(--bd);
     }
-    .hero-edition {
-      font-size:.7rem; font-weight:600; letter-spacing:.14em;
-      text-transform:uppercase; color:var(--ink-2);
+    .hero-right {
+      position:relative; overflow:hidden; min-height:400px;
     }
+    .hero-img {
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; object-position:center;
+      filter:grayscale(15%);
+    }
+    .hero-img-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to left, rgba(237,234,225,0) 60%, rgba(237,234,225,.3) 100%);
+    }
+
+    .hero-edition { font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); margin-bottom:36px; }
     .hero-badge {
-      display:inline-flex; align-items:center; gap:8px;
+      display:inline-flex; align-items:center; gap:8px; margin-bottom:16px;
       border:1px solid var(--bd-hi); padding:6px 16px; border-radius:2px;
-      font-size:.68rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
-      color:var(--ink-2);
+      font-size:.68rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2);
     }
     .hero-headline {
       font-family:'Barlow Condensed',sans-serif; font-weight:900;
-      text-transform:uppercase; line-height:.85; max-width:1000px;
-      margin-bottom:40px;
+      text-transform:uppercase; line-height:.85; margin-bottom:40px;
     }
-    .hl-1 { display:block; font-size:clamp(4rem,12vw,10rem); color:var(--ink); }
-    .hl-2 { display:block; font-size:clamp(2rem,5vw,4rem); color:var(--ink-2); font-weight:700; letter-spacing:.04em; }
-    .hl-3 { display:block; font-size:clamp(4rem,12vw,10rem); color:var(--blue); }
+    .hl-1 { display:block; font-size:clamp(4rem,10vw,8rem); color:var(--ink); }
+    .hl-2 { display:block; font-size:clamp(1.8rem,3.5vw,3rem); color:var(--ink-2); font-weight:700; letter-spacing:.04em; }
+    .hl-3 { display:block; font-size:clamp(3.5rem,7vw,6rem); color:var(--blue); }
+    .hl-4 { display:block; font-size:clamp(1.4rem,2.5vw,2rem); color:var(--gold); font-weight:800; letter-spacing:.08em; }
 
-    .hero-meta {
-      display:flex; align-items:center; gap:32px; flex-wrap:wrap;
-      margin-bottom:40px;
-    }
+    .hero-meta { display:flex; align-items:center; gap:32px; flex-wrap:wrap; margin-bottom:40px; }
     .hero-meta-item { display:flex; flex-direction:column; gap:3px; }
     .hero-meta-key { font-size:.65rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
     .hero-meta-val { font-size:.92rem; font-weight:500; color:var(--ink); }
@@ -110,28 +98,13 @@
     }
     .btn-line:hover { border-color:var(--ink); background:var(--ink); color:#fff; }
 
-    /* ── Ticker ── */
-    .ticker-wrap {
-      overflow:hidden; background:var(--ink);
-      padding:12px 0; border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .ticker-track {
-      display:flex; gap:40px; white-space:nowrap; animation:ticker 26s linear infinite;
-      font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.95rem;
-      letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.4);
-    }
-    .ticker-track .td { color:var(--blue); }
-    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
-    /* ── Expanding cards (neuform pattern) ── */
+    /* ── Expandable cards (neuform pattern, no shapes) ── */
     .what { padding:100px 0; border-bottom:1px solid var(--bd); }
-    .what-header {
-      display:flex; align-items:flex-end; justify-content:space-between;
-      margin-bottom:40px; flex-wrap:wrap; gap:16px;
-    }
-    .what-header-hint { font-size:.82rem; color:var(--ink-3); font-weight:400; }
+    .what-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:40px; flex-wrap:wrap; gap:16px; }
+    .what-header-hint { font-size:.82rem; color:var(--ink-3); }
+    .what-header h2 { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2.4rem,5vw,4rem); text-transform:uppercase; line-height:.92; margin:10px 0 0; color:var(--ink); }
 
-    .xp-cards { display:flex; gap:10px; height:440px; }
+    .xp-cards { display:flex; gap:10px; height:400px; }
     .xp-card {
       border-radius:16px; overflow:hidden; cursor:pointer;
       transition:flex .55s cubic-bezier(.4,0,.2,1);
@@ -145,44 +118,28 @@
     .xp-card:nth-child(3) { background:var(--gold); color:var(--ink); }
 
     .xp-card-header { display:flex; align-items:flex-start; justify-content:space-between; }
-    .xp-num {
-      font-size:.68rem; font-weight:700; letter-spacing:.12em;
-      text-transform:uppercase; opacity:.7; white-space:nowrap;
-    }
+    .xp-num { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; opacity:.7; white-space:nowrap; }
     .xp-toggle {
       width:32px; height:32px; border-radius:50%;
       border:1px solid rgba(255,255,255,.3); background:transparent;
       display:flex; align-items:center; justify-content:center;
-      color:inherit; font-size:1.1rem; cursor:pointer; flex-shrink:0;
-      transition:all .2s;
+      color:inherit; font-size:1.1rem; cursor:pointer; flex-shrink:0; transition:all .2s;
     }
     .xp-card:nth-child(3) .xp-toggle { border-color:rgba(25,25,40,.3); }
     .xp-toggle:hover { background:rgba(255,255,255,.15); }
 
-    .xp-body {
-      display:none; flex-direction:column; justify-content:flex-end;
-      flex:1; padding-top:20px;
-    }
+    .xp-body { display:none; flex-direction:column; justify-content:flex-end; flex:1; padding-top:24px; }
     .xp-card.open .xp-body { display:flex; }
-
-    .xp-visual {
-      flex:1; display:flex; align-items:center; justify-content:center;
-      margin-bottom:24px; opacity:.6;
-    }
-    .xp-h { font-family:'Barlow Condensed',sans-serif; font-weight:900;
-      font-size:clamp(2rem,4vw,3.2rem); text-transform:uppercase; line-height:.9;
-      margin-bottom:12px; }
+    .xp-h { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2rem,4vw,3rem); text-transform:uppercase; line-height:.9; margin-bottom:14px; }
     .xp-p { font-size:.85rem; line-height:1.7; opacity:.8; max-width:440px; font-weight:300; }
     .xp-cta {
       display:inline-flex; align-items:center; gap:8px; margin-top:24px;
-      padding:11px 22px; border-radius:2px;
-      border:1px solid rgba(255,255,255,.4);
+      padding:11px 22px; border-radius:2px; border:1px solid rgba(255,255,255,.4);
       font-size:.78rem; font-weight:500; letter-spacing:.04em; text-decoration:none;
       color:inherit; transition:all .2s;
     }
     .xp-card:nth-child(3) .xp-cta { border-color:rgba(25,25,40,.3); }
     .xp-cta:hover { background:rgba(255,255,255,.15); }
-
     .xp-label {
       font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1rem;
       text-transform:uppercase; letter-spacing:.06em;
@@ -191,93 +148,75 @@
     }
     .xp-card.open .xp-label { display:none; }
 
-    /* Graphic shapes */
-    .shape-circle { width:120px; height:120px; border-radius:50%; }
-    .shape-c1 { border:2px solid rgba(255,255,255,.2); position:relative; }
-    .shape-c1::after { content:''; position:absolute; width:50px; height:50px; border-radius:50%;
-      background:#fff; opacity:.15; top:50%; left:50%; transform:translate(-50%,-50%); }
-    .shape-arch { width:100px; height:100px; border-radius:50px 50px 0 0;
-      border:2px solid rgba(255,255,255,.25); }
-    .shape-text { font-family:'Barlow Condensed',sans-serif; font-weight:900;
-      font-size:5rem; opacity:.12; letter-spacing:-.02em; }
-
     /* ── Speakers ── */
     .speakers { padding:100px 0; border-bottom:1px solid var(--bd); }
-    .spk-list { display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
-      background:var(--bd); border:1px solid var(--bd); border-radius:16px; overflow:hidden; }
+    .spk-list { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--bd); border:1px solid var(--bd); border-radius:16px; overflow:hidden; }
     .spk-item { background:var(--white); padding:36px 32px; display:flex; flex-direction:column; gap:12px; }
-    .spk-n { font-size:.68rem; font-weight:700; letter-spacing:.12em;
-      text-transform:uppercase; color:var(--blue); }
-    .spk-name { font-family:'Barlow Condensed',sans-serif; font-weight:900;
-      font-size:1.6rem; text-transform:uppercase; line-height:1; }
+    .spk-n { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); }
+    .spk-name { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.6rem; text-transform:uppercase; line-height:1; }
     .spk-role { font-size:.8rem; color:var(--ink-2); font-weight:400; line-height:1.5; }
-    .spk-scope { font-size:.72rem; font-weight:600; letter-spacing:.08em;
-      text-transform:uppercase; color:var(--gold); margin-top:4px; }
+    .spk-scope { font-size:.72rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); margin-top:4px; }
 
     /* ── Agenda ── */
     .agenda { padding:100px 0; border-bottom:1px solid var(--bd); }
-    .day-tabs { display:flex; gap:0; border-bottom:1px solid var(--bd); margin-bottom:0; }
-    .day-tab {
-      padding:14px 32px 13px; font-size:.78rem; font-weight:600;
-      letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2);
-      border:none; background:none; cursor:pointer; transition:all .2s;
-      border-bottom:2px solid transparent; margin-bottom:-1px;
-    }
+    .section-head { margin-bottom:48px; }
+    .section-head h2 { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2.4rem,5vw,4rem); text-transform:uppercase; line-height:.92; margin:10px 0 14px; }
+    .section-head p { color:var(--ink-2); font-size:.95rem; line-height:1.75; max-width:540px; }
+
+    .day-tabs { display:flex; gap:0; border-bottom:1px solid var(--bd); }
+    .day-tab { padding:14px 32px 13px; font-size:.78rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); border:none; background:none; cursor:pointer; transition:all .2s; border-bottom:2px solid transparent; margin-bottom:-1px; }
     .day-tab.on { color:var(--blue); border-bottom-color:var(--blue); }
     .day-panel { display:none; padding:40px 0; }
     .day-panel.on { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-    .sess-block {
-      background:var(--white); border-radius:12px; padding:28px;
-      border:1px solid var(--bd);
-    }
-    .sess-time { font-size:.68rem; font-weight:700; letter-spacing:.12em;
-      text-transform:uppercase; color:var(--blue); margin-bottom:16px; }
+    .sess-block { background:var(--white); border-radius:12px; padding:28px; border:1px solid var(--bd); }
+    .sess-time { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); margin-bottom:16px; }
     .sess-items { list-style:none; }
-    .sess-items li { font-size:.86rem; color:var(--ink-2); line-height:1.65;
-      padding:5px 0; border-bottom:1px solid var(--bd); }
+    .sess-items li { font-size:.86rem; color:var(--ink-2); line-height:1.65; padding:5px 0; border-bottom:1px solid var(--bd); }
     .sess-items li:last-child { border-bottom:none; }
     .day-note { font-size:.75rem; color:var(--ink-3); margin-top:8px; font-style:italic; }
 
+    /* ── Community image ── */
+    .community-img-wrap { padding:0 0 100px; border-bottom:1px solid var(--bd); }
+    .community-img-inner { max-width:1100px; margin:0 auto; padding:0 5%; }
+    .community-img-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .community-photo { border-radius:16px; overflow:hidden; aspect-ratio:4/3; }
+    .community-photo img { width:100%; height:100%; object-fit:cover; filter:grayscale(10%); }
+    .community-caption { display:flex; flex-direction:column; justify-content:flex-end; padding:40px; background:var(--ink); border-radius:16px; }
+    .community-cap-label { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:12px; }
+    .community-cap-text { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2.4rem; text-transform:uppercase; line-height:.92; color:#fff; }
+    .community-cap-sub { font-size:.85rem; color:rgba(255,255,255,.55); line-height:1.65; margin-top:12px; font-weight:300; }
+
     /* ── Venue ── */
     .venue { padding:100px 0; border-bottom:1px solid var(--bd); }
-    .venue-card {
-      background:var(--white); border:1px solid var(--bd); border-radius:16px;
-      padding:56px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:40px;
-    }
-    .venue-city {
-      font-family:'Barlow Condensed',sans-serif; font-weight:900;
-      font-size:clamp(3rem,8vw,7rem); text-transform:uppercase; line-height:.85;
-    }
+    .venue-card { background:var(--white); border:1px solid var(--bd); border-radius:16px; padding:56px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:40px; }
+    .venue-city { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(3rem,8vw,7rem); text-transform:uppercase; line-height:.85; }
+    .venue-year { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2rem; color:var(--blue); display:inline-block; margin-left:12px; }
     .venue-state { font-size:.85rem; color:var(--ink-2); margin-top:8px; }
     .venue-detail { display:flex; gap:32px; margin-top:28px; flex-wrap:wrap; }
     .venue-d { display:flex; flex-direction:column; gap:3px; }
     .venue-dk { font-size:.65rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
     .venue-dv { font-size:.9rem; font-weight:500; }
     .venue-right { text-align:right; }
-    .venue-badge {
-      display:inline-flex; align-items:center; gap:8px; margin-bottom:20px;
-      background:rgba(24,24,232,.07); border:1px solid rgba(24,24,232,.2);
-      color:var(--blue); padding:8px 18px; border-radius:2px;
-      font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
-    }
+    .venue-badge { display:inline-flex; align-items:center; gap:8px; margin-bottom:20px; background:rgba(24,24,232,.07); border:1px solid rgba(24,24,232,.2); color:var(--blue); padding:8px 18px; border-radius:2px; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
 
     /* ── Register ── */
     .register { padding:100px 0 120px; }
-    .form-wrap { max-width:700px; }
-    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .register-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:80px; align-items:start; }
+    .register-info { }
+    .reg-title { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2.4rem,5vw,4rem); text-transform:uppercase; line-height:.92; margin:10px 0 20px; }
+    .reg-desc { color:var(--ink-2); font-size:.92rem; line-height:1.75; font-weight:300; max-width:360px; }
+
     .field { display:flex; flex-direction:column; gap:7px; }
     .field.full { grid-column:1/-1; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
     label { font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); }
     input, select, textarea {
       background:var(--white); border:1px solid var(--bd-hi); border-radius:2px;
-      padding:13px 14px; color:var(--ink); font-size:.92rem;
-      font-family:'Inter',sans-serif; outline:none; transition:all .22s;
-      -webkit-appearance:none; appearance:none; font-weight:400;
+      padding:13px 14px; color:var(--ink); font-size:.92rem; font-family:'Inter',sans-serif;
+      outline:none; transition:all .22s; -webkit-appearance:none; appearance:none; font-weight:400;
     }
     input::placeholder, textarea::placeholder { color:var(--ink-3); }
-    input:focus, select:focus, textarea:focus {
-      border-color:var(--blue); box-shadow:0 0 0 3px rgba(24,24,232,.1);
-    }
+    input:focus, select:focus, textarea:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(24,24,232,.1); }
     select {
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(25,25,40,.4)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-repeat:no-repeat; background-position:right 14px center; padding-right:38px;
@@ -285,46 +224,22 @@
     select option { background:#fff; color:var(--ink); }
     textarea { resize:vertical; min-height:88px; line-height:1.6; }
 
-    .form-section-lbl {
-      font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
-      color:var(--blue); margin:24px 0 12px; display:flex; align-items:center; gap:12px;
-    }
+    .form-section-lbl { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--blue); margin:24px 0 12px; display:flex; align-items:center; gap:12px; }
     .form-section-lbl::after { content:''; flex:1; height:1px; background:rgba(24,24,232,.15); }
-
     .ferr { font-size:.72rem; color:#d32f2f; min-height:16px; }
-
-    .submit-btn {
-      margin-top:24px; width:100%; padding:16px; background:var(--ink); color:#fff;
-      border:none; border-radius:2px; font-size:.92rem; font-weight:500;
-      font-family:'Inter',sans-serif; cursor:pointer; letter-spacing:.03em;
-      transition:all .22s; display:flex; align-items:center; justify-content:center; gap:8px;
-    }
+    .submit-btn { margin-top:24px; width:100%; padding:16px; background:var(--ink); color:#fff; border:none; border-radius:2px; font-size:.92rem; font-weight:500; font-family:'Inter',sans-serif; cursor:pointer; letter-spacing:.03em; transition:all .22s; display:flex; align-items:center; justify-content:center; gap:8px; }
     .submit-btn:hover:not(:disabled) { background:var(--blue); }
     .submit-btn:disabled { opacity:.5; cursor:not-allowed; }
     .form-note { font-size:.72rem; color:var(--ink-3); text-align:center; margin-top:12px; line-height:1.65; }
     .form-note a { color:var(--ink-2); text-decoration:underline; }
-
-    .city-toggle { display:flex; border:1px solid var(--bd-hi); border-radius:2px;
-      overflow:hidden; margin-bottom:24px; }
-    .ctb { flex:1; padding:12px; border:none; background:var(--white); color:var(--ink-2);
-      font-size:.82rem; font-weight:600; cursor:pointer; transition:all .2s;
-      font-family:'Inter',sans-serif; letter-spacing:.04em; }
-    .ctb.on { background:var(--ink); color:#fff; }
-
-    /* Success */
     .success-state { text-align:center; padding:60px 0; display:none; }
     .success-icon { font-size:2.4rem; margin-bottom:20px; }
-    .success-state h3 { font-family:'Barlow Condensed',sans-serif; font-weight:900;
-      font-size:2.5rem; text-transform:uppercase; margin-bottom:12px; }
+    .success-state h3 { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:2.5rem; text-transform:uppercase; margin-bottom:12px; }
     .success-state p { color:var(--ink-2); font-weight:300; line-height:1.75; }
 
     /* ── Footer ── */
-    footer {
-      background:var(--ink); color:rgba(255,255,255,.5);
-      padding:48px 5%; display:flex; align-items:center; justify-content:space-between;
-      flex-wrap:wrap; gap:24px; font-size:.76rem; line-height:1.8;
-    }
-    footer img { height:20px; filter:brightness(0) invert(1); opacity:.5; }
+    footer { background:var(--ink); color:rgba(255,255,255,.5); padding:48px 5%; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; font-size:.76rem; line-height:1.8; }
+    footer img { height:20px; filter:brightness(0) invert(1); opacity:.4; }
     footer a { color:rgba(255,255,255,.5); text-decoration:none; }
     footer a:hover { color:#fff; }
 
@@ -335,18 +250,22 @@
 
     /* ── Responsive ── */
     @media(max-width:860px) {
+      .hero { grid-template-columns:1fr; }
+      .hero-right { display:none; }
       .xp-cards { height:auto; flex-direction:column; }
-      .xp-card { flex:none !important; min-width:unset; min-height:80px; padding:20px; }
-      .xp-card.open { min-height:380px; }
+      .xp-card { flex:none !important; min-width:unset; min-height:72px; padding:18px; }
+      .xp-card.open { min-height:340px; }
       .xp-label { writing-mode:horizontal-tb; transform:none; height:auto; }
       .spk-list { grid-template-columns:1fr; }
       .day-panel.on { grid-template-columns:1fr; }
       .venue-card { grid-template-columns:1fr; padding:36px 28px; }
       .venue-right { text-align:left; }
+      .register-grid { grid-template-columns:1fr; gap:48px; }
+      .community-img-grid { grid-template-columns:1fr; }
     }
     @media(max-width:640px) {
-      nav { padding:0 5%; } .nav-sponsor{display:none;}
-      .hero { padding:120px 5% 60px; }
+      nav { padding:0 5%; } .nav-sponsor { display:none; }
+      .hero-left { padding:100px 5% 60px; }
       .form-grid { grid-template-columns:1fr; }
       .field.full { grid-column:1; }
       .hero-btns { flex-direction:column; align-items:flex-start; }
@@ -358,70 +277,50 @@
 
 <!-- Nav -->
 <nav>
-  <a href="https://starkfellowship.org">
-    <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK" style="height:24px;display:block;">
+  <a href="https://starkfellowship.org" class="nav-logo">
+    <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK">
   </a>
-  <span class="nav-sponsor">Sponsored by <strong>Team 101</strong></span>
+  <span class="nav-sponsor">A <strong>Team 101</strong> production</span>
   <a href="#register" class="nav-cta">Register — Free</a>
 </nav>
 
 <!-- Hero -->
 <section class="hero" id="home">
-  <div class="hero-top">
-    <span class="hero-edition">Second Edition · 2026</span>
-    <span class="hero-badge">✓ Free Entry &nbsp;·&nbsp; Registration Required</span>
+  <div class="hero-left">
+    <div class="hero-edition">Second Edition · Heave Ventures & Team 101</div>
+    <div class="hero-badge">✓ Free Entry &nbsp;·&nbsp; 60 Seats Only</div>
+    <div class="hero-headline">
+      <span class="hl-1">Stark</span>
+      <span class="hl-2">Entrepreneurship</span>
+      <span class="hl-3">Bootcamp</span>
+      <span class="hl-4">Jos '26</span>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-key">Date</span>
+        <span class="hero-meta-val">July 23–25, 2026</span>
+      </div>
+      <div class="hero-meta-sep"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-key">City</span>
+        <span class="hero-meta-val">Jos, Plateau State</span>
+      </div>
+      <div class="hero-meta-sep"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-key">Entry</span>
+        <span class="hero-meta-val">Free</span>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="#register" class="btn-dark">Secure Your Seat →</a>
+      <a href="#what" class="btn-line">What to Expect</a>
+    </div>
   </div>
-  <div class="hero-headline">
-    <span class="hl-1">Stark</span>
-    <span class="hl-2">Entrepreneurship</span>
-    <span class="hl-3">Bootcamp</span>
-  </div>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <span class="hero-meta-key">Date</span>
-      <span class="hero-meta-val">July 23–25, 2026</span>
-    </div>
-    <div class="hero-meta-sep"></div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-key">City</span>
-      <span class="hero-meta-val">Jos, Plateau State</span>
-    </div>
-    <div class="hero-meta-sep"></div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-key">Capacity</span>
-      <span class="hero-meta-val">60 Seats</span>
-    </div>
-    <div class="hero-meta-sep"></div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-key">Entry</span>
-      <span class="hero-meta-val">Free</span>
-    </div>
-  </div>
-  <div class="hero-btns">
-    <a href="#register" class="btn-dark">Secure Your Seat →</a>
-    <a href="#what" class="btn-line">What to Expect</a>
+  <div class="hero-right">
+    <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=900" alt="Business professionals" class="hero-img">
+    <div class="hero-img-overlay"></div>
   </div>
 </section>
-
-<!-- Ticker -->
-<div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-track">
-    <span>Jos · Plateau State</span><span class="td"> ✦ </span>
-    <span>July 23–25 2026</span><span class="td"> ✦ </span>
-    <span>Free Entry</span><span class="td"> ✦ </span>
-    <span>STARK Entrepreneurship Bootcamp</span><span class="td"> ✦ </span>
-    <span>Second Edition</span><span class="td"> ✦ </span>
-    <span>60 Seats Only</span><span class="td"> ✦ </span>
-    <span>Register Now</span><span class="td"> ✦ </span>
-    <span>Jos · Plateau State</span><span class="td"> ✦ </span>
-    <span>July 23–25 2026</span><span class="td"> ✦ </span>
-    <span>Free Entry</span><span class="td"> ✦ </span>
-    <span>STARK Entrepreneurship Bootcamp</span><span class="td"> ✦ </span>
-    <span>Second Edition</span><span class="td"> ✦ </span>
-    <span>60 Seats Only</span><span class="td"> ✦ </span>
-    <span>Register Now</span><span class="td"> ✦ </span>
-  </div>
-</div>
 
 <!-- What to Expect -->
 <section class="what" id="what">
@@ -429,21 +328,20 @@
     <div class="what-header reveal">
       <div>
         <span class="label">WHAT TO EXPECT</span>
-        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.4rem,5vw,4rem);text-transform:uppercase;line-height:.92;margin:10px 0 0;color:var(--ink);">Three dimensions<br>of the bootcamp.</h2>
+        <h2>Three dimensions<br>of the bootcamp.</h2>
       </div>
-      <span class="what-header-hint">Select a card to explore</span>
+      <span class="what-header-hint">Select a card to explore · Click again to close</span>
     </div>
     <div class="xp-cards reveal">
       <div class="xp-card open">
         <div class="xp-card-header">
           <span class="xp-num">01 / MINISTRY</span>
-          <button class="xp-toggle" onclick="expand(0)" title="Close">×</button>
+          <button class="xp-toggle" onclick="expand(0)">×</button>
         </div>
         <div class="xp-body">
-          <div class="xp-visual"><div class="shape-circle shape-c1"></div></div>
           <div>
             <h3 class="xp-h">Encounter<br>the Word.</h3>
-            <p class="xp-p">Three days of bold, Spirit-led teaching on Kingdom business, stewardship, and building with God. Sessions by confirmed ministers who speak from lived experience, not theory.</p>
+            <p class="xp-p">Three days of bold, Spirit-led sessions on Kingdom business, stewardship, and building with God. Ministers speaking from lived experience — not theory.</p>
             <a href="#agenda" class="xp-cta">View Programme →</a>
           </div>
         </div>
@@ -452,13 +350,12 @@
       <div class="xp-card" onclick="expand(1)">
         <div class="xp-card-header">
           <span class="xp-num">02 / BUSINESS</span>
-          <button class="xp-toggle" onclick="expand(1);event.stopPropagation()" title="Open">+</button>
+          <button class="xp-toggle" onclick="expand(1);event.stopPropagation()">+</button>
         </div>
         <div class="xp-body">
-          <div class="xp-visual"><div class="shape-arch"></div></div>
           <div>
             <h3 class="xp-h">Build for<br>the Kingdom.</h3>
-            <p class="xp-p">Practical breakout sessions and panel discussions grounded in real business problems. Walk away with a vision statement, a business model, and your first value proposition.</p>
+            <p class="xp-p">Practical breakout sessions and panels grounded in real business problems. Walk away with a vision statement, a business model, and your first value proposition.</p>
             <a href="#agenda" class="xp-cta">View Sessions →</a>
           </div>
         </div>
@@ -467,13 +364,12 @@
       <div class="xp-card" onclick="expand(2)">
         <div class="xp-card-header">
           <span class="xp-num">03 / COMMUNITY</span>
-          <button class="xp-toggle" onclick="expand(2);event.stopPropagation()" title="Open">+</button>
+          <button class="xp-toggle" onclick="expand(2);event.stopPropagation()">+</button>
         </div>
         <div class="xp-body">
-          <div class="xp-visual"><div class="shape-text">Aa</div></div>
           <div>
             <h3 class="xp-h">Find your<br>people.</h3>
-            <p class="xp-p">60 faith-driven founders in one room. Network across industries, find collaborators, and leave with relationships that outlast the conference. Certificates awarded on Day 3.</p>
+            <p class="xp-p">60 faith-driven founders in one room. Network across industries, find collaborators, leave with relationships that outlast the conference. Certificates on Day 3.</p>
             <a href="#register" class="xp-cta">Register Now →</a>
           </div>
         </div>
@@ -488,31 +384,53 @@
   <div class="container">
     <div class="section-head reveal">
       <span class="label">CONFIRMED SPEAKERS</span>
-      <h2>The ministers.</h2>
-      <p>Speaking across all three days. Both morning and evening sessions.</p>
+      <h2>The speakers.</h2>
+      <p>Four voices across all three days — morning and evening sessions.</p>
     </div>
     <div class="spk-list reveal">
       <div class="spk-item">
         <span class="spk-n">01</span>
-        <div class="spk-name">Pastor Ayo<br>Omosehin</div>
-        <div class="spk-role">Keynote · Main Ministration</div>
-        <div class="spk-scope">Jos</div>
+        <div class="spk-name">Ademola<br>Akogun</div>
+        <div class="spk-role">Lead Session · Ministration</div>
+        <div class="spk-scope">Jos '26</div>
       </div>
       <div class="spk-item">
         <span class="spk-n">02</span>
-        <div class="spk-name">Pastor<br>Akogun</div>
-        <div class="spk-role">Ministration · Panel</div>
-        <div class="spk-scope">Jos</div>
+        <div class="spk-name">Jefferey<br>Ehikioya</div>
+        <div class="spk-role">Business Session · Panel</div>
+        <div class="spk-scope">Jos '26</div>
       </div>
       <div class="spk-item">
         <span class="spk-n">03</span>
-        <div class="spk-name">Pastor<br>Biodun</div>
-        <div class="spk-role">Mentor · Panel Judge</div>
-        <div class="spk-scope">Jos</div>
+        <div class="spk-name">Simpa<br>Saiki</div>
+        <div class="spk-role">Session · Panel</div>
+        <div class="spk-scope">Jos '26</div>
+      </div>
+      <div class="spk-item">
+        <span class="spk-n">04</span>
+        <div class="spk-name">Abiodun<br>Lawal</div>
+        <div class="spk-role">Host · Panel Moderator</div>
+        <div class="spk-scope">Jos '26</div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Community photo -->
+<div class="community-img-wrap">
+  <div class="community-img-inner">
+    <div class="community-img-grid">
+      <div class="community-photo reveal">
+        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=900&h=675" alt="Entrepreneurs collaborating">
+      </div>
+      <div class="community-caption reveal reveal-d1">
+        <div class="community-cap-label">Second Edition · Jos '26</div>
+        <div class="community-cap-text">60 Faith-Driven Founders. One Room.</div>
+        <div class="community-cap-sub">Build relationships that outlast the conference. Network with brethren who are building with God.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Agenda -->
 <section class="agenda" id="agenda">
@@ -520,7 +438,7 @@
     <div class="section-head reveal">
       <span class="label">PROGRAMME</span>
       <h2>3-day agenda.</h2>
-      <p>Applies to the Jos venue. Participants are expected to network throughout.</p>
+      <p>Jos Bootcamp '26. Participants are expected to network throughout.</p>
     </div>
     <div class="day-tabs reveal">
       <button class="day-tab on" onclick="showDay(0,this)">Day 1 · 23 July</button>
@@ -538,9 +456,9 @@
         <ul class="sess-items">
           <li>Opening Prayer &amp; Worship</li>
           <li>Welcome &amp; Greetings</li>
-          <li>Conference Overview</li>
-          <li>Faith &amp; Business Exhortation</li>
-          <li>Keynote Ministration</li>
+          <li>Bootcamp Overview</li>
+          <li>Faith &amp; Business Session</li>
+          <li>Keynote — Ademola Akogun</li>
           <li>Closing Prayer</li>
         </ul>
       </div>
@@ -550,8 +468,8 @@
         <div class="sess-time">Morning</div>
         <ul class="sess-items">
           <li>Opening Prayer &amp; Worship</li>
-          <li>Mini Lecture / Ministration</li>
-          <li>Breakout / Panel Session</li>
+          <li>Mini Session</li>
+          <li>Breakout / Business Panel</li>
           <li>Round Up &amp; Closing Prayer</li>
         </ul>
       </div>
@@ -559,8 +477,8 @@
         <div class="sess-time">Evening</div>
         <ul class="sess-items">
           <li>Opening Prayer &amp; Worship</li>
-          <li>1st Ministration</li>
-          <li>Main Ministration</li>
+          <li>First Session — Jefferey Ehikioya</li>
+          <li>Main Session — Simpa Saiki</li>
           <li>Closing Prayer &amp; Vote of Thanks</li>
         </ul>
       </div>
@@ -570,8 +488,8 @@
         <div class="sess-time">Morning</div>
         <ul class="sess-items">
           <li>Opening Prayer &amp; Worship</li>
-          <li>Mini Lecture / Ministration</li>
-          <li>Breakout / Panel Session</li>
+          <li>Mini Session</li>
+          <li>Breakout / Business Panel</li>
           <li>Round Up &amp; Closing Prayer</li>
         </ul>
       </div>
@@ -579,8 +497,8 @@
         <div class="sess-time">Evening</div>
         <ul class="sess-items">
           <li>Opening Prayer &amp; Worship</li>
-          <li>1st Ministration</li>
-          <li>Main Ministration</li>
+          <li>First Session — Abiodun Lawal</li>
+          <li>Main Session — Ademola Akogun</li>
           <li>Certificate Presentations</li>
           <li>Closing Prayer &amp; Vote of Thanks</li>
         </ul>
@@ -598,21 +516,15 @@
     </div>
     <div class="venue-card reveal">
       <div>
-        <div class="venue-city">Jos</div>
+        <div>
+          <span class="venue-city">Jos</span>
+          <span class="venue-year">'26</span>
+        </div>
         <div class="venue-state">Plateau State, Nigeria</div>
         <div class="venue-detail">
-          <div class="venue-d">
-            <span class="venue-dk">Dates</span>
-            <span class="venue-dv">July 23–25, 2026</span>
-          </div>
-          <div class="venue-d">
-            <span class="venue-dk">Capacity</span>
-            <span class="venue-dv">60 Participants</span>
-          </div>
-          <div class="venue-d">
-            <span class="venue-dk">Entry</span>
-            <span class="venue-dv">Free</span>
-          </div>
+          <div class="venue-d"><span class="venue-dk">Dates</span><span class="venue-dv">July 23–25, 2026</span></div>
+          <div class="venue-d"><span class="venue-dk">Capacity</span><span class="venue-dv">60 Participants</span></div>
+          <div class="venue-d"><span class="venue-dk">Entry</span><span class="venue-dv">Free</span></div>
         </div>
       </div>
       <div class="venue-right">
@@ -626,46 +538,30 @@
 <!-- Register -->
 <section class="register" id="register">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start;">
+    <div class="register-grid">
       <div class="reveal">
         <span class="label">REGISTRATION</span>
-        <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.4rem,5vw,4rem);text-transform:uppercase;line-height:.92;margin:10px 0 20px;color:var(--ink);">Secure your seat.</h2>
-        <p style="color:var(--ink-2);font-size:.92rem;line-height:1.75;font-weight:300;max-width:360px;">Free entry — 60 seats in Jos. Registration closes when seats fill. Fill in your details and we'll confirm your place.</p>
+        <h2 class="reg-title">Secure your seat.</h2>
+        <p class="reg-desc">Free entry — 60 seats in Jos. Registration closes when seats fill. Fill in your details and we'll confirm your place.</p>
         <div style="margin-top:32px;padding-top:32px;border-top:1px solid var(--bd);">
           <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px;">Questions?</div>
           <a href="mailto:theteam@heaveventures.com" style="font-size:.88rem;color:var(--blue);font-weight:500;">theteam@heaveventures.com</a>
         </div>
       </div>
-      <div class="form-wrap reveal reveal-d1">
+      <div class="reveal reveal-d1">
         <div class="success-state" id="success-state">
           <div class="success-icon">✓</div>
           <h3>You're Registered!</h3>
-          <p>We've received your registration for the Jos Bootcamp.<br>We'll be in touch with details closer to the date.<br>See you in the room.</p>
+          <p>We've received your registration for Jos Bootcamp '26.<br>We'll be in touch with details closer to the date.</p>
         </div>
         <div id="form-body">
           <form id="conf-form" novalidate>
             <div class="form-section-lbl">Personal Information</div>
             <div class="form-grid">
-              <div class="field">
-                <label for="fn">First Name *</label>
-                <input type="text" id="fn" placeholder="Abiodun">
-                <div class="ferr" id="err-fn"></div>
-              </div>
-              <div class="field">
-                <label for="ln">Last Name *</label>
-                <input type="text" id="ln" placeholder="Lawal">
-                <div class="ferr" id="err-ln"></div>
-              </div>
-              <div class="field">
-                <label for="em">Email *</label>
-                <input type="email" id="em" placeholder="you@example.com">
-                <div class="ferr" id="err-em"></div>
-              </div>
-              <div class="field">
-                <label for="ph">Phone *</label>
-                <input type="tel" id="ph" placeholder="+234 800 000 0000">
-                <div class="ferr" id="err-ph"></div>
-              </div>
+              <div class="field"><label for="fn">First Name *</label><input type="text" id="fn" placeholder="Abiodun"><div class="ferr" id="err-fn"></div></div>
+              <div class="field"><label for="ln">Last Name *</label><input type="text" id="ln" placeholder="Lawal"><div class="ferr" id="err-ln"></div></div>
+              <div class="field"><label for="em">Email *</label><input type="email" id="em" placeholder="you@example.com"><div class="ferr" id="err-em"></div></div>
+              <div class="field"><label for="ph">Phone *</label><input type="tel" id="ph" placeholder="+234 800 000 0000"><div class="ferr" id="err-ph"></div></div>
               <div class="field">
                 <label for="st">State of Residence *</label>
                 <select id="st">
@@ -674,12 +570,8 @@
                 </select>
                 <div class="ferr" id="err-st"></div>
               </div>
-              <div class="field">
-                <label for="occ">Occupation / Role</label>
-                <input type="text" id="occ" placeholder="Founder, Student, Engineer…">
-              </div>
+              <div class="field"><label for="occ">Occupation / Role</label><input type="text" id="occ" placeholder="Founder, Student, Engineer…"></div>
             </div>
-
             <div class="form-section-lbl">About Your Business</div>
             <div class="form-grid">
               <div class="field full">
@@ -693,10 +585,7 @@
                 </select>
                 <div class="ferr" id="err-bstatus"></div>
               </div>
-              <div class="field">
-                <label for="bname">Business Name (if any)</label>
-                <input type="text" id="bname" placeholder="e.g. Lawal Foods">
-              </div>
+              <div class="field"><label for="bname">Business Name (if any)</label><input type="text" id="bname" placeholder="e.g. Lawal Foods"></div>
               <div class="field">
                 <label for="industry">Industry</label>
                 <select id="industry">
@@ -704,30 +593,21 @@
                   <option>Agriculture &amp; Food</option><option>Education &amp; Training</option><option>Fashion &amp; Apparel</option><option>Finance &amp; Fintech</option><option>Health &amp; Wellness</option><option>Hospitality &amp; Events</option><option>Logistics &amp; Transport</option><option>Media &amp; Creative Arts</option><option>Ministry &amp; Non-Profit</option><option>Real Estate</option><option>Retail &amp; Commerce</option><option>Technology</option><option>Other</option>
                 </select>
               </div>
-              <div class="field full">
-                <label for="expectation">What do you hope to take away? *</label>
-                <textarea id="expectation" placeholder="Share what brought you here and what you're trusting God for…"></textarea>
-                <div class="ferr" id="err-expectation"></div>
-              </div>
+              <div class="field full"><label for="expectation">What do you hope to take away? *</label><textarea id="expectation" placeholder="Share what brought you here and what you're trusting God for…"></textarea><div class="ferr" id="err-expectation"></div></div>
             </div>
-
             <div class="form-section-lbl">One Last Thing</div>
             <div class="form-grid">
               <div class="field full">
                 <label for="hear">How did you hear about this? *</label>
                 <select id="hear">
                   <option value="" disabled selected>Select</option>
-                  <option>STARK Fellowship</option><option>Team 101</option>
-                  <option>Instagram</option><option>Twitter / X</option>
-                  <option>WhatsApp</option><option>A Friend / Word of Mouth</option>
-                  <option>Church / Community</option><option>Other</option>
+                  <option>STARK Fellowship</option><option>Team 101</option><option>Instagram</option><option>Twitter / X</option><option>WhatsApp</option><option>A Friend / Word of Mouth</option><option>Church / Community</option><option>Other</option>
                 </select>
                 <div class="ferr" id="err-hear"></div>
               </div>
             </div>
-
             <button type="submit" class="submit-btn" id="sub-btn">
-              <span id="btn-lbl">Register for Jos Bootcamp</span>
+              <span id="btn-lbl">Register for Jos Bootcamp '26</span>
             </button>
             <p class="form-note">No fees. No spam. · <a href="mailto:theteam@heaveventures.com">theteam@heaveventures.com</a></p>
           </form>
@@ -740,22 +620,25 @@
 <!-- Footer -->
 <footer>
   <div>
-    <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK" style="height:20px;filter:brightness(0) invert(1);opacity:.4;margin-bottom:8px;">
-    <div>STARK Entrepreneurship Bootcamp 2026 — Second Edition</div>
+    <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK" style="height:20px;margin-bottom:8px;">
+    <div>STARK Entrepreneurship Bootcamp '26 — Second Edition · Jos</div>
   </div>
   <div style="text-align:right;">
-    <div>A <a href="https://heaveventures.com">Heave Ventures</a> production · Sponsored by Team 101</div>
+    <div>A <a href="https://heaveventures.com">Heave Ventures</a> production · Powered by Team 101</div>
     <div><a href="mailto:theteam@heaveventures.com">theteam@heaveventures.com</a></div>
   </div>
 </footer>
 
 <script>
-  // Expanding cards
+  // Expanding cards — fully collapsible
   function expand(n) {
-    document.querySelectorAll('.xp-card').forEach((c,i) => {
-      c.classList.toggle('open', i === n);
+    const cards = document.querySelectorAll('.xp-card');
+    const isAlreadyOpen = cards[n].classList.contains('open');
+    cards.forEach((c,i) => {
+      const shouldOpen = !isAlreadyOpen && i === n;
+      c.classList.toggle('open', shouldOpen);
       const btn = c.querySelector('.xp-toggle');
-      if (btn) btn.textContent = i === n ? '×' : '+';
+      if (btn) btn.textContent = shouldOpen ? '×' : '+';
     });
   }
 
@@ -770,9 +653,7 @@
   document.getElementById('conf-form').addEventListener('submit', async e => {
     e.preventDefault();
     const g = id => document.getElementById(id);
-    ['fn','ln','em','ph','st','bstatus','expectation','hear'].forEach(k => {
-      const el = g('err-'+k); if(el) el.textContent='';
-    });
+    ['fn','ln','em','ph','st','bstatus','expectation','hear'].forEach(k => { const el=g('err-'+k); if(el) el.textContent=''; });
     const fn=g('fn').value.trim(), ln=g('ln').value.trim(), em=g('em').value.trim(),
           ph=g('ph').value.trim(), st=g('st').value, occ=g('occ').value.trim(),
           bs=g('bstatus').value, bn=g('bname').value.trim(), ind=g('industry').value,
@@ -784,29 +665,23 @@
     if(!ph)E('ph','Required.'); if(!st)E('st','Required.');
     if(!bs)E('bstatus','Required.'); if(!exp)E('expectation','Required.');
     if(!hear)E('hear','Required.');
-    if(!ok)return;
+    if(!ok) return;
     const btn=g('sub-btn'), lbl=g('btn-lbl');
     btn.disabled=true; lbl.textContent='Submitting…';
     try {
-      const res=await fetch('/conference-register',{method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({firstName:fn,lastName:ln,email:em,phone:ph,state:st,
-          occupation:occ,businessStatus:bs,businessName:bn,industry:ind,
-          expectation:exp,hearAbout:hear,conference:'Jos'})});
+      const res=await fetch('/conference-register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({firstName:fn,lastName:ln,email:em,phone:ph,state:st,occupation:occ,businessStatus:bs,businessName:bn,industry:ind,expectation:exp,hearAbout:hear,conference:'Jos'})});
       const d=await res.json();
       if(d.success){g('form-body').style.display='none';g('success-state').style.display='block';}
-      else{lbl.textContent='Register for Jos Bootcamp';btn.disabled=false;alert(d.message||'Something went wrong.');}
-    } catch{lbl.textContent='Register for Jos Bootcamp';btn.disabled=false;alert('Network error. Try again.');}
+      else{lbl.textContent="Register for Jos Bootcamp '26";btn.disabled=false;alert(d.message||'Something went wrong.');}
+    } catch{lbl.textContent="Register for Jos Bootcamp '26";btn.disabled=false;alert('Network error. Try again.');}
   });
 
-  // Reveal
+  // Reveal on scroll
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-  // Nav scroll
-  window.addEventListener('scroll',()=>{
-    document.querySelector('nav').style.boxShadow=scrollY>20?'0 1px 24px rgba(0,0,0,.08)':'none';
-  });
+  // Nav shadow on scroll
+  window.addEventListener('scroll',()=>{document.querySelector('nav').style.boxShadow=scrollY>20?'0 1px 24px rgba(0,0,0,.08)':'none';});
 </script>
 </body>
 </html>

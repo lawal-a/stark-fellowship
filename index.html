@@ -244,6 +244,50 @@
     .why-callout h3 { font-size:1rem; font-weight:600; margin-bottom:12px; color:var(--ink); }
     .why-callout p { font-size:.88rem; color:var(--ink-2); line-height:1.75; font-weight:300; }
 
+    /* ── Masters Business expanding cards ── */
+    .mb-cards { display:flex; gap:10px; height:400px; }
+    .mb-card {
+      border-radius:16px; overflow:hidden; cursor:pointer;
+      transition:flex .55s cubic-bezier(.4,0,.2,1);
+      flex:0 0 100px; padding:24px 20px;
+      display:flex; flex-direction:column; justify-content:space-between;
+      position:relative; min-width:100px;
+    }
+    .mb-card.open { flex:1; cursor:default; }
+    .mb-card:nth-child(1) { background:var(--ink); color:#fff; }
+    .mb-card:nth-child(2) { background:var(--blue); color:#fff; }
+    .mb-card:nth-child(3) { background:var(--gold); color:var(--ink); }
+    .mb-card:nth-child(4) { background:var(--white); color:var(--ink); border:1px solid var(--bd); }
+    .mb-card-header { display:flex; align-items:flex-start; justify-content:space-between; }
+    .mb-num { font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; opacity:.7; white-space:nowrap; }
+    .mb-toggle {
+      width:32px; height:32px; border-radius:50%;
+      border:1px solid rgba(255,255,255,.3); background:transparent;
+      display:flex; align-items:center; justify-content:center;
+      color:inherit; font-size:1.1rem; cursor:pointer; flex-shrink:0; transition:all .2s;
+    }
+    .mb-card:nth-child(3) .mb-toggle,
+    .mb-card:nth-child(4) .mb-toggle { border-color:rgba(25,25,40,.3); }
+    .mb-toggle:hover { background:rgba(255,255,255,.15); }
+    .mb-body { display:none; flex-direction:column; justify-content:flex-end; flex:1; padding-top:24px; }
+    .mb-card.open .mb-body { display:flex; }
+    .mb-h { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(1.6rem,3vw,2.5rem); text-transform:uppercase; line-height:.9; margin-bottom:14px; }
+    .mb-p { font-size:.85rem; line-height:1.7; opacity:.8; max-width:440px; font-weight:300; }
+    .mb-verse { font-size:.76rem; font-style:italic; opacity:.55; margin-top:12px; font-weight:300; }
+    .mb-label {
+      font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1rem;
+      text-transform:uppercase; letter-spacing:.06em;
+      writing-mode:vertical-rl; transform:rotate(180deg);
+      display:flex; align-items:center; height:100%; opacity:.6;
+    }
+    .mb-card.open .mb-label { display:none; }
+    @media(max-width:860px){
+      .mb-cards { height:auto; flex-direction:column; }
+      .mb-card { flex:none !important; min-width:unset; min-height:72px; padding:18px; }
+      .mb-card.open { min-height:300px; }
+      .mb-label { writing-mode:horizontal-tb; transform:none; height:auto; }
+    }
+
     /* ── Programs ── */
     .programs-head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px; gap:40px; }
     .programs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
@@ -526,11 +570,11 @@
   <section class="hero" id="home">
     <canvas id="heroCanvas"></canvas>
     <div class="hero-content">
-      <div class="hero-eyebrow">Fellowship &middot; Entrepreneurship &middot; Kingdom</div>
+      <div class="hero-eyebrow">Team101 &middot; Brethren in Business &middot; Kingdom</div>
       <img src="https://res.cloudinary.com/dzmutoos2/image/upload/v1777645189/STARK_BLACK_l5fu2p.png" alt="STARK" class="stark-hero-logo" style="height:clamp(28px,5vw,52px);margin-bottom:36px;">
       <div class="hero-divider"></div>
-      <h1 class="hero-tagline">Love-Based<br>Entrepreneurship<br><em style="font-style:normal;color:var(--blue);">for the Kingdom</em></h1>
-      <p class="hero-sub">A knowledge-capital platform for brethren in business — helping you start right, recalibrate, and build with purpose. Serving God and humanity through every transaction.</p>
+      <h1 class="hero-tagline">Faith-Based,<br>Love-Driven<br><em style="font-style:normal;color:var(--blue);">Christian Business</em></h1>
+      <p class="hero-sub">A faith-based, love-driven Christian business ecosystem — building brethren who serve God faithfully through business. Every product, every transaction, every partnership — done as unto the Lord.</p>
       <div class="hero-actions">
         <a href="#waitlist" class="btn btn-primary">
           Join the Waitlist
@@ -553,13 +597,12 @@
   <!-- Trust bar -->
   <div class="trust-bar">
     <div class="trust-inner">
-      <span class="trust-label">Fellows connected with</span>
+      <span class="trust-label">An expression of</span>
       <div class="trust-logos">
-        <span class="trust-logo-item"><span class="trust-dot" style="background:#FF6600;"></span>Y Combinator</span>
-        <span class="trust-logo-item"><span class="trust-dot" style="background:#1DA462;"></span>Seedstars</span>
-        <span class="trust-logo-item"><span class="trust-dot" style="background:#8B5CF6;"></span>Hub One</span>
-        <span class="trust-logo-item"><span class="trust-dot" style="background:#0066CC;"></span>Founder Institute</span>
-        <span class="trust-logo-item"><span class="trust-dot" style="background:#E8433A;"></span>Co-Creation Hub</span>
+        <span class="trust-logo-item"><span class="trust-dot" style="background:#C8A84B;"></span>Team 101</span>
+        <span class="trust-logo-item"><span class="trust-dot" style="background:#1818E8;"></span>Heave Ventures</span>
+        <span class="trust-logo-item"><span class="trust-dot" style="background:#C8A84B;"></span>Aidi</span>
+        <span class="trust-logo-item"><span class="trust-dot" style="background:#1818E8;"></span>Forfond</span>
       </div>
     </div>
   </div>
@@ -571,32 +614,34 @@
       <div class="about-grid">
         <div>
           <span class="eyebrow fu">About STARK</span>
-          <h2 class="section-title fu fd1">What is STARK Fellowship?</h2>
-          <p class="section-body fu fd2">STARK is a fellowship of entrepreneurs in service to God through a love-driven business approach. We exist to teach a <strong>Love-Based Entrepreneurship Model</strong> — helping brethren start right or recalibrate businesses to please God.</p>
+          <h2 class="section-title fu fd1">Team101:<br>Brethren in Business.</h2>
+          <p class="section-body fu fd2">STARK Fellowship is an expression of Team101 — a covenant community of brethren in business. Supported by Aidi, Forfond, and Heave Ventures, we exist to raise Kingdom entrepreneurs who build businesses that serve God, not just the market.</p>
           <div class="about-values">
             <div class="about-val fu fd2">
               <div class="about-val-dot"></div>
-              <p><strong>Knowledge-capital platform</strong> — rigorous curriculum grounded in Kingdom principles and practical business wisdom.</p>
+              <p><strong>Brethren in Business</strong> — a covenant community of Kingdom entrepreneurs building together, sharpening one another, holding each other to a higher standard.</p>
             </div>
             <div class="about-val fu fd3">
               <div class="about-val-dot"></div>
-              <p><strong>Community-first</strong> — Graduates become Stark Fellows embedded in a lifelong network of mission-minded entrepreneurs.</p>
+              <p><strong>Supported by Aidi, Forfond &amp; Heave Ventures</strong> — the institutional backbone giving STARK the resources to go deeper and wider.</p>
             </div>
             <div class="about-val fu fd4">
               <div class="about-val-dot"></div>
-              <p><strong>State leadership</strong> — Select Stark Fellows become State Ambassadors — Stark Leaders — extending the vision nationwide.</p>
+              <p><strong>State Ambassadors</strong> — select STARK Fellows become Stark Leaders, extending the vision state by state across Nigeria and beyond.</p>
             </div>
           </div>
         </div>
         <div class="fu fd3" style="position:relative;">
-          <div class="about-card">
-            <div class="about-card-star">✦</div>
-            <p class="about-quote">"When your business becomes an act of worship — when profit is the overflow of purpose — you are operating in the STARK model."</p>
-            <div class="about-quote-source">STARK Fellowship Principle</div>
+          <div class="about-card" style="padding:0;overflow:hidden;">
+            <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800&h=500" alt="Entrepreneurs collaborating" style="width:100%;height:240px;object-fit:cover;display:block;filter:grayscale(10%);">
+            <div style="padding:28px 32px 36px;">
+              <div class="about-card-star" style="font-size:.82rem;margin-bottom:12px;">✦ Fellowship Principle</div>
+              <p class="about-quote" style="font-size:.92rem;margin-bottom:0;">"When your business becomes an act of worship — profit as the overflow of purpose — you are building The Master's Business."</p>
+            </div>
           </div>
           <div class="about-badge">
-            <span class="badge-num">5+</span>
-            <span class="badge-text">Programs &amp; Tracks</span>
+            <span class="badge-num">2</span>
+            <span class="badge-text">Program Tracks</span>
           </div>
         </div>
       </div>
@@ -604,42 +649,73 @@
   </section>
 
 
-  <!-- Why -->
+  <!-- Masters Business -->
   <section class="why" id="why">
     <div class="section-inner">
-      <div class="why-grid">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;">
         <div>
-          <span class="eyebrow fu">The Problem</span>
-          <h2 class="section-title fu fd1">Why STARK Exists</h2>
-          <p class="section-body fu fd2">The global startup failure rate is alarming — but the problem runs deeper than strategy or capital. Without a moral and spiritual foundation, even a well-resourced business can lose its way.</p>
-          <div class="stats-stack">
-            <div class="stat-row fu fd3">
-              <div class="stat-big" data-target="90">0</div>
-              <div class="stat-meta"><strong>of Startups Fail</strong><span>The uncomfortable truth driving our mission</span></div>
-            </div>
-            <div class="stat-row fu fd4">
-              <div class="stat-big" data-target="42">0</div>
-              <div class="stat-meta"><strong>Misread the Market</strong><span>Building without understanding — a wisdom problem</span></div>
-            </div>
-            <div class="stat-row fu fd5">
-              <div class="stat-big" data-target="82">0</div>
-              <div class="stat-meta"><strong>Cash-Flow Failures</strong><span>Financial stewardship is a Kingdom discipline</span></div>
-            </div>
-          </div>
+          <span class="eyebrow fu" style="color:var(--ink-2);">Philosophy</span>
+          <h2 class="section-title fu fd1" style="margin-top:4px;">The Master's Business.</h2>
+          <p class="section-body fu fd2" style="max-width:480px;">Four principles that define Kingdom entrepreneurship — the foundation beneath every STARK program.</p>
         </div>
-        <div class="fu fd2">
-          <div class="why-callout">
-            <h3>The STARK Answer</h3>
-            <p>STARK addresses the root, not just the symptom. Through our programs, entrepreneurs learn to build businesses anchored in love, wisdom, and biblical stewardship. A business that pleases God is built to last.</p>
+        <span class="fu fd2" style="font-size:.8rem;color:var(--ink-3);">Select a principle to explore</span>
+      </div>
+      <div class="mb-cards fu fd3">
+        <div class="mb-card open">
+          <div class="mb-card-header">
+            <span class="mb-num">01 / ACCOLADES</span>
+            <button class="mb-toggle" onclick="expandMb(0)">×</button>
           </div>
-          <div class="stat-row fu fd3" style="margin-top:12px;">
-            <div class="stat-big" data-target="29">0</div>
-            <div class="stat-meta"><strong>Funding Failures</strong><span>Resourcefulness and faithful stewardship fill this gap</span></div>
+          <div class="mb-body">
+            <div>
+              <h3 class="mb-h">God Gives<br>the Accolades.</h3>
+              <p class="mb-p">The standard is not Forbes — it is "Well done, good and faithful servant." Success in The Master's Business is defined by faithfulness, not fame. You build to hear those words.</p>
+              <p class="mb-verse">"Well done, good and faithful servant… enter into the joy of your lord." — Matthew 25:23</p>
+            </div>
           </div>
-          <div class="stat-row fu fd4" style="margin-top:8px;">
-            <div class="stat-big" data-target="23">0</div>
-            <div class="stat-meta"><strong>Weak Founding Team</strong><span>Character and covenant — the STARK community fills this</span></div>
+          <span class="mb-label">Accolades</span>
+        </div>
+        <div class="mb-card" onclick="expandMb(1)">
+          <div class="mb-card-header">
+            <span class="mb-num">02 / LEADING</span>
+            <button class="mb-toggle" onclick="expandMb(1);event.stopPropagation()">+</button>
           </div>
+          <div class="mb-body">
+            <div>
+              <h3 class="mb-h">Trust God's<br>Leadings.</h3>
+              <p class="mb-p">In business, the most critical decisions are often too complex for pure analysis. Train your spirit to hear God accurately — strategy, timing, partnerships — all led by the Spirit.</p>
+              <p class="mb-verse">"For as many as are led by the Spirit of God, these are sons of God." — Romans 8:14</p>
+            </div>
+          </div>
+          <span class="mb-label">Leading</span>
+        </div>
+        <div class="mb-card" onclick="expandMb(2)">
+          <div class="mb-card-header">
+            <span class="mb-num">03 / SERVICE</span>
+            <button class="mb-toggle" onclick="expandMb(2);event.stopPropagation()">+</button>
+          </div>
+          <div class="mb-body">
+            <div>
+              <h3 class="mb-h">Serve<br>Others.</h3>
+              <p class="mb-p">Everything that truly lives does not live for itself. A business that exists purely for profit is already dying. Kingdom businesses exist to serve — customers, communities, and creation.</p>
+              <p class="mb-verse">"Whoever wants to become great among you must be your servant." — Matthew 20:26</p>
+            </div>
+          </div>
+          <span class="mb-label">Service</span>
+        </div>
+        <div class="mb-card" onclick="expandMb(3)">
+          <div class="mb-card-header">
+            <span class="mb-num">04 / GROWTH</span>
+            <button class="mb-toggle" onclick="expandMb(3);event.stopPropagation()">+</button>
+          </div>
+          <div class="mb-body">
+            <div>
+              <h3 class="mb-h">Grow<br>Sustainably.</h3>
+              <p class="mb-p">Purpose-driven, not just profit-driven. Sustainable growth is rooted in a clear why — not market pressure. The Master's Business grows with integrity, serving the long game of God's Kingdom.</p>
+              <p class="mb-verse">"Commit your work to the Lord, and your plans will be established." — Proverbs 16:3</p>
+            </div>
+          </div>
+          <span class="mb-label">Growth</span>
         </div>
       </div>
     </div>
@@ -652,53 +728,36 @@
       <div class="programs-head">
         <div>
           <span class="eyebrow fu">Programs</span>
-          <h2 class="section-title fu fd1">The STARK Curriculum</h2>
+          <h2 class="section-title fu fd1">Two Ways to<br>Be Part of STARK.</h2>
         </div>
-        <p class="section-body fu fd2" style="max-width:340px;">Five distinct tracks — each designed for a specific stage and type of entrepreneur. Every journey starts at The Foundation.</p>
+        <p class="section-body fu fd2" style="max-width:340px;">Whether you're gathering with the community or building your business — there is a track designed for you.</p>
       </div>
 
-      <div class="programs-grid">
+      <div class="programs-grid" style="grid-template-columns:1fr 1fr;">
 
-        <div class="prog-card fu">
-          <div class="prog-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M13 3L15.5 10H22L17 14.5L19 21L13 17L7 21L9 14.5L4 10H10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
-          <div class="prog-tag">LBI</div>
-          <h3 class="prog-name">Life Business Incubator</h3>
-          <p class="prog-desc">For product-based, tech-driven, and scalable startups. The flagship incubator experience that equips founders to build products God can bless.</p>
-        </div>
-
-        <div class="prog-card fu fd1">
-          <div class="prog-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="10" cy="9" r="3.5" stroke="currentColor" stroke-width="1.8"/><circle cx="19" cy="9" r="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 22c0-3.87 3.13-7 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 22c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-          <div class="prog-tag">SOT</div>
-          <h3 class="prog-name">School of Timothy</h3>
-          <p class="prog-desc">The co-founders academy. Grounded in the Paul-Timothy model — impartation, mentorship, and intentional formation for entrepreneurial teams.</p>
-        </div>
-
-        <div class="prog-card fu fd2">
-          <div class="prog-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="4" y="14" width="5" height="10" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="11" y="8" width="5" height="16" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="18" y="3" width="5" height="21" rx="1" stroke="currentColor" stroke-width="1.8"/></svg></div>
-          <div class="prog-tag">SME School</div>
-          <h3 class="prog-name">SME School</h3>
-          <p class="prog-desc">For services-based businesses in the real economy. Practical, accessible Kingdom stewardship principles for trades, agencies, and local enterprises.</p>
-        </div>
-
-        <div class="prog-card fu fd3">
-          <div class="prog-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 20l6-7 5 5 7-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="6" r="2.5" fill="currentColor"/></svg></div>
-          <div class="prog-tag">Growth Mindset</div>
-          <h3 class="prog-name">Growth Mindset</h3>
-          <p class="prog-desc">For growth-stage entrepreneurs repositioning their business to please God. Deep recalibration of vision, culture, strategy, and mission alignment.</p>
-        </div>
-
-        <div class="prog-card foundation-card-showcase fu fd4">
-          <div style="position:relative;z-index:1;">
-            <div class="prog-icon" style="color:var(--gold);">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3l2.5 7H24l-6 4.4 2.3 7-6.3-4.6L7.7 21.4 10 14.4 4 10h7.5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-            </div>
+        <div class="prog-card fu" style="border-top:3px solid var(--blue);">
+          <div class="prog-tag" style="font-size:.6rem;margin-bottom:12px;">TRACK 01 · COMMUNITY</div>
+          <div class="prog-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="9" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M2 22c0-3.87 3.13-7 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M11 22c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <h3 class="prog-name" style="font-size:1.1rem;">Community &amp; Gatherings</h3>
+          <p class="prog-desc">Join the Team101 community — weekly fellowship, global conferences, and a YouTube channel documenting the journey of brethren in business.</p>
+          <div style="margin-top:16px;border-top:1px solid var(--bd);padding-top:16px;display:flex;flex-direction:column;gap:9px;">
+            <div style="font-size:.76rem;color:var(--ink-2);display:flex;align-items:center;gap:8px;"><span style="color:var(--blue);font-weight:700;">→</span> Global Conferences (recurring)</div>
+            <div style="font-size:.76rem;color:var(--ink-2);display:flex;align-items:center;gap:8px;"><span style="color:var(--blue);font-weight:700;">→</span> Weekly Meetings on YouTube</div>
           </div>
-          <div style="position:relative;z-index:1;">
-            <div class="prog-tag" style="color:var(--gold);">The Foundation</div>
-            <h3 class="prog-name">The Foundation</h3>
-            <p class="prog-desc">A compendium of foundational messages on stewardship, purpose, and Kingdom business from Pastor Emeka. <strong>Compulsory with every other program</strong> — and available as a standalone track for those who want to begin their Kingdom-business journey.</p>
-            <span class="prog-badge" style="margin-top:10px;">⭐ Included with all programs &nbsp;·&nbsp; Can stand alone</span>
+          <a href="https://www.youtube.com/@team101brethreninbusiness7" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;margin-top:14px;text-decoration:none;" class="prog-badge">▶ Watch on YouTube</a>
+        </div>
+
+        <div class="prog-card fu fd1" style="border-top:3px solid var(--gold);">
+          <div class="prog-tag" style="font-size:.6rem;margin-bottom:12px;color:var(--gold);">TRACK 02 · BUSINESS SUPPORT</div>
+          <div class="prog-icon" style="color:var(--gold);"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="4" y="14" width="5" height="10" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="11" y="8" width="5" height="16" rx="1" stroke="currentColor" stroke-width="1.8"/><rect x="18" y="3" width="5" height="21" rx="1" stroke="currentColor" stroke-width="1.8"/></svg></div>
+          <h3 class="prog-name" style="font-size:1.1rem;">Business Support Programs</h3>
+          <p class="prog-desc">Structured programs for entrepreneurs who are building — from idea to scale. Apply for the program that matches your stage and calling.</p>
+          <div style="margin-top:16px;border-top:1px solid var(--bd);padding-top:16px;display:flex;flex-direction:column;gap:9px;">
+            <div style="font-size:.76rem;color:var(--ink-2);"><span style="color:var(--gold-dk);font-weight:700;">LBI &nbsp;</span> Life Business Incubator — product &amp; tech startups</div>
+            <div style="font-size:.76rem;color:var(--ink-2);"><span style="color:var(--gold-dk);font-weight:700;">SOT &nbsp;</span> School of Timothy — the power of the second-in-command</div>
+            <div style="font-size:.76rem;color:var(--ink-2);"><span style="color:var(--gold-dk);font-weight:700;">Bootcamp &nbsp;</span> State Bootcamps — Jos &amp; Benue (recurring)</div>
           </div>
+          <a href="#waitlist" style="display:inline-flex;align-items:center;gap:4px;margin-top:14px;text-decoration:none;" class="prog-badge">⭐ Join the Waitlist</a>
         </div>
 
       </div>
@@ -1132,6 +1191,18 @@
 
 
   <script>
+    /* ── Masters Business expanding cards ── */
+    function expandMb(n) {
+      const cards = document.querySelectorAll('.mb-card');
+      const isAlreadyOpen = cards[n].classList.contains('open');
+      cards.forEach((c,i) => {
+        const shouldOpen = !isAlreadyOpen && i === n;
+        c.classList.toggle('open', shouldOpen);
+        const btn = c.querySelector('.mb-toggle');
+        if (btn) btn.textContent = shouldOpen ? '×' : '+';
+      });
+    }
+
     /* ── Nav scroll ── */
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 24); }, { passive:true });
@@ -1178,18 +1249,6 @@
       entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
     },{ threshold:.12, rootMargin:'0px 0px -40px 0px' });
     document.querySelectorAll('.fu').forEach(el=>fuObs.observe(el));
-
-    /* ── Stat counters ── */
-    const statObs = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(!e.isIntersecting) return;
-        const el=e.target, target=parseInt(el.dataset.target), suffix='%';
-        let n=0; const step=target/60;
-        const t=setInterval(()=>{ n=Math.min(n+step,target); el.textContent=Math.round(n)+suffix; if(n>=target)clearInterval(t); },16);
-        statObs.unobserve(el);
-      });
-    },{threshold:.5});
-    document.querySelectorAll('[data-target]').forEach(el=>statObs.observe(el));
 
     /* ── Program card selection ── */
     const mainCards = Array.from(document.querySelectorAll('#programCards .prog-sel-card'));
