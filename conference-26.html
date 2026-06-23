@@ -44,24 +44,12 @@
 
     /* ── Hero ── */
     .hero {
-      min-height:100vh; display:grid; grid-template-columns:1fr 1fr;
-      gap:0; align-items:stretch; border-bottom:1px solid var(--bd);
+      min-height:100vh; display:flex; flex-direction:column;
+      justify-content:flex-end; border-bottom:1px solid var(--bd);
     }
     .hero-left {
       display:flex; flex-direction:column; justify-content:flex-end;
-      padding:140px 5% 80px; border-right:1px solid var(--bd);
-    }
-    .hero-right {
-      position:relative; overflow:hidden; min-height:400px;
-    }
-    .hero-img {
-      position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; object-position:center;
-      filter:grayscale(15%);
-    }
-    .hero-img-overlay {
-      position:absolute; inset:0;
-      background:linear-gradient(to left, rgba(237,234,225,0) 60%, rgba(237,234,225,.3) 100%);
+      padding:140px 5% 80px; max-width:800px;
     }
 
     .hero-edition { font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); margin-bottom:36px; }
@@ -175,20 +163,6 @@
     .sess-items li:last-child { border-bottom:none; }
     .day-note { font-size:.75rem; color:var(--ink-3); margin-top:8px; font-style:italic; }
 
-    /* ── Photo mosaic ── */
-    .community-img-wrap { padding:0 0 100px; border-bottom:1px solid var(--bd); }
-    .community-img-inner { max-width:1100px; margin:0 auto; padding:0 5%; }
-    .photo-mosaic { display:grid; grid-template-columns:1.15fr 1fr; gap:12px; height:520px; }
-    .mosaic-a { border-radius:22px; overflow:hidden; }
-    .mosaic-a img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
-    .mosaic-b { display:grid; grid-template-rows:1fr 1fr; gap:12px; }
-    .mosaic-b-top { border-radius:18px; overflow:hidden; }
-    .mosaic-b-top img { width:100%; height:100%; object-fit:cover; display:block; }
-    .mosaic-b-bot { background:var(--ink); border-radius:18px; padding:32px 28px; display:flex; flex-direction:column; justify-content:flex-end; }
-    .mc-label { font-size:.6rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:12px; }
-    .mc-h { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.8rem; text-transform:uppercase; line-height:.9; color:#fff; margin-bottom:10px; }
-    .mc-p { font-size:.78rem; color:rgba(255,255,255,.45); line-height:1.65; font-weight:300; }
-    @media(max-width:860px){ .photo-mosaic{grid-template-columns:1fr;height:auto;} .mosaic-a{height:300px;} .mosaic-b-top{height:200px;} }
 
     /* ── Venue ── */
     .venue { padding:100px 0; border-bottom:1px solid var(--bd); }
@@ -255,7 +229,6 @@
     /* ── Responsive ── */
     @media(max-width:860px) {
       .hero { grid-template-columns:1fr; }
-      .hero-right { display:none; }
       .xp-cards { height:auto; flex-direction:column; }
       .xp-card { flex:none !important; min-width:unset; min-height:72px; padding:18px; }
       .xp-card.open { min-height:340px; }
@@ -318,10 +291,6 @@
       <a href="#register" class="btn-dark">Secure Your Seat →</a>
       <a href="#what" class="btn-line">What to Expect</a>
     </div>
-  </div>
-  <div class="hero-right">
-    <img src="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=1260&h=900" alt="African entrepreneurs at a business conference" class="hero-img">
-    <div class="hero-img-overlay"></div>
   </div>
 </section>
 
@@ -394,51 +363,31 @@
       <div class="spk-item">
         <span class="spk-n">01</span>
         <div class="spk-name">Ademola<br>Akogun</div>
-        <div class="spk-role">Lead Session · Ministration</div>
+        <div class="spk-role">Speaker</div>
         <div class="spk-scope">Jos '26</div>
       </div>
       <div class="spk-item">
         <span class="spk-n">02</span>
         <div class="spk-name">Jefferey<br>Ehikioya</div>
-        <div class="spk-role">Business Session · Panel</div>
+        <div class="spk-role">Speaker</div>
         <div class="spk-scope">Jos '26</div>
       </div>
       <div class="spk-item">
         <span class="spk-n">03</span>
         <div class="spk-name">Simpa<br>Saiki</div>
-        <div class="spk-role">Session · Panel</div>
+        <div class="spk-role">Speaker</div>
         <div class="spk-scope">Jos '26</div>
       </div>
       <div class="spk-item">
         <span class="spk-n">04</span>
         <div class="spk-name">Abiodun<br>Lawal</div>
-        <div class="spk-role">Host · Panel Moderator</div>
+        <div class="spk-role">Speaker</div>
         <div class="spk-scope">Jos '26</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Community photo mosaic -->
-<div class="community-img-wrap">
-  <div class="community-img-inner">
-    <div class="photo-mosaic">
-      <div class="mosaic-a reveal">
-        <img src="https://images.pexels.com/photos/5699519/pexels-photo-5699519.jpeg?auto=compress&cs=tinysrgb&w=900&h=1100" alt="Faith-driven entrepreneur">
-      </div>
-      <div class="mosaic-b">
-        <div class="mosaic-b-top reveal reveal-d1">
-          <img src="https://images.pexels.com/photos/7551437/pexels-photo-7551437.jpeg?auto=compress&cs=tinysrgb&w=800&h=500" alt="Brethren in business collaborating">
-        </div>
-        <div class="mosaic-b-bot reveal reveal-d2">
-          <div class="mc-label">Second Edition · Jos '26</div>
-          <div class="mc-h">60 Faith-Driven Founders.<br>One Room.</div>
-          <div class="mc-p">Build relationships that outlast the conference. Network with brethren who are building with God.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Agenda -->
 <section class="agenda" id="agenda">
