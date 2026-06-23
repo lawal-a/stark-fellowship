@@ -44,30 +44,28 @@
 
     /* ── Hero ── */
     .hero {
-      min-height:100vh; display:flex; align-items:center;
-      border-bottom:1px solid var(--bd);
+      min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+      padding:140px 5% 0; border-bottom:1px solid var(--bd);
     }
-    .hero-left {
-      display:flex; flex-direction:column;
-      padding:120px 5% 80px; max-width:800px;
-    }
-
-    .hero-edition { font-size:.7rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); margin-bottom:36px; }
-    .hero-badge {
-      display:inline-flex; align-items:center; gap:8px; margin-bottom:16px;
-      border:1px solid var(--bd-hi); padding:6px 16px; border-radius:2px;
-      font-size:.68rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2);
+    .hero-edition {
+      font-size:.72rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+      color:var(--ink-2); margin-bottom:48px;
     }
     .hero-headline {
       font-family:'Barlow Condensed',sans-serif; font-weight:900;
-      text-transform:uppercase; line-height:.85; margin-bottom:40px;
+      text-transform:uppercase; line-height:.82; margin-bottom:0;
     }
-    .hl-1 { display:block; font-size:clamp(4rem,10vw,8rem); color:var(--ink); }
-    .hl-2 { display:block; font-size:clamp(1.8rem,3.5vw,3rem); color:var(--ink-2); font-weight:700; letter-spacing:.04em; }
-    .hl-3 { display:block; font-size:clamp(3.5rem,7vw,6rem); color:var(--blue); }
-    .hl-4 { display:block; font-size:clamp(1.4rem,2.5vw,2rem); color:var(--gold); font-weight:800; letter-spacing:.08em; }
+    .hl-1 { display:block; font-size:clamp(6rem,22vw,22rem); color:var(--ink); }
+    .hl-2 { display:block; font-size:clamp(2.5rem,8vw,8rem); color:var(--ink-2); font-weight:700; letter-spacing:.02em; padding-left:.08em; }
+    .hl-3 { display:block; font-size:clamp(5rem,16vw,16rem); color:var(--blue); }
+    .hl-4 { display:block; font-size:clamp(2rem,6vw,6rem); color:var(--gold); font-weight:800; padding-left:.1em; }
 
-    .hero-meta { display:flex; align-items:center; gap:32px; flex-wrap:wrap; margin-bottom:40px; }
+    .hero-bottom {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:36px 0 48px; margin-top:48px;
+      border-top:1px solid var(--bd); flex-wrap:wrap; gap:24px;
+    }
+    .hero-meta { display:flex; align-items:center; gap:32px; flex-wrap:wrap; }
     .hero-meta-item { display:flex; flex-direction:column; gap:3px; }
     .hero-meta-key { font-size:.65rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
     .hero-meta-val { font-size:.92rem; font-weight:500; color:var(--ink); }
@@ -241,7 +239,7 @@
     }
     @media(max-width:640px) {
       nav { padding:0 5%; } .nav-sponsor { display:none; }
-      .hero-left { padding:100px 5% 60px; }
+      .hero { padding:100px 5% 0; }
       .form-grid { grid-template-columns:1fr; }
       .field.full { grid-column:1; }
       .hero-btns { flex-direction:column; align-items:flex-start; }
@@ -262,15 +260,14 @@
 
 <!-- Hero -->
 <section class="hero" id="home">
-  <div class="hero-left">
-    <div class="hero-edition">Second Edition · Heave Ventures & Team 101</div>
-    <div class="hero-badge">✓ Free Entry &nbsp;·&nbsp; 60 Seats Only</div>
-    <div class="hero-headline">
-      <span class="hl-1">Stark</span>
-      <span class="hl-2">Entrepreneurship</span>
-      <span class="hl-3">Bootcamp</span>
-      <span class="hl-4">Jos '26</span>
-    </div>
+  <div class="hero-edition">Second Edition · Heave Ventures & Team 101</div>
+  <div class="hero-headline">
+    <span class="hl-1">Stark</span>
+    <span class="hl-2">Entrepreneurship</span>
+    <span class="hl-3">Bootcamp</span>
+    <span class="hl-4">Jos '26</span>
+  </div>
+  <div class="hero-bottom">
     <div class="hero-meta">
       <div class="hero-meta-item">
         <span class="hero-meta-key">Date</span>
