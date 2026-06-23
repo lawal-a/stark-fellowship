@@ -28,8 +28,8 @@ export async function onRequestPost({ request, env }) {
     return json({ success: false, message: 'A valid email address is required.' }, 400);
   if (!phone?.trim())        return json({ success: false, message: 'Phone number is required.' }, 400);
   if (!state?.trim())        return json({ success: false, message: 'State of residence is required.' }, 400);
-  if (!conference || !['Jos', 'Benue'].includes(conference))
-    return json({ success: false, message: 'Please select a conference city.' }, 400);
+  if (!conference || conference !== 'Jos')
+    return json({ success: false, message: 'Conference registrations are only open for Jos.' }, 400);
   if (!businessStatus?.trim()) return json({ success: false, message: 'Business status is required.' }, 400);
   if (!expectation?.trim())  return json({ success: false, message: 'Please share what you hope to take away.' }, 400);
 
