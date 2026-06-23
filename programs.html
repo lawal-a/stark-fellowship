@@ -44,25 +44,26 @@
 
     /* ── Hero ── */
     .hero {
-      min-height:100vh; display:flex; flex-direction:column; justify-content:center;
-      padding:140px 5% 0; border-bottom:1px solid var(--bd);
+      min-height:100vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; text-align:center;
+      padding:80px 5% 0; border-bottom:1px solid var(--bd);
     }
     .hero-edition {
       font-size:.72rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
-      color:var(--ink-2); margin-bottom:48px;
+      color:var(--ink-2); margin-bottom:36px;
     }
     .hero-headline {
       font-family:'Barlow Condensed',sans-serif; font-weight:900;
-      text-transform:uppercase; line-height:.82; margin-bottom:0;
+      text-transform:uppercase; line-height:.88;
     }
-    .hl-1 { display:block; font-size:clamp(6rem,22vw,22rem); color:var(--ink); }
-    .hl-2 { display:block; font-size:clamp(2.5rem,8vw,8rem); color:var(--ink-2); font-weight:700; letter-spacing:.02em; padding-left:.08em; }
-    .hl-3 { display:block; font-size:clamp(5rem,16vw,16rem); color:var(--blue); }
-    .hl-4 { display:block; font-size:clamp(2rem,6vw,6rem); color:var(--gold); font-weight:800; padding-left:.1em; }
+    .hl-1 { display:block; font-size:clamp(3rem,8vw,8rem); color:var(--ink); }
+    .hl-2 { display:block; font-size:clamp(1.2rem,3.2vw,3.2rem); color:var(--ink-2); font-weight:700; letter-spacing:.02em; }
+    .hl-3 { display:block; font-size:clamp(2.5rem,6.5vw,6.5rem); color:var(--blue); }
+    .hl-4 { display:block; font-size:clamp(1rem,2.5vw,2.5rem); color:var(--gold); font-weight:800; margin-top:4px; }
 
     .hero-bottom {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:36px 0 48px; margin-top:48px;
+      width:100%; display:flex; align-items:center; justify-content:space-between;
+      padding:28px 0 40px; margin-top:auto;
       border-top:1px solid var(--bd); flex-wrap:wrap; gap:24px;
     }
     .hero-meta { display:flex; align-items:center; gap:32px; flex-wrap:wrap; }
@@ -239,7 +240,7 @@
     }
     @media(max-width:640px) {
       nav { padding:0 5%; } .nav-sponsor { display:none; }
-      .hero { padding:100px 5% 0; }
+      .hero { padding:80px 5% 0; }
       .form-grid { grid-template-columns:1fr; }
       .field.full { grid-column:1; }
       .hero-btns { flex-direction:column; align-items:flex-start; }
